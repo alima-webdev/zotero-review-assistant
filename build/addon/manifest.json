@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Zotero Review",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Zotero Review",
   "homepage_url": "https://github.com/alima-webdev/zotero-review#readme",
   "author": "alima-webdev",
