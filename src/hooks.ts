@@ -1,11 +1,4 @@
 import {
-  BasicExampleFactory,
-  HelperExampleFactory,
-  KeyExampleFactory,
-  PromptExampleFactory,
-  UIExampleFactory,
-} from "./modules/examples";
-import {
   ReviewModule
 } from "./modules/review";
 import { config } from "../package.json";

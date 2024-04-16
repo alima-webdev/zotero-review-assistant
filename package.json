@@ -4,12 +4,12 @@
   "description": "Zotero Review",
   "config": {
     "addonName": "Zotero Review",
-    "addonID": "zoteroreview@alexlimapta.com",
-    "addonRef": "zotero-review",
+    "addonID": "addontemplate@euclpts.com",
+    "addonRef": "zoteroreview",
     "addonInstance": "ZoteroReview",
-    "prefsPrefix": "extensions.zotero.zoteroreview",
+    "prefsPrefix": "extensions.zoteroreview",
     "releasePage": "https://github.com/alima-webdev/zotero-review/releases",
-    "updateJSON": "https://raw.githubusercontent.com/alima-webdev/zotero-review/main/update.json"
+    "updateJSON": "https://raw.githubusercontent.com/alima-webdev/zotero-review/main/update.json?token=GHSAT0AAAAAACQKVFOAT6ZKLBSOWJFL25UKZQ52GGA"
   },
   "main": "src/index.ts",
   "scripts": {

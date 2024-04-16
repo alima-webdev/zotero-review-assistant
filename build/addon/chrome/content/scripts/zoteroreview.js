@@ -5771,10 +5771,10 @@ body {
   // package.json
   var config = {
     addonName: "Zotero Review",
-    addonID: "zoteroreview@alexlimapta.com",
-    addonRef: "zotero-review",
+    addonID: "addontemplate@euclpts.com",
+    addonRef: "zoteroreview",
     addonInstance: "ZoteroReview",
-    prefsPrefix: "extensions.zotero.zoteroreview",
+    prefsPrefix: "extensions.zoteroreview",
     releasePage: "https://github.com/alima-webdev/zotero-review/releases",
     updateJSON: "https://raw.githubusercontent.com/alima-webdev/zotero-review/main/update.json"
   };
@@ -5925,31 +5925,31 @@ body {
             {
               tag: "menuitem",
               label: getString("contextmenu-status-include"),
-              icon: "chrome://addontemplate/content/icons/include.svg",
+              icon: "chrome://zoteroreview/content/icons/include.svg",
               oncommand: `document.setReviewStatus('${TAG_INCLUDE}')`
             },
             {
               tag: "menuitem",
               label: getString("contextmenu-status-exclude"),
-              icon: "chrome://addontemplate/content/icons/exclude.svg",
+              icon: "chrome://zoteroreview/content/icons/exclude.svg",
               oncommand: `document.setReviewStatus('${TAG_EXCLUDE}');`
             },
             {
               tag: "menuitem",
               label: getString("contextmenu-status-pending"),
-              icon: "chrome://addontemplate/content/icons/pending.svg",
+              icon: "chrome://zoteroreview/content/icons/pending.svg",
               oncommand: `document.setReviewStatus('${TAG_PENDING}')`
             },
             {
               tag: "menuitem",
               label: getString("contextmenu-status-unsure"),
-              icon: "chrome://addontemplate/content/icons/unsure.svg",
+              icon: "chrome://zoteroreview/content/icons/unsure.svg",
               oncommand: `document.setReviewStatus('${TAG_UNSURE}')`
             },
             {
               tag: "menuitem",
               label: getString("contextmenu-status-notreviewed"),
-              icon: "chrome://addontemplate/content/icons/notreviewed.svg",
+              icon: "chrome://zoteroreview/content/icons/notreviewed.svg",
               oncommand: `document.setReviewStatus('${TAG_NOT_REVIEWED}')`
             }
           ]

@@ -22,7 +22,7 @@ async function startup({ id, version, resourceURI, rootURI }, reason) {
   ].getService(Components.interfaces.amIAddonManagerStartup);
   var manifestURI = Services.io.newURI(rootURI + "manifest.json");
   chromeHandle = aomStartup.registerChrome(manifestURI, [
-    ["content", "zotero-review", rootURI + "chrome/content/"],
+    ["content", "zoteroreview", rootURI + "chrome/content/"],
   ]);
 
   /**
@@ -37,7 +37,7 @@ async function startup({ id, version, resourceURI, rootURI }, reason) {
   ctx._globalThis = ctx;
 
   Services.scriptloader.loadSubScript(
-    `${rootURI}/chrome/content/scripts/zotero-review.js`,
+    `${rootURI}/chrome/content/scripts/zoteroreview.js`,
     ctx,
   );
   Zotero.ZoteroReview.hooks.onStartup();
@@ -67,7 +67,7 @@ function shutdown({ id, version, resourceURI, rootURI }, reason) {
     .getService(Components.interfaces.nsIStringBundleService)
     .flushBundles();
 
-  Cu.unload(`${rootURI}/chrome/content/scripts/zotero-review.js`);
+  Cu.unload(`${rootURI}/chrome/content/scripts/zoteroreview.js`);
 
   if (chromeHandle) {
     chromeHandle.destruct();
