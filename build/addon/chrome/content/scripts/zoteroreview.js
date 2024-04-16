@@ -5771,12 +5771,12 @@ body {
   // package.json
   var config = {
     addonName: "Zotero Review",
-    addonID: "addontemplate@euclpts.com",
+    addonID: "zoteroreview@alima-webdev.com",
     addonRef: "zoteroreview",
     addonInstance: "ZoteroReview",
     prefsPrefix: "extensions.zoteroreview",
     releasePage: "https://github.com/alima-webdev/zotero-review/releases",
-    updateJSON: "https://raw.githubusercontent.com/alima-webdev/zotero-review/main/update.json"
+    updateJSON: "https://raw.githubusercontent.com/alima-webdev/zotero-review/main/update.json?token=GHSAT0AAAAAACQKVFOAT6ZKLBSOWJFL25UKZQ52GGA"
   };
 
   // src/utils/locale.ts

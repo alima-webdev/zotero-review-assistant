@@ -4,7 +4,7 @@
   "description": "Zotero Review",
   "config": {
     "addonName": "Zotero Review",
-    "addonID": "addontemplate@euclpts.com",
+    "addonID": "zoteroreview@alima-webdev.com",
     "addonRef": "zoteroreview",
     "addonInstance": "ZoteroReview",
     "prefsPrefix": "extensions.zoteroreview",

@@ -11,8 +11,8 @@
   },
   "applications": {
     "zotero": {
-      "id": "addontemplate@euclpts.com",
-      "update_url": "https://raw.githubusercontent.com/alima-webdev/zotero-review/main/update.json",
+      "id": "zoteroreview@alima-webdev.com",
+      "update_url": "https://raw.githubusercontent.com/alima-webdev/zotero-review/main/update.json?token=GHSAT0AAAAAACQKVFOAT6ZKLBSOWJFL25UKZQ52GGA",
       "strict_min_version": "6.999",
       "strict_max_version": "7.0.*"
     }
