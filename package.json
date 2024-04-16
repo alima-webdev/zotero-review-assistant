@@ -1,6 +1,6 @@
 {
   "name": "zotero-review",
-  "version": "1.1.1",
+  "version": "0.0.1",
   "description": "Zotero Review",
   "config": {
     "addonName": "Zotero Review",
@@ -9,7 +9,7 @@
     "addonInstance": "ZoteroReview",
     "prefsPrefix": "extensions.zoteroreview",
     "releasePage": "https://github.com/alima-webdev/zotero-review/releases",
-    "updateJSON": "https://raw.githubusercontent.com/alima-webdev/zotero-review/main/update.json?token=GHSAT0AAAAAACQKVFOAT6ZKLBSOWJFL25UKZQ52GGA"
+    "updateJSON": "https://raw.githubusercontent.com/alima-webdev/zotero-review/main/update.json"
   },
   "main": "src/index.ts",
   "scripts": {
