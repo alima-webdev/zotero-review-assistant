@@ -1,0 +1,11 @@
+zotero-review-startup-begin = 插件加载中
+zotero-review-startup-finish = 插件已就绪
+zotero-review-menuitem-label = 插件模板: 帮助工具样例
+zotero-review-menupopup-label = 插件模板: 弹出菜单
+zotero-review-menuitem-submenulabel = 插件模板：子菜单
+zotero-review-menuitem-filemenulabel = 插件模板: 文件菜单
+zotero-review-prefs-title = 插件模板
+zotero-review-prefs-table-title = 标题
+zotero-review-prefs-table-detail = 详情
+zotero-review-tabpanel-lib-tab-label = 库标签
+zotero-review-tabpanel-reader-tab-label = 阅读器标签

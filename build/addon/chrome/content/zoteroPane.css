@@ -1,0 +1,39 @@
+/* Item Tree */
+#zotero-items-tree .review-container {
+  text-align: center;
+}
+.review {
+  text-align: center;
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 0 auto;
+  border-radius: 3px;
+}
+
+.review.include {
+  background: #60a5fa;
+}
+
+.review.exclude {
+  background: #fa8f8f;
+  background: #faa560;
+  background: #fe6969;
+}
+
+.review.pending {
+  background: #9ca3af;
+}
+
+.review.unsure {
+  background: #facc15;
+}
+
+/* Review Status Selector */
+#review-status-selector {
+  position: absolute;
+  padding: 4px 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
