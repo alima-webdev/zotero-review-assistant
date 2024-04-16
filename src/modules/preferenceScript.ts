@@ -1,5 +1,7 @@
 import { config } from "../../package.json";
 import { getString } from "../utils/locale";
+import { getPref } from "../utils/prefs";
+import { allStatuses } from "./consts";
 
 export async function registerPrefsScripts(_window: Window) {
   // This function is called when the prefs window is opened
@@ -9,30 +11,41 @@ export async function registerPrefsScripts(_window: Window) {
       window: _window,
       columns: [
         {
-          dataKey: "title",
-          label: getString("prefs-table-title"),
+          dataKey: "id",
+          label: getString("prefs-table-id"),
+        },
+        {
+          dataKey: "label",
+          label: getString("prefs-table-label"),
           fixedWidth: true,
           width: 100,
         },
         {
-          dataKey: "detail",
-          label: getString("prefs-table-detail"),
+          dataKey: "name",
+          label: getString("prefs-table-name"),
+          fixedWidth: true,
+          width: 100,
+        },
+        {
+          dataKey: "tag",
+          label: getString("prefs-table-tag"),
+          fixedWidth: true,
+          width: 100,
+        },
+        {
+          dataKey: "color",
+          label: getString("prefs-table-color"),
+        },
+        {
+          dataKey: "askForReason",
+          label: getString("prefs-table-askforreason"),
+        },
+        {
+          dataKey: "default",
+          label: getString("prefs-table-default"),
         },
       ],
-      rows: [
-        {
-          title: "Orange",
-          detail: "It's juicy",
-        },
-        {
-          title: "Banana",
-          detail: "It's sweet",
-        },
-        {
-          title: "Apple",
-          detail: "I mean the fruit APPLE",
-        },
-      ],
+      rows: allStatuses,
     };
   } else {
     addon.data.prefs.window = _window;
@@ -64,8 +77,13 @@ async function updatePrefsUI() {
       "getRowData",
       (index) =>
         addon.data.prefs?.rows[index] || {
-          title: "no data",
-          detail: "no data",
+          id: 1,
+          name: 'include',
+          tag: '!review:include',
+          label: 'Include',
+          color: '#60a5fa',
+          askForReason: false,
+          default: false
         },
     )
     // Show a progress window when selection changes

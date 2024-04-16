@@ -2,6 +2,7 @@
 #zotero-items-tree .review-container {
   text-align: center;
 }
+
 .review {
   text-align: center;
   display: inline-block;
@@ -38,4 +39,106 @@
   box-shadow:
     0 10px 15px -3px rgb(0 0 0 / 0.1),
     0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* Modal */
+.modal {
+  display: none;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, .5)
+}
+
+.inner-modal {
+  padding: 2rem;
+
+  background: #fff;
+}
+
+.inner-modal h2 {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+#input-reason {
+  margin: 1rem 0;
+  padding: .75rem 1rem;
+
+  display: block;
+  width: auto;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 2px;
+  
+  background: #fff;
+}
+
+#input-reason:focus {
+  border-color: #60a5fa;
+  outline: none;
+}
+
+/* Autocomplete */
+.autocomplete {
+  margin-top: -4px;
+  /* margin-left: 3px; */
+
+  background: #fff;
+  border: 1px solid #f3f4f6;
+  border-top: none;
+  border-radius: 2px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+  z-index: 99999;
+}
+.autocomplete > * {
+  padding: .75rem 1rem;
+}
+
+.autocomplete > *:hover {
+  background: #e5e7eb;
+}
+
+/* Buttons */
+.btn {
+  display: flex;
+  max-height: none;
+  padding: .75rem 1.25rem !important;
+  border-radius: 2px;
+
+  border: none;
+  background: #e5e7eb;
+}
+
+.btn:hover {
+  background: #f3f4f6;
+}
+
+.btn-primary {
+  background: #60a5fa;
+}
+
+.btn-primary:hover {
+  background: #bfdbfe;
+}
+
+.btn-container {
+  display: flex;
+  gap: 1rem;
 }

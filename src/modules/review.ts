@@ -1,116 +1,71 @@
+import { MenuitemOptions } from "zotero-plugin-toolkit/dist/managers/menu";
 import { config } from "../../package.json";
 import { getString } from "../utils/locale";
+import { allStatuses, reasonTagPrefix } from "./consts";
+import { getItemStatus, removeAllStatuses, getStatusFromTag, getItemStatusTags, generateMenuIcon, getAllReasonsFromItems } from "./helpers";
+import { module } from "./module";
+import { createModal, initModal } from "../utils/modal";
+import autocomplete from "autocompleter";
 
+// Load XUI services
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
-function module(
-  target: any,
-  propertyKey: string | symbol,
-  descriptor: PropertyDescriptor,
-) {
-  const original = descriptor.value;
-  descriptor.value = function (...args: any) {
-    try {
-      ztoolkit.log(`Calling module ${target.name}.${String(propertyKey)}`);
-      return original.apply(this, args);
-    } catch (e) {
-      ztoolkit.log(`Error in module ${target.name}.${String(propertyKey)}`, e);
-      throw e;
-    }
-  };
-  return descriptor;
-}
-
-// Tag fields
-const TAG_INCLUDE = "!review:include";
-const TAG_EXCLUDE = "!review:exclude";
-const TAG_PENDING = "!review:pending";
-const TAG_UNSURE = "!review:unsure";
-const TAG_NOT_REVIEWED = "!review:not-reviewed";
-const TAG_REASON_PREFIX = "!review:exclude:";
-const TAG_STATUSES = [
-  TAG_INCLUDE,
-  TAG_EXCLUDE,
-  TAG_PENDING,
-  TAG_UNSURE,
-  TAG_NOT_REVIEWED,
-];
-
-function getReviewStatusId(item: Zotero.Item) {
-  let status = "";
-  if (item.hasTag(TAG_INCLUDE)) status = TAG_INCLUDE;
-  else if (item.hasTag(TAG_EXCLUDE)) status = TAG_EXCLUDE;
-  else if (item.hasTag(TAG_PENDING)) status = TAG_PENDING;
-  else if (item.hasTag(TAG_UNSURE)) status = TAG_UNSURE;
-  else status = TAG_NOT_REVIEWED;
-  return status;
-}
-
-function getReviewStatusLabel(statusId: string) {
-  let status = "";
-  if (statusId == TAG_INCLUDE) status = "Include";
-  else if (statusId == TAG_EXCLUDE) status = "Exclude";
-  else if (statusId == TAG_PENDING) status = "Pending";
-  else if (statusId == TAG_UNSURE) status = "Unsure";
-  else if (statusId == TAG_NOT_REVIEWED) status = "Not Reviewed";
-  return status;
-}
-
-// Review Status
+// ---------------------------------------------
+// Review Status Column
+// ---------------------------------------------
 const columnId = "123";
-const columnName = "Review Status";
-const getColumnFieldHook = (
+const getStatusColumnHook = (
   field: string,
   unformatted: boolean,
   includeBaseMapped: boolean,
   item: Zotero.Item,
 ) => {
-  const reviewStatusId = getReviewStatusId(item);
-  return String(reviewStatusId);
+  const reviewStatus = getItemStatus(item);
+  return String(reviewStatus?.tag);
 };
 
-function renderReviewCell(
+function renderStatusCell(
   index: number,
-  data: string,
+  data: any,
   column: any,
 ): HTMLElement {
   const element = document.createElement("span");
   element.className = `cell ${column.className} review-container`;
   const innerElement = document.createElement("div");
   innerElement.classList.add("review");
-  innerElement.classList.add(data.split(":")[1]);
-  innerElement.textContent = getReviewStatusLabel(data);
-  element.appendChild(innerElement);
+  // innerElement.classList.add(data.split(":")[1]);
+  const status = getStatusFromTag(data)
+  innerElement.style.backgroundColor = status?.color ?? ""
+  innerElement.textContent = status?.label ?? ""
+  element.appendChild(innerElement)
   return element;
 }
-const columnOptions = { renderCell: renderReviewCell };
 
-// Reason for exclusion
+const columnOptions = { renderCell: renderStatusCell };
+
+// ---------------------------------------------
+// Reason Column
+// ---------------------------------------------
 const columnReasonId = "456";
-const columnReasonName = "Reason for Exclusion";
-const getColumnReasonFieldHook = (
+const getReasonColumnHook = (
   field: string,
   unformatted: boolean,
   includeBaseMapped: boolean,
   item: Zotero.Item,
 ) => {
-  const tags = item.getTags();
-  ztoolkit.log("getColumnReasonFieldHook");
-  for (const tag of tags) {
-    ztoolkit.log(tag);
-    if (tag.tag.includes(TAG_REASON_PREFIX)) {
-      ztoolkit.log("REASON FOR EXCLUSION");
 
-      return tag.tag.replace(TAG_REASON_PREFIX, "");
-    }
-  }
-  ztoolkit.log("End: getColumnReasonFieldHook");
-  return "";
+  const statusTags = getItemStatusTags(item)
+  const reason = statusTags.find(obj => obj.tag.includes(reasonTagPrefix))?.tag.replace(reasonTagPrefix, "") ?? ""
+  return reason;
 };
 const columnReasonOptions = {};
 
-let reviewStatusSelector;
+// Reason Modal
+let reasonModal;
 
+// ---------------------------------------------
+// Review Module
+// ---------------------------------------------
 export class ReviewModule {
   @module
   static registerStyleSheet() {
@@ -127,169 +82,155 @@ export class ReviewModule {
   @module
   static registerExtraColumnWithBindings() {
     // Register the extra fields
+    const columnName = getString('status-column-header');
     ztoolkit.ItemTree.register(
       columnId,
       columnName,
-      getColumnFieldHook,
+      getStatusColumnHook,
       columnOptions,
     );
+    const columnReasonName: string = getString('reason-column-header');
     ztoolkit.ItemTree.register(
       columnReasonId,
       columnReasonName,
-      getColumnReasonFieldHook,
+      getReasonColumnHook,
       columnReasonOptions,
     );
 
     // Register the context menu items
+    const statusMenuChildren = allStatuses.map((status): MenuitemOptions => {
+      return { tag: "menuitem", label: status.label, icon: generateMenuIcon(status.color), oncommand: `document.setReviewStatus('${status.tag}')` }
+    })
+
     ztoolkit.Menu.register("item", { tag: "menuseparator" });
     ztoolkit.Menu.register("item", {
       tag: "menu",
-      label: getString("contextmenu-status"),
-      children: [
-        {
-          tag: "menuitem",
-          label: getString("contextmenu-status-include"),
-          icon: "chrome://zoteroreview/content/icons/include.svg",
-          oncommand: `document.setReviewStatus('${TAG_INCLUDE}')`,
-        },
-        {
-          tag: "menuitem",
-          label: getString("contextmenu-status-exclude"),
-          icon: "chrome://zoteroreview/content/icons/exclude.svg",
-          oncommand: `document.setReviewStatus('${TAG_EXCLUDE}');`,
-        },
-        {
-          tag: "menuitem",
-          label: getString("contextmenu-status-pending"),
-          icon: "chrome://zoteroreview/content/icons/pending.svg",
-          oncommand: `document.setReviewStatus('${TAG_PENDING}')`,
-        },
-        {
-          tag: "menuitem",
-          label: getString("contextmenu-status-unsure"),
-          icon: "chrome://zoteroreview/content/icons/unsure.svg",
-          oncommand: `document.setReviewStatus('${TAG_UNSURE}')`,
-        },
-        {
-          tag: "menuitem",
-          label: getString("contextmenu-status-notreviewed"),
-          icon: "chrome://zoteroreview/content/icons/notreviewed.svg",
-          oncommand: `document.setReviewStatus('${TAG_NOT_REVIEWED}')`,
-        },
-      ],
+      label: getString("context-menu-status"),
+      children: statusMenuChildren,
     });
 
+    // -----------------------------------------------
+    // TODO: Review Below
+    // -----------------------------------------------
+
     // Register the global functions
-    ztoolkit.getGlobal("document").setReviewStatus = (status: string) => {
-      ztoolkit.log("setReviewStatus");
-      const selectedItems = ztoolkit.getGlobal("ZoteroPane").getSelectedItems();
+    ztoolkit.getGlobal("document").setReviewStatus = (statusTag) => {
+
+      const selectedItems: Zotero.Item[] = ztoolkit.getGlobal("ZoteroPane").getSelectedItems();
       for (const item of selectedItems) {
         // Remove the old tag status
-        for (const tag of TAG_STATUSES) {
-          item.removeTag(tag);
-        }
+        removeAllStatuses(item)
 
-        // Remove the exclusion criteria
-        item.getTags().map((tag) => {
-          if (tag.tag.includes(TAG_REASON_PREFIX)) item.removeTag(tag.tag);
-        });
-        item.addTag(status);
+        item.addTag(statusTag);
         item.saveTx();
       }
 
-      // If excluded, ask to provide a reason for exclusion
-      if (status == TAG_EXCLUDE) document.setExclusionReason();
+      // Get status from the tag name provided
+      const status = getStatusFromTag(statusTag)
 
-      ztoolkit.getGlobal("ZoteroPane").refreshFeed();
+      // If excluded, ask to provide a reason for exclusion
+      if (status?.askForReason) document.setStatusReason(selectedItems);
     };
 
-    ztoolkit.getGlobal("document").setExclusionReason = () => {
-      ztoolkit.log("setExclusionReason");
+    ztoolkit.getGlobal("document").setStatusReason = async (selectedItems) => {
+      document.allReasons = getAllReasonsFromItems(await ztoolkit.getGlobal("Zotero").Tags.getAll())
+      document.reasonModal.open()
+    };
+  }
 
-      // Get the selected items
-      const selectedItems = ztoolkit.getGlobal("ZoteroPane").getSelectedItems();
+  @module
+  static async registerDOMEvents() {
 
-      // Prompt the user to provide the reason for exclusion
-      const defaultValue = { value: "" };
-      const res = { value: null };
-      const reasonProvided: boolean = Services.prompt.prompt(
-        window,
-        getString("review-exclusiondialog-title"),
-        getString("review-exclusiondialog-text"),
-        res,
-        "",
-        defaultValue,
-      );
+    const reasonModalBody = document.createElement('div')
 
-      // If prompt canceled, return
-      if (!reasonProvided) return;
+    const reasonModalDescription = document.createElement('div')
+    reasonModalDescription.textContent = getString("reason-dialog-text")
+    reasonModalBody.appendChild(reasonModalDescription)
+
+    // Form
+    const reasonForm = document.createElement('form')
+
+    // Input + Autocomplete
+    const reasonInput = ztoolkit.UI.createElement(document, 'input')
+    reasonInput.id = 'input-reason'
+    reasonInput.type = 'text'
+    const autocompleteContainer = document.createElement('div')
+    const inputContainer = document.createElement('div')
+    inputContainer.appendChild(reasonInput)
+    inputContainer.appendChild(autocompleteContainer)
+    reasonForm.appendChild(inputContainer)
+
+    // Buttons
+    const buttonContainer = document.createElement('div')
+    buttonContainer.classList.add('btn-container')
+
+    const btnCancel = document.createElement('button')
+    btnCancel.classList.add('btn')
+    btnCancel.textContent = 'Cancel'
+
+    const btnSubmit = document.createElement('button')
+    btnSubmit.type = 'submit'
+    btnSubmit.classList.add('btn')
+    btnSubmit.classList.add('btn-primary')
+    btnSubmit.textContent = 'Submit'
+
+    buttonContainer.appendChild(btnCancel)
+    buttonContainer.appendChild(btnSubmit)
+
+    reasonForm.appendChild(buttonContainer)
+
+    reasonModalBody.appendChild(reasonForm)
+
+    // Form submission
+    reasonForm.onsubmit = () => {
+      ztoolkit.log("Submit")
+      ztoolkit.log(reasonInput.value)
+
+      const selectedItems: Zotero.Item[] = ztoolkit.getGlobal("ZoteroPane").getSelectedItems();
 
       // Update the exclusion criteria
       for (const item of selectedItems) {
         // Remove the exclusion criteria
         item.getTags().map((tag) => {
-          if (tag.tag.includes(TAG_REASON_PREFIX)) item.removeTag(tag.tag);
+          if (tag.tag.includes(reasonTagPrefix)) item.removeTag(tag.tag);
         });
 
-        item.addTag(TAG_REASON_PREFIX + res.value);
+        item.addTag(reasonTagPrefix + reasonInput.value);
         item.saveTx();
       }
-    };
+
+      reasonModal.close()
+    }
+
+    // Modal
+    const reasonModal = createModal('reason-modal', getString("reason-dialog-title"), reasonModalBody)
+    reasonModal.appendTo(document.documentElement)
+    document.reasonModal = reasonModal
+
+    btnCancel.onclick = () => {
+      reasonInput.value = ""
+      reasonModal.close()
+    }
+
+    document.allReasons = getAllReasonsFromItems(await ztoolkit.getGlobal("Zotero").Tags.getAll())
+
+    autocomplete({
+      input: reasonInput,
+      fetch: function (text, update) {
+        text = text.toLowerCase();
+        const suggestions = document.allReasons.filter(n => n.label.toLowerCase().startsWith(text))
+        update(suggestions);
+      },
+      onSelect: function (item) {
+        reasonInput.value = item.label;
+      },
+      render: function (item, currentValue: string): HTMLDivElement | undefined {
+        const itemElement = document.createElement('div');
+        itemElement.textContent = item.label
+        return itemElement
+      },
+      container: autocompleteContainer,
+    });
+    initModal()
   }
 }
-
-// new ztoolkit.ProgressWindow(config.addonName)
-//     .createLine({
-//         text: "Plugin Loaded!",
-//         type: "success",
-//     })
-//     .show();
-// ztoolkit.getGlobal('document').showStatusSelector = (item: Zotero.Item, target: HTMLElement) => {
-//     const x = target.getBoundingClientRect().left
-//     const y = target.getBoundingClientRect().top
-//     reviewStatusSelector.show(x, y)
-// }
-
-// reviewStatusSelector = new ReviewStatusSelector()
-// ztoolkit.getGlobal('document').showStatusSelector = (item: Zotero.Item, target: HTMLElement) => {
-//     alert('123')
-//     const x = target.getBoundingClientRect().left
-//     const y = target.getBoundingClientRect().top
-//     reviewStatusSelector.show(x, y)
-// }
-
-// class ReviewStatusSelector {
-//     element: HTMLElement;
-//     constructor() {
-//         let el = document.createElement('div')
-//         el.id = 'review-status-selector'
-
-//         // Add each status
-//         const statusTags = [
-//             TAG_INCLUDE,
-//             TAG_EXCLUDE,
-//             TAG_PENDING,
-//             TAG_UNSURE,
-//             TAG_NOT_REVIEWED,
-//         ]
-//         for (const status of statusTags) {
-//             let statusEl = document.createElement('div')
-//             statusEl.classList.add('status-option')
-
-//             let statusElSpan = document.createElement('span')
-//             statusElSpan.classList.add('review')
-//             statusElSpan.classList.add(status.split(':')[1])
-//             statusElSpan.textContent = getReviewStatusLabel(status)
-//             statusEl.appendChild(statusElSpan)
-//             el.appendChild(statusEl)
-//         }
-
-//         document.querySelector('#zotero-items-tree')?.appendChild(el)
-//         this.element = el
-//     }
-
-//     show(x: number, y: number) {
-//         this.element.style.left = x + 'px'
-//         this.element.style.top = y + 'px'
-//     }
-// }

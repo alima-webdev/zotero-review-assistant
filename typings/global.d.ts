@@ -1,3 +1,9 @@
+interface Document {
+  setStatusReason: (selectedItems: Zotero.Item[]) => void;
+  setReviewStatus: (status: string) => void;
+  reasonModal: ReviewModal
+}
+
 declare const _globalThis: {
   [key: string]: any;
   Zotero: _ZoteroTypes.Zotero;
@@ -22,3 +28,19 @@ declare const addon: import("../src/addon").default;
 declare const __env__: "production" | "development";
 
 declare class Localization {}
+
+// declare global {
+//     interface Document {
+//         setStatusReason: () => void;
+//         setReviewStatus: (status: string) => void;
+//     }
+// }
+type ReviewStatus = {
+    id: number,
+    name: string,
+    tag: string,
+    label: string,
+    color: string,
+    askForReason: boolean,
+    default: boolean
+}

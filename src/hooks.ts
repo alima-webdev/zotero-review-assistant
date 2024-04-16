@@ -20,6 +20,14 @@ async function onStartup() {
 
   initLocale();
 
+  Zotero.PreferencePanes.register({
+    pluginID: config.addonID,
+    src: rootURI + "chrome/content/preferences.xhtml",
+    label: getString("prefs-title"),
+    // helpURL: homepage,
+    image: rootURI + "chrome/content/icons/favicon.png",
+  });
+
   ReviewModule.registerExtraColumnWithBindings();
 
   await onMainWindowLoad(window);
@@ -28,6 +36,8 @@ async function onStartup() {
 async function onMainWindowLoad(win: Window): Promise<void> {
   // Create ztoolkit for every window
   addon.data.ztoolkit = createZToolkit();
+
+  ReviewModule.registerDOMEvents()
 
   // const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
   //   closeOnClick: true,
@@ -105,6 +115,7 @@ async function onPrefsEvent(type: string, data: { [key: string]: any }) {
   switch (type) {
     case "load":
       registerPrefsScripts(data.window);
+      ztoolkit.log("Prefs Script Loaded")
       break;
     default:
       return;
