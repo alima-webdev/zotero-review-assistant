@@ -1,7 +1,7 @@
 import ZoteroToolkit from "zotero-plugin-toolkit";
 
-const ztoolkit = new ZoteroToolkit()
+const ztoolkit = new ZoteroToolkit();
 
 function main() {
-    ztoolkit.log("Test")
+  ztoolkit.log("Test");
 }

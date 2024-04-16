@@ -1,6 +1,4 @@
-import {
-  ReviewModule
-} from "./modules/review";
+import { ReviewModule } from "./modules/review";
 import { config } from "../package.json";
 import { getString, initLocale } from "./utils/locale";
 import { registerPrefsScripts } from "./modules/preferenceScript";
@@ -22,7 +20,7 @@ async function onStartup() {
 
   initLocale();
 
-  ReviewModule.registerExtraColumnWithBindings()
+  ReviewModule.registerExtraColumnWithBindings();
 
   await onMainWindowLoad(window);
 }

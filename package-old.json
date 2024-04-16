@@ -66,9 +66,7 @@
       "ecmaVersion": "latest",
       "sourceType": "module"
     },
-    "plugins": [
-      "@typescript-eslint"
-    ],
+    "plugins": ["@typescript-eslint"],
     "rules": {
       "@typescript-eslint/ban-ts-comment": [
         "warn",
@@ -104,9 +102,7 @@
     "endOfLine": "lf",
     "overrides": [
       {
-        "files": [
-          "*.xhtml"
-        ],
+        "files": ["*.xhtml"],
         "options": {
           "htmlWhitespaceSensitivity": "css"
         }
@@ -122,9 +118,7 @@
     },
     "github": {
       "release": false,
-      "assets": [
-        "build/*.xpi"
-      ]
+      "assets": ["build/*.xpi"]
     },
     "hooks": {
       "before:init": "npm run lint",
