@@ -9,7 +9,7 @@ zoteroreview-prefs-table-id = Id
 zoteroreview-prefs-table-name = Name
 zoteroreview-prefs-table-tag = Tag
 zoteroreview-prefs-table-label = Label
-zoteroreview-prefs-table-color = #ffffff
+zoteroreview-prefs-table-color = Color
 zoteroreview-prefs-table-askforreason = Ask for a Reason
 zoteroreview-prefs-table-default = Default Status
 

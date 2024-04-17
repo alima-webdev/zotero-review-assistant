@@ -9,7 +9,7 @@ prefs-table-id = Id
 prefs-table-name = Name
 prefs-table-tag = Tag
 prefs-table-label = Label
-prefs-table-color = #ffffff
+prefs-table-color = Color
 prefs-table-askforreason = Ask for a Reason
 prefs-table-default = Default Status
 

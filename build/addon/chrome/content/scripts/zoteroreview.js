@@ -11511,6 +11511,9 @@ body {
   function getPref(key) {
     return Zotero.Prefs.get(`${config.prefsPrefix}.${key}`, true);
   }
+  function setPref(key, value) {
+    return Zotero.Prefs.set(`${config.prefsPrefix}.${key}`, value, true);
+  }
 
   // src/modules/consts.ts
   var allStatuses = JSON.parse(String(getPref("statuses")));
@@ -11554,6 +11557,19 @@ body {
   function generateMenuIcon(color) {
     return "data:image/svg+xml;base64," + window.btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="${color}"><circle cx="12" cy="12" r="12" /></svg>`);
   }
+  function loadXHTMLFromFile(src) {
+    return Zotero.File.getContentsFromURL(src);
+  }
+  function parseXHTML(str) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(str, "text/html");
+    if (doc.documentElement.localName === "parsererror") {
+      throw new Error("not well-formed XHTML");
+    }
+    let range = doc.createRange();
+    range.selectNodeContents(doc.querySelector("div"));
+    return range.extractContents();
+  }
 
   // src/modules/module.ts
   function module(target, propertyKey, descriptor) {
@@ -11576,7 +11592,7 @@ body {
         <div class="inner-modal" tabindex="-1">
             <div role="dialog" aria-modal="true" aria-labelledby="{{id}}-title">
                 <header>
-                    <h2 id="{{id}}-title">
+                    <h2 id="{{id}}-title" class="modal-title">
                         {{title}}
                     </h2>
                     <button aria-label="Close modal"></button>
@@ -11605,14 +11621,35 @@ body {
     }
     appendTo(root) {
       root.appendChild(this.element);
+      this.bindEvents();
       this.root = root;
       return this;
     }
     open() {
       this.element.classList.add("open");
+      this.root?.parentNode?.addEventListener("keydown", this.closeKeyStroke.bind(this));
+    }
+    closeKeyStroke(ev) {
+      if (ev.key === "Escape") {
+        this.close();
+        ev.preventDefault();
+      }
     }
     close() {
       this.element.classList.remove("open");
+      this.root?.parentNode?.removeEventListener("keydown", this.closeKeyStroke);
+    }
+    bindEvents() {
+      ztoolkit.log(this.element);
+      if (this.element.querySelector("[action=close]")) {
+        this.element.querySelector("[action=close]").onclick = (ev) => {
+          this.close();
+        };
+      }
+      this.element.onclick = (ev) => {
+        if (ev.target == this.element)
+          this.close();
+      };
     }
   };
 
@@ -12098,7 +12135,9 @@ body {
       };
       ztoolkit.getGlobal("document").setStatusReason = async (selectedItems) => {
         document.allReasons = getAllReasonsFromItems(await ztoolkit.getGlobal("Zotero").Tags.getAll());
+        document.reasonModal.element.querySelector("#input-reason").value = "";
         document.reasonModal.open();
+        document.reasonModal.element.querySelector("#input-reason").focus();
       };
     }
     static async registerDOMEvents() {
@@ -12110,6 +12149,7 @@ body {
       const reasonInput = ztoolkit.UI.createElement(document, "input");
       reasonInput.id = "input-reason";
       reasonInput.type = "text";
+      reasonInput.classList.add("input");
       const autocompleteContainer = document.createElement("div");
       const inputContainer = document.createElement("div");
       inputContainer.appendChild(reasonInput);
@@ -12118,6 +12158,8 @@ body {
       const buttonContainer = document.createElement("div");
       buttonContainer.classList.add("btn-container");
       const btnCancel = document.createElement("button");
+      btnCancel.type = "button";
+      btnCancel.setAttribute("action", "close");
       btnCancel.classList.add("btn");
       btnCancel.textContent = "Cancel";
       const btnSubmit = document.createElement("button");
@@ -12181,53 +12223,15 @@ body {
     module
   ], ReviewModule, "registerDOMEvents", 1);
 
-  // src/ui/table.ts
-  var TableView = class {
-    constructor() {
-      this.cols = [];
-      this.rows = [];
-      this.editable = false;
-      this.element = document.createElement("table");
-    }
-    appendTo(root, rootElement) {
-      ztoolkit.log(this.element);
-      rootElement.appendChild(this.element);
-      this.root = root;
-    }
-    getElement() {
-      return this.element;
-    }
-    getCellContent(colName, value) {
-      let cellHTML = value;
-      return cellHTML;
-    }
-    render() {
-      let tableHTML = ``;
-      let header = `<thead>`;
-      for (const col of this.cols) {
-        header += `<th id="th-${col.name}">${col.label}</th>`;
-      }
-      header += `</thead>`;
-      tableHTML += header;
-      let i = 0;
-      for (const row of this.rows) {
-        let rowHTML = `<tr>`;
-        let j = 0;
-        for (const col of this.cols) {
-          const cell = row[col.name];
-          rowHTML += `<td data-index="${i},${j}">${this.getCellContent(col.name, cell)}</td>`;
-          j++;
-        }
-        rowHTML += `</tr>`;
-        tableHTML += rowHTML;
-        i++;
-      }
-      this.element.innerHTML = tableHTML;
-    }
-  };
-
   // src/modules/preferenceScript.ts
   async function registerPrefsScripts(_window) {
+    await loadStatusTable(_window);
+    await loadStatusModal(_window);
+    updatePrefsUI();
+    bindPrefEvents();
+  }
+  var tableStatuses = JSON.parse(getPref("statuses"));
+  async function loadStatusTable(_window) {
     if (!addon.data.prefs) {
       addon.data.prefs = {
         window: _window,
@@ -12263,38 +12267,168 @@ body {
             label: getString("prefs-table-default")
           }
         ],
-        rows: allStatuses
+        rows: tableStatuses
       };
     } else {
       addon.data.prefs.window = _window;
     }
-    updatePrefsUI();
-    bindPrefEvents();
   }
+  var statusModal;
+  async function loadStatusModal(_window) {
+    const rootDocument = addon.data.prefs.window.document;
+    const rootElement = rootDocument.documentElement;
+    const prefsElement = rootElement.querySelector(`#${config.addonRef}-status-modal`);
+    const modalContent = rootDocument.createElement("div");
+    statusModal = createModal("prefs", "Edit", modalContent);
+    statusModal.appendTo(prefsElement);
+    const formTemplate = loadXHTMLFromFile(rootURI + "chrome/content/modal/prefsStatus.xhtml");
+    const formNodes = parseXHTML(formTemplate);
+    const formNodesImported = rootDocument.importNode(formNodes, true);
+    modalContent.appendChild(formNodesImported);
+    statusModal.bindEvents();
+  }
+  var selectedRow;
+  var tableHelper;
   async function updatePrefsUI() {
     const renderLock = ztoolkit.getGlobal("Zotero").Promise.defer();
     if (addon.data.prefs?.window == void 0)
       return;
-    const statusTable = new TableView();
-    statusTable.cols = [
-      { name: "name", label: "Name" },
-      { name: "tag", label: "Tag" },
-      { name: "label", label: "Label" },
-      { name: "color", label: "Color" },
-      { name: "askForReason", label: "Ask for a Reason" },
-      { name: "default", label: "Default Status" }
-    ];
-    statusTable.rows = allStatuses;
-    ztoolkit.log(addon.data.prefs.window.document.documentElement);
-    ztoolkit.log(addon.data.prefs.window.document.documentElement.querySelector(`#${config.addonRef}-table-container`));
-    statusTable.appendTo(
-      addon.data.prefs.window.document,
-      addon.data.prefs.window.document.documentElement.querySelector(`#${config.addonRef}-table-container`)
-    );
-    statusTable.render();
+    tableHelper = new ztoolkit.VirtualizedTable(addon.data.prefs?.window).setContainerId(`${config.addonRef}-table-container`).setProp({
+      id: `${config.addonRef}-prefs-table`,
+      columns: addon.data.prefs?.columns,
+      showHeader: true,
+      multiSelect: true,
+      staticColumns: true,
+      disableFontSizeScaling: true
+    }).setProp("getRowCount", () => addon.data.prefs?.rows.length || 0).setProp(
+      "getRowData",
+      (index) => addon.data.prefs?.rows[index] || {}
+    ).setProp("onSelectionChange", (selection) => {
+      [selectedRow] = selection.selected;
+    }).setProp("onKeyDown", (event) => {
+      if (event.key == "Delete" || Zotero.isMac && event.key == "Backspace") {
+        removeStatus(selectedRow);
+      }
+    }).setProp("onActivate", (selection) => {
+      editStatus(selectedRow);
+    }).setProp(
+      "getRowString",
+      (index) => addon.data.prefs?.rows[index].title || ""
+    ).render(-1, () => {
+      renderLock.resolve();
+    });
+    await renderLock.promise;
+    ztoolkit.log("TABLE HELPER");
+    ztoolkit.log("--------------------");
+    ztoolkit.log(tableHelper);
+    ztoolkit.log("--------------------");
     ztoolkit.log("Preference table rendered!");
   }
+  function removeStatus(rowId) {
+    const pref = JSON.parse(getPref("statuses"));
+    pref.splice(rowId, 1);
+    setPref("statuses", JSON.stringify(pref));
+    addon.setRows(pref);
+    updateUI();
+  }
+  function addStatus() {
+    ztoolkit.log("Add Status");
+    statusModal.element.querySelector(".modal-title").textContent = "Add Status";
+    statusModal.element.querySelector("[name=name]").value = "";
+    statusModal.element.querySelector("[name=label]").value = "";
+    statusModal.element.querySelector("[name=tag]").value = "";
+    statusModal.element.querySelector("[name=color]").value = "";
+    statusModal.element.querySelector("[name=reason]").checked = false;
+    statusModal.element.querySelector("[name=default]").checked = false;
+    const formElement = statusModal.element.querySelector("#status-form");
+    const pref = JSON.parse(getPref("statuses"));
+    formElement.onsubmit = (ev) => {
+      addStatusCommit(formElement, pref);
+      ev.preventDefault();
+    };
+    statusModal.open();
+  }
+  function editStatus(rowId) {
+    ztoolkit.log("Edit status (Id: " + rowId + ")");
+    const status = allStatuses[rowId];
+    statusModal.element.querySelector(".modal-title").textContent = `Edit Status: ${status.label}`;
+    statusModal.element.querySelector("[name=name]").value = status.name;
+    statusModal.element.querySelector("[name=label]").value = status.label;
+    statusModal.element.querySelector("[name=tag]").value = status.tag;
+    statusModal.element.querySelector("[name=color]").value = status.color;
+    statusModal.element.querySelector("[name=reason]").checked = status.askForReason;
+    statusModal.element.querySelector("[name=default]").checked = status.default;
+    const formElement = statusModal.element.querySelector("#status-form");
+    formElement.onsubmit = (ev) => {
+      const pref = JSON.parse(getPref("statuses"));
+      editStatusCommit(formElement, pref);
+      ev.preventDefault();
+    };
+    statusModal.open();
+  }
+  function addStatusCommit(formElement, pref) {
+    const data = {
+      name: formElement?.querySelector("[name=name]")?.value,
+      tag: formElement?.querySelector("[name=tag]")?.value,
+      label: formElement?.querySelector("[name=label]")?.value,
+      color: formElement?.querySelector("[name=color]")?.value,
+      askForReason: formElement?.querySelector("[name=reason]")?.checked,
+      default: formElement?.querySelector("[name=default]")?.checked
+    };
+    pref.push(data);
+    setPref("statuses", JSON.stringify(pref));
+    updateUI();
+    statusModal.close();
+  }
+  function editStatusCommit(formElement, pref) {
+    const data = {
+      name: formElement?.querySelector("[name=name]")?.value,
+      tag: formElement?.querySelector("[name=tag]")?.value,
+      label: formElement?.querySelector("[name=label]")?.value,
+      color: formElement?.querySelector("[name=color]")?.value,
+      askForReason: formElement?.querySelector("[name=reason]")?.checked,
+      default: formElement?.querySelector("[name=default]")?.checked
+    };
+    ztoolkit.log("--------------------------");
+    ztoolkit.log(pref);
+    const prefIndex = pref.findIndex((obj) => obj.name == data.name);
+    if (prefIndex >= 0) {
+      ztoolkit.log(prefIndex);
+      pref[prefIndex] = data;
+      ztoolkit.log(pref);
+      setPref("statuses", JSON.stringify(pref));
+    }
+    ztoolkit.log("--------------------------");
+    updateUI();
+    statusModal.close();
+  }
   function bindPrefEvents() {
+    addon.data.prefs.window.document.querySelector("#btn-add-status")?.addEventListener("click", (ev) => {
+      addStatus();
+    });
+    addon.data.prefs.window.document.querySelector("#btn-remove-status")?.addEventListener("click", (ev) => {
+      removeStatus(selectedRow);
+    });
+    addon.data.prefs.window.document.querySelector(
+      `#zotero-prefpane-${config.addonRef}-enable`
+    )?.addEventListener("command", (e) => {
+      ztoolkit.log(e);
+      addon.data.prefs.window.alert(
+        `Successfully changed to ${e.target.checked}!`
+      );
+    });
+    addon.data.prefs.window.document.querySelector(
+      `#zotero-prefpane-${config.addonRef}-input`
+    )?.addEventListener("change", (e) => {
+      ztoolkit.log(e);
+      addon.data.prefs.window.alert(
+        `Successfully changed to ${e.target.value}!`
+      );
+    });
+  }
+  function updateUI() {
+    addon.data.prefs.tableHelper?.rerender();
+    setTimeout(() => addon.data.prefs.tableHelper?.treeInstance.invalidate());
   }
 
   // src/utils/ztoolkit.ts
@@ -12338,7 +12472,9 @@ body {
       src: rootURI + "chrome/content/preferences.xhtml",
       label: getString("prefs-title"),
       // helpURL: homepage,
-      image: rootURI + "chrome/content/icons/favicon.png"
+      image: rootURI + "chrome/content/icons/favicon.png",
+      scripts: [],
+      stylesheets: [rootURI + "chrome/content/zoteroPane.css"]
     });
     ReviewModule.registerExtraColumnWithBindings();
     await onMainWindowLoad(window);
@@ -12409,6 +12545,9 @@ body {
       };
       this.hooks = hooks_default;
       this.api = {};
+    }
+    setRows(rows) {
+      this.data.prefs.rows = rows;
     }
   };
   var addon_default = Addon;

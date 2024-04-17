@@ -26,6 +26,8 @@ async function onStartup() {
     label: getString("prefs-title"),
     // helpURL: homepage,
     image: rootURI + "chrome/content/icons/favicon.png",
+    scripts: [],
+    stylesheets: [rootURI + "chrome/content/zoteroPane.css"]
   });
 
   ReviewModule.registerExtraColumnWithBindings();

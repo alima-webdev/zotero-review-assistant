@@ -108,11 +108,7 @@ export class ReviewModule {
       label: getString("context-menu-status"),
       children: statusMenuChildren,
     });
-
-    // -----------------------------------------------
-    // TODO: Review Below
-    // -----------------------------------------------
-
+    
     // Register the global functions
     ztoolkit.getGlobal("document").setReviewStatus = (statusTag) => {
 
@@ -134,7 +130,9 @@ export class ReviewModule {
 
     ztoolkit.getGlobal("document").setStatusReason = async (selectedItems) => {
       document.allReasons = getAllReasonsFromItems(await ztoolkit.getGlobal("Zotero").Tags.getAll())
+      document.reasonModal.element.querySelector("#input-reason").value = ""
       document.reasonModal.open()
+      document.reasonModal.element.querySelector("#input-reason").focus()
     };
   }
 
@@ -154,6 +152,7 @@ export class ReviewModule {
     const reasonInput = ztoolkit.UI.createElement(document, 'input')
     reasonInput.id = 'input-reason'
     reasonInput.type = 'text'
+    reasonInput.classList.add('input')
     const autocompleteContainer = document.createElement('div')
     const inputContainer = document.createElement('div')
     inputContainer.appendChild(reasonInput)
@@ -165,6 +164,8 @@ export class ReviewModule {
     buttonContainer.classList.add('btn-container')
 
     const btnCancel = document.createElement('button')
+    btnCancel.type = "button"
+    btnCancel.setAttribute('action', 'close')
     btnCancel.classList.add('btn')
     btnCancel.textContent = 'Cancel'
 

@@ -38,7 +38,7 @@ export function getAllReasonsFromItems(tags: any[]) {
         return obj.tag.includes(reasonTagPrefix)
     }).map(obj => {
         const label = obj.tag.replace(reasonTagPrefix, "")
-        return {label: label, value: label}
+        return { label: label, value: label }
     })
 }
 
@@ -63,4 +63,30 @@ export function removeAllStatuses(item: Zotero.Item) {
 
 export function generateMenuIcon(color: string) {
     return "data:image/svg+xml;base64," + window.btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="${color}"><circle cx="12" cy="12" r="12" /></svg>`)
+}
+
+// Parse XHTML from File
+export function parseXHTMLFromFile(src: string) {
+    const markup = loadXHTMLFromFile(src)
+    return parseXHTML(markup)
+}
+
+export function loadXHTMLFromFile(src: string) {
+    return Zotero.File.getContentsFromURL(src);
+}
+
+// Parse XHTML from String
+export function parseXHTML(str: string) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(str, "text/html");
+
+    if (doc.documentElement.localName === 'parsererror') {
+        throw new Error('not well-formed XHTML');
+    }
+
+    // We use a range here so that we don't access the inner DOM elements from
+    // JavaScript before they are imported and inserted into a document.
+    let range = doc.createRange();
+    range.selectNodeContents(doc.querySelector('div'));
+    return range.extractContents();
 }

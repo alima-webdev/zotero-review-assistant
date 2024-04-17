@@ -1,6 +1,6 @@
 /* Item Tree */
 #zotero-items-tree .review-container {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .review {
@@ -61,13 +61,16 @@
   align-items: center;
   justify-content: center;
 
-  background: rgba(0, 0, 0, .5)
+  background: rgba(0, 0, 0, .5);
 }
 
 .inner-modal {
   padding: 2rem;
+  border-radius: 4px;
 
   background: #fff;
+
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .inner-modal h2 {
@@ -76,7 +79,7 @@
   margin-bottom: 1rem;
 }
 
-#input-reason {
+.input {
   margin: 1rem 0;
   padding: .75rem 1rem;
 
@@ -89,7 +92,7 @@
   background: #fff;
 }
 
-#input-reason:focus {
+.input:focus {
   border-color: #60a5fa;
   outline: none;
 }
@@ -117,7 +120,7 @@
 
 /* Buttons */
 .btn {
-  display: flex;
+  display: inline-flex;
   max-height: none;
   padding: .75rem 1.25rem !important;
   border-radius: 2px;
@@ -131,7 +134,7 @@
 }
 
 .btn-primary {
-  background: #60a5fa;
+  background: #7dd3fc;
 }
 
 .btn-primary:hover {
@@ -139,6 +142,12 @@
 }
 
 .btn-container {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Alignment boxes */
+.hbox {
   display: flex;
   gap: 1rem;
 }
