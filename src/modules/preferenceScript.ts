@@ -1,4 +1,5 @@
 import { config } from "../../package.json";
+import { TableView } from "../ui/table";
 import { getString } from "../utils/locale";
 import { getPref } from "../utils/prefs";
 import { allStatuses } from "./consts";
@@ -10,10 +11,6 @@ export async function registerPrefsScripts(_window: Window) {
     addon.data.prefs = {
       window: _window,
       columns: [
-        {
-          dataKey: "id",
-          label: getString("prefs-table-id"),
-        },
         {
           dataKey: "label",
           label: getString("prefs-table-label"),
@@ -60,90 +57,49 @@ async function updatePrefsUI() {
   // Or bind some events to the elements
   const renderLock = ztoolkit.getGlobal("Zotero").Promise.defer();
   if (addon.data.prefs?.window == undefined) return;
-  const tableHelper = new ztoolkit.VirtualizedTable(addon.data.prefs?.window)
-    .setContainerId(`${config.addonRef}-table-container`)
-    .setProp({
-      id: `${config.addonRef}-prefs-table`,
-      // Do not use setLocale, as it modifies the Zotero.Intl.strings
-      // Set locales directly to columns
-      columns: addon.data.prefs?.columns,
-      showHeader: true,
-      multiSelect: true,
-      staticColumns: true,
-      disableFontSizeScaling: true,
-    })
-    .setProp("getRowCount", () => addon.data.prefs?.rows.length || 0)
-    .setProp(
-      "getRowData",
-      (index) =>
-        addon.data.prefs?.rows[index] || {
-          id: 1,
-          name: 'include',
-          tag: '!review:include',
-          label: 'Include',
-          color: '#60a5fa',
-          askForReason: false,
-          default: false
-        },
-    )
-    // Show a progress window when selection changes
-    .setProp("onSelectionChange", (selection) => {
-      new ztoolkit.ProgressWindow(config.addonName)
-        .createLine({
-          text: `Selected line: ${addon.data.prefs?.rows
-            .filter((v, i) => selection.isSelected(i))
-            .map((row) => row.title)
-            .join(",")}`,
-          progress: 100,
-        })
-        .show();
-    })
-    // When pressing delete, delete selected line and refresh table.
-    // Returning false to prevent default event.
-    .setProp("onKeyDown", (event: KeyboardEvent) => {
-      if (event.key == "Delete" || (Zotero.isMac && event.key == "Backspace")) {
-        addon.data.prefs!.rows =
-          addon.data.prefs?.rows.filter(
-            (v, i) => !tableHelper.treeInstance.selection.isSelected(i),
-          ) || [];
-        tableHelper.render();
-        return false;
-      }
-      return true;
-    })
-    // For find-as-you-type
-    .setProp(
-      "getRowString",
-      (index) => addon.data.prefs?.rows[index].title || "",
-    )
-    // Render the table.
-    .render(-1, () => {
-      renderLock.resolve();
-    });
-  await renderLock.promise;
+
+  const statusTable = new TableView()
+  // statusTable.editable = true
+  statusTable.cols = [
+    { name: "name", label: "Name" },
+    { name: "tag", label: "Tag" },
+    { name: "label", label: "Label" },
+    { name: "color", label: "Color" },
+    { name: "askForReason", label: "Ask for a Reason" },
+    { name: "default", label: "Default Status" },
+  ]
+  statusTable.rows = allStatuses
+  ztoolkit.log(addon.data.prefs!.window.document.documentElement)
+  ztoolkit.log(addon.data.prefs!.window.document.documentElement.querySelector(`#${config.addonRef}-table-container`))
+  statusTable.appendTo(
+    addon.data.prefs!.window.document,
+    addon.data.prefs!.window.document.documentElement.querySelector(`#${config.addonRef}-table-container`)
+  )
+  statusTable.render()
+
   ztoolkit.log("Preference table rendered!");
 }
 
 function bindPrefEvents() {
-  addon.data
-    .prefs!.window.document.querySelector(
-      `#zotero-prefpane-${config.addonRef}-enable`,
-    )
-    ?.addEventListener("command", (e) => {
-      ztoolkit.log(e);
-      addon.data.prefs!.window.alert(
-        `Successfully changed to ${(e.target as XUL.Checkbox).checked}!`,
-      );
-    });
+  // addon.data
+  //   .prefs!.window.document.querySelector(
+  //     `#zotero-prefpane-${config.addonRef}-enable`,
+  //   )
+  //   ?.addEventListener("command", (e) => {
+  //     ztoolkit.log(e);
+  //     addon.data.prefs!.window.alert(
+  //       `Successfully changed to ${(e.target as XUL.Checkbox).checked}!`,
+  //     );
+  //   });
 
-  addon.data
-    .prefs!.window.document.querySelector(
-      `#zotero-prefpane-${config.addonRef}-input`,
-    )
-    ?.addEventListener("change", (e) => {
-      ztoolkit.log(e);
-      addon.data.prefs!.window.alert(
-        `Successfully changed to ${(e.target as HTMLInputElement).value}!`,
-      );
-    });
+  // addon.data
+  //   .prefs!.window.document.querySelector(
+  //     `#zotero-prefpane-${config.addonRef}-input`,
+  //   )
+  //   ?.addEventListener("change", (e) => {
+  //     ztoolkit.log(e);
+  //     addon.data.prefs!.window.alert(
+  //       `Successfully changed to ${(e.target as HTMLInputElement).value}!`,
+  //     );
+  //   });
 }

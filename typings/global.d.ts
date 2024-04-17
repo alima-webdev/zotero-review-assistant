@@ -2,6 +2,7 @@ interface Document {
   setStatusReason: (selectedItems: Zotero.Item[]) => void;
   setReviewStatus: (status: string) => void;
   reasonModal: ReviewModal
+  allReasons: {label: any, value: any}[]
 }
 
 declare const _globalThis: {
@@ -36,7 +37,6 @@ declare class Localization {}
 //     }
 // }
 type ReviewStatus = {
-    id: number,
     name: string,
     tag: string,
     label: string,

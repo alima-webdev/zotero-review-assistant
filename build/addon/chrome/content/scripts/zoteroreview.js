@@ -12159,11 +12159,11 @@ body {
           update(suggestions);
         },
         onSelect: function(item) {
-          reasonInput.value = item.label;
+          reasonInput.value = item.label ?? "";
         },
         render: function(item, currentValue) {
           const itemElement = document.createElement("div");
-          itemElement.textContent = item.label;
+          itemElement.textContent = item?.label;
           return itemElement;
         },
         container: autocompleteContainer
@@ -12181,16 +12181,57 @@ body {
     module
   ], ReviewModule, "registerDOMEvents", 1);
 
+  // src/ui/table.ts
+  var TableView = class {
+    constructor() {
+      this.cols = [];
+      this.rows = [];
+      this.editable = false;
+      this.element = document.createElement("table");
+    }
+    appendTo(root, rootElement) {
+      ztoolkit.log(this.element);
+      rootElement.appendChild(this.element);
+      this.root = root;
+    }
+    getElement() {
+      return this.element;
+    }
+    getCellContent(colName, value) {
+      let cellHTML = value;
+      return cellHTML;
+    }
+    render() {
+      let tableHTML = ``;
+      let header = `<thead>`;
+      for (const col of this.cols) {
+        header += `<th id="th-${col.name}">${col.label}</th>`;
+      }
+      header += `</thead>`;
+      tableHTML += header;
+      let i = 0;
+      for (const row of this.rows) {
+        let rowHTML = `<tr>`;
+        let j = 0;
+        for (const col of this.cols) {
+          const cell = row[col.name];
+          rowHTML += `<td data-index="${i},${j}">${this.getCellContent(col.name, cell)}</td>`;
+          j++;
+        }
+        rowHTML += `</tr>`;
+        tableHTML += rowHTML;
+        i++;
+      }
+      this.element.innerHTML = tableHTML;
+    }
+  };
+
   // src/modules/preferenceScript.ts
   async function registerPrefsScripts(_window) {
     if (!addon.data.prefs) {
       addon.data.prefs = {
         window: _window,
         columns: [
-          {
-            dataKey: "id",
-            label: getString("prefs-table-id")
-          },
           {
             dataKey: "label",
             label: getString("prefs-table-label"),
@@ -12234,66 +12275,26 @@ body {
     const renderLock = ztoolkit.getGlobal("Zotero").Promise.defer();
     if (addon.data.prefs?.window == void 0)
       return;
-    const tableHelper = new ztoolkit.VirtualizedTable(addon.data.prefs?.window).setContainerId(`${config.addonRef}-table-container`).setProp({
-      id: `${config.addonRef}-prefs-table`,
-      // Do not use setLocale, as it modifies the Zotero.Intl.strings
-      // Set locales directly to columns
-      columns: addon.data.prefs?.columns,
-      showHeader: true,
-      multiSelect: true,
-      staticColumns: true,
-      disableFontSizeScaling: true
-    }).setProp("getRowCount", () => addon.data.prefs?.rows.length || 0).setProp(
-      "getRowData",
-      (index) => addon.data.prefs?.rows[index] || {
-        id: 1,
-        name: "include",
-        tag: "!review:include",
-        label: "Include",
-        color: "#60a5fa",
-        askForReason: false,
-        default: false
-      }
-    ).setProp("onSelectionChange", (selection) => {
-      new ztoolkit.ProgressWindow(config.addonName).createLine({
-        text: `Selected line: ${addon.data.prefs?.rows.filter((v, i) => selection.isSelected(i)).map((row) => row.title).join(",")}`,
-        progress: 100
-      }).show();
-    }).setProp("onKeyDown", (event) => {
-      if (event.key == "Delete" || Zotero.isMac && event.key == "Backspace") {
-        addon.data.prefs.rows = addon.data.prefs?.rows.filter(
-          (v, i) => !tableHelper.treeInstance.selection.isSelected(i)
-        ) || [];
-        tableHelper.render();
-        return false;
-      }
-      return true;
-    }).setProp(
-      "getRowString",
-      (index) => addon.data.prefs?.rows[index].title || ""
-    ).render(-1, () => {
-      renderLock.resolve();
-    });
-    await renderLock.promise;
+    const statusTable = new TableView();
+    statusTable.cols = [
+      { name: "name", label: "Name" },
+      { name: "tag", label: "Tag" },
+      { name: "label", label: "Label" },
+      { name: "color", label: "Color" },
+      { name: "askForReason", label: "Ask for a Reason" },
+      { name: "default", label: "Default Status" }
+    ];
+    statusTable.rows = allStatuses;
+    ztoolkit.log(addon.data.prefs.window.document.documentElement);
+    ztoolkit.log(addon.data.prefs.window.document.documentElement.querySelector(`#${config.addonRef}-table-container`));
+    statusTable.appendTo(
+      addon.data.prefs.window.document,
+      addon.data.prefs.window.document.documentElement.querySelector(`#${config.addonRef}-table-container`)
+    );
+    statusTable.render();
     ztoolkit.log("Preference table rendered!");
   }
   function bindPrefEvents() {
-    addon.data.prefs.window.document.querySelector(
-      `#zotero-prefpane-${config.addonRef}-enable`
-    )?.addEventListener("command", (e) => {
-      ztoolkit.log(e);
-      addon.data.prefs.window.alert(
-        `Successfully changed to ${e.target.checked}!`
-      );
-    });
-    addon.data.prefs.window.document.querySelector(
-      `#zotero-prefpane-${config.addonRef}-input`
-    )?.addEventListener("change", (e) => {
-      ztoolkit.log(e);
-      addon.data.prefs.window.alert(
-        `Successfully changed to ${e.target.value}!`
-      );
-    });
   }
 
   // src/utils/ztoolkit.ts

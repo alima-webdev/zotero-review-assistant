@@ -222,11 +222,11 @@ export class ReviewModule {
         update(suggestions);
       },
       onSelect: function (item) {
-        reasonInput.value = item.label;
+        reasonInput.value = item.label ?? "";
       },
-      render: function (item, currentValue: string): HTMLDivElement | undefined {
+      render: function (item: any, currentValue: string): HTMLDivElement | undefined {
         const itemElement = document.createElement('div');
-        itemElement.textContent = item.label
+        itemElement.textContent = item?.label
         return itemElement
       },
       container: autocompleteContainer,
