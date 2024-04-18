@@ -1,6 +1,6 @@
 {
   "name": "zotero-review",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Zotero Review",
   "config": {
     "addonName": "Zotero Review",
