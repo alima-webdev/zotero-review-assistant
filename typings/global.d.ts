@@ -1,5 +1,5 @@
 interface Document {
-  setStatusReason: (selectedItems: Zotero.Item[]) => void;
+  setStatusReason: () => void;
   setReviewStatus: (status: string) => void;
   reasonModal: ReviewModal;
   allReasons: { label: any; value: any }[];

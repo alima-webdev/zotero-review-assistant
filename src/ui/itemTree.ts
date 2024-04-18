@@ -12,7 +12,7 @@ import {
 } from "../utils/helpers";
 import { module } from "../utils/module";
 import { createModal, initModal } from "./modal";
-import autocomplete from "autocompleter";
+import { initAutoComplete } from "./autocomplete";
 
 // ---------------------------------------------
 // Status Column
@@ -111,12 +111,31 @@ export class ReviewModule {
       },
     );
 
+    // Add the option to set a reason for the status without changing the status
+    statusMenuChildren.push({ tag: "menuseparator" });
+    statusMenuChildren.push({
+      tag: "menuitem",
+      label: "Change Reason",
+      oncommand: `document.setStatusReason()`,
+    });
+
     ztoolkit.Menu.register("item", { tag: "menuseparator" });
     ztoolkit.Menu.register("item", {
       tag: "menu",
       label: getString("context-menu-status"),
       children: statusMenuChildren,
     });
+
+    // Keyboard Shortcuts
+    // .removeEventListener('keyup', keyupEventHandler as EventListenerOrEventListenerObject)
+    ztoolkit
+      .getGlobal("document")
+      .addEventListener("keyup", (ev: KeyboardEvent) => {
+        ztoolkit.log("KEYPRESS");
+        if (ev.key == ev.ctrlKey + "r") {
+          ztoolkit.getGlobal("document").setStatusReason();
+        }
+      });
 
     // Register the global context menu functions
     // Set Status
@@ -139,11 +158,11 @@ export class ReviewModule {
       const status = getStatusFromTag(statusTag);
 
       // If excluded, ask to provide a reason for exclusion
-      if (status?.askForReason) document.setStatusReason(selectedItems);
+      if (status?.askForReason) document.setStatusReason();
     };
 
     // Set Reason
-    ztoolkit.getGlobal("document").setStatusReason = async (selectedItems) => {
+    ztoolkit.getGlobal("document").setStatusReason = async () => {
       document.allReasons = getAllReasonsFromItems(
         await ztoolkit.getGlobal("Zotero").Tags.getAll(),
       );
@@ -217,7 +236,9 @@ export class ReviewModule {
           if (tag.tag.includes(reasonTagPrefix)) item.removeTag(tag.tag);
         });
 
-        item.addTag(reasonTagPrefix + reasonInput.value);
+        if (reasonInput.value != "") {
+          item.addTag(reasonTagPrefix + reasonInput.value);
+        }
         item.saveTx();
       }
 
@@ -243,28 +264,7 @@ export class ReviewModule {
       await ztoolkit.getGlobal("Zotero").Tags.getAll(),
     );
 
-    autocomplete({
-      input: reasonInput,
-      fetch: function (text, update) {
-        text = text.toLowerCase();
-        const suggestions = document.allReasons.filter((n) =>
-          n.label.toLowerCase().startsWith(text),
-        );
-        update(suggestions);
-      },
-      onSelect: function (item) {
-        reasonInput.value = item.label ?? "";
-      },
-      render: function (
-        item: any,
-        currentValue: string,
-      ): HTMLDivElement | undefined {
-        const itemElement = document.createElement("div");
-        itemElement.textContent = item?.label;
-        return itemElement;
-      },
-      container: autocompleteContainer,
-    });
+    initAutoComplete(reasonInput, autocompleteContainer);
     initModal();
   }
 }
