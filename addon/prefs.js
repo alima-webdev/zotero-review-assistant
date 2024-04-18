@@ -40,7 +40,7 @@ pref(
     {
       name: "not-reviewed",
       tag: "",
-      label: "To Be Reviewed",
+      label: "",
       color: "transparent",
       askForReason: false,
       default: true,
