@@ -61,7 +61,7 @@
   align-items: center;
   justify-content: center;
 
-  background: rgba(0, 0, 0, .5);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .inner-modal {
@@ -70,7 +70,9 @@
 
   background: #fff;
 
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .inner-modal h2 {
@@ -81,14 +83,14 @@
 
 .input {
   margin: 1rem 0;
-  padding: .75rem 1rem;
+  padding: 0.75rem 1rem;
 
   display: block;
   width: auto;
 
   border: 1px solid #e5e7eb;
   border-radius: 2px;
-  
+
   background: #fff;
 }
 
@@ -106,12 +108,14 @@
   border: 1px solid #f3f4f6;
   border-top: none;
   border-radius: 2px;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
 
   z-index: 99999;
 }
 .autocomplete > * {
-  padding: .75rem 1rem;
+  padding: 0.75rem 1rem;
 }
 
 .autocomplete > *:hover {
@@ -122,7 +126,7 @@
 .btn {
   display: inline-flex;
   max-height: none;
-  padding: .75rem 1.25rem !important;
+  padding: 0.75rem 1.25rem !important;
   border-radius: 2px;
 
   border: none;

@@ -39,7 +39,7 @@ async function onMainWindowLoad(win: Window): Promise<void> {
   // Create ztoolkit for every window
   addon.data.ztoolkit = createZToolkit();
 
-  ReviewModule.registerDOMElements()
+  ReviewModule.registerDOMElements();
 
   // const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
   //   closeOnClick: true,
@@ -117,19 +117,16 @@ async function onPrefsEvent(type: string, data: { [key: string]: any }) {
   switch (type) {
     case "load":
       // registerPrefsScripts(data.window);
-      ztoolkit.log("Prefs Script Loaded")
+      ztoolkit.log("Prefs Script Loaded");
       break;
     default:
       return;
   }
 }
 
-function onShortcuts(type: string) {
-}
+function onShortcuts(type: string) {}
 
-function onDialogEvents(type: string) {
-}
-
+function onDialogEvents(type: string) {}
 
 export default {
   onStartup,
