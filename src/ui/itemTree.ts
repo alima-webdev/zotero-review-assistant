@@ -132,7 +132,7 @@ export class ReviewModule {
       .getGlobal("document")
       .addEventListener("keyup", (ev: KeyboardEvent) => {
         ztoolkit.log("KEYPRESS");
-        if (ev.key == ev.ctrlKey + "r") {
+        if (ev.key == "r") {
           ztoolkit.getGlobal("document").setStatusReason();
         }
       });
