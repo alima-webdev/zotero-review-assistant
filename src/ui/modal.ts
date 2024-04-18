@@ -53,7 +53,7 @@ class ReviewModal {
 
         this.root?.parentNode?.addEventListener('keydown', this.closeKeyStroke.bind(this));
     }
-    closeKeyStroke(ev: Event) {
+    closeKeyStroke(ev: any) {
         if (ev.key === "Escape") {
             this.close()
             ev.preventDefault();
@@ -67,10 +67,11 @@ class ReviewModal {
     bindEvents() {
         ztoolkit.log(this.element)
         // Close buttons
-        if (this.element.querySelector("[action=close]")) {
-            this.element.querySelector("[action=close]").onclick = (ev) => {
+        const closeActionElements = this.element.querySelectorAll("[action=close]")
+        for(const el of closeActionElements) {
+            el.addEventListener('click', (ev: Event) => {
                 this.close()
-            }
+            })
         }
 
         // Close background

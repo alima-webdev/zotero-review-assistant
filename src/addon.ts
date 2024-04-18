@@ -16,6 +16,7 @@ class Addon {
       window: Window;
       columns: Array<ColumnOptions>;
       rows: Array<{ [dataKey: string]: string }>;
+      tableHelper: any;
     };
     dialog?: DialogHelper;
   };
@@ -33,9 +34,9 @@ class Addon {
     this.hooks = hooks;
     this.api = {};
   }
-  setRows(rows: Array<{ [dataKey: string]: string }>) {
-    this.data.prefs.rows = rows
-  }
+  // setRows(rows: Array<{ [dataKey: string]: string }>) {
+  //   this.data.prefs.rows = rows
+  // }
 }
 
 export default Addon;

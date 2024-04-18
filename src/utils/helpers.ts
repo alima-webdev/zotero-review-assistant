@@ -1,16 +1,11 @@
 // Helper functions
-import { allStatuses, reasonTagPrefix, statusTagPrefix } from "./consts";
+import { allStatuses, reasonTagPrefix, statusTagPrefix } from "../lib/consts";
 
 export function getItemStatusTags(item: Zotero.Item) {
-    // ztoolkit.log("getItemStatusTags")
     const itemTags = item.getTags()
-    // ztoolkit.log(itemTags)
     const statusTags = itemTags.filter(obj => {
         return obj.tag.includes(statusTagPrefix)
     })
-    // ztoolkit.log(statusTags)
-    // ztoolkit.log("End: getItemStatusTags")
-    // allStatuses.find(obj => obj == true)
     return statusTags
 }
 
@@ -50,11 +45,6 @@ export function getStatusFromTag(tag: string) {
 
 // Remove all statuses from item
 export function removeAllStatuses(item: Zotero.Item) {
-    // Remove all status tags
-    // for (const status of allStatuses) {
-    //     item.removeTag(status.tag);
-    // }
-
     // Remove the exclusion criteria
     item.getTags().map((tag) => {
         if (tag.tag.includes(statusTagPrefix)) item.removeTag(tag.tag);
@@ -86,7 +76,7 @@ export function parseXHTML(str: string) {
 
     // We use a range here so that we don't access the inner DOM elements from
     // JavaScript before they are imported and inserted into a document.
-    let range = doc.createRange();
-    range.selectNodeContents(doc.querySelector('div'));
+    const range = doc.createRange();
+    range.selectNodeContents(doc.querySelector('div') as Node);
     return range.extractContents();
 }

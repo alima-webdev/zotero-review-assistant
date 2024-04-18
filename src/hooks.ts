@@ -1,7 +1,7 @@
-import { ReviewModule } from "./modules/review";
+import { ReviewModule } from "./ui/itemTree";
 import { config } from "../package.json";
 import { getString, initLocale } from "./utils/locale";
-import { registerPrefsScripts } from "./modules/preferenceScript";
+// import { registerPrefsScripts } from "./modules/preferenceScript";
 import { createZToolkit } from "./utils/ztoolkit";
 
 async function onStartup() {
@@ -20,15 +20,15 @@ async function onStartup() {
 
   initLocale();
 
-  Zotero.PreferencePanes.register({
-    pluginID: config.addonID,
-    src: rootURI + "chrome/content/preferences.xhtml",
-    label: getString("prefs-title"),
-    // helpURL: homepage,
-    image: rootURI + "chrome/content/icons/favicon.png",
-    scripts: [],
-    stylesheets: [rootURI + "chrome/content/zoteroPane.css"]
-  });
+  // Zotero.PreferencePanes.register({
+  //   pluginID: config.addonID,
+  //   src: rootURI + "chrome/content/preferences.xhtml",
+  //   label: getString("prefs-title"),
+  //   // helpURL: homepage,
+  //   image: rootURI + "chrome/content/icons/favicon.png",
+  //   scripts: [],
+  //   stylesheets: [rootURI + "chrome/content/zoteroPane.css"]
+  // });
 
   ReviewModule.registerExtraColumnWithBindings();
 
@@ -39,7 +39,7 @@ async function onMainWindowLoad(win: Window): Promise<void> {
   // Create ztoolkit for every window
   addon.data.ztoolkit = createZToolkit();
 
-  ReviewModule.registerDOMEvents()
+  ReviewModule.registerDOMElements()
 
   // const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
   //   closeOnClick: true,
@@ -116,7 +116,7 @@ async function onNotify(
 async function onPrefsEvent(type: string, data: { [key: string]: any }) {
   switch (type) {
     case "load":
-      registerPrefsScripts(data.window);
+      // registerPrefsScripts(data.window);
       ztoolkit.log("Prefs Script Loaded")
       break;
     default:
@@ -125,43 +125,11 @@ async function onPrefsEvent(type: string, data: { [key: string]: any }) {
 }
 
 function onShortcuts(type: string) {
-  switch (type) {
-    case "larger":
-      // KeyExampleFactory.exampleShortcutLargerCallback();
-      break;
-    case "smaller":
-      // KeyExampleFactory.exampleShortcutSmallerCallback();
-      break;
-    default:
-      break;
-  }
 }
 
 function onDialogEvents(type: string) {
-  // switch (type) {
-  //   case "dialogExample":
-  //     HelperExampleFactory.dialogExample();
-  //     break;
-  //   case "clipboardExample":
-  //     HelperExampleFactory.clipboardExample();
-  //     break;
-  //   case "filePickerExample":
-  //     HelperExampleFactory.filePickerExample();
-  //     break;
-  //   case "progressWindowExample":
-  //     HelperExampleFactory.progressWindowExample();
-  //     break;
-  //   case "vtableExample":
-  //     HelperExampleFactory.vtableExample();
-  //     break;
-  //   default:
-  //     break;
-  // }
 }
 
-// Add your hooks here. For element click, etc.
-// Keep in mind hooks only do dispatch. Don't add code that does real jobs in hooks.
-// Otherwise the code would be hard to read and maintain.
 
 export default {
   onStartup,

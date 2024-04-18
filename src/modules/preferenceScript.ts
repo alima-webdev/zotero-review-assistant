@@ -1,10 +1,11 @@
+// @ts-nocheck
 import { config } from "../../package.json";
 import { getString } from "../utils/locale";
-import { createModal } from "../utils/modal";
+import { createModal } from "../ui/modal";
 import { getPref, setPref } from "../utils/prefs";
-import { allStatuses } from "./consts";
+import { allStatuses } from "../lib/consts";
 import { config } from "../../package.json";
-import { loadXHTMLFromFile, parseXHTML, parseXHTMLFromFile } from "./helpers";
+import { loadXHTMLFromFile, parseXHTML, parseXHTMLFromFile } from "../utils/helpers";
 
 export async function registerPrefsScripts(_window: Window) {
   // This function is called when the prefs window is opened
@@ -60,7 +61,7 @@ async function loadStatusTable(_window) {
   }
 }
 
-let statusModal;
+let statusModal: Modal;
 async function loadStatusModal(_window) {
   // Roots
   const rootDocument = addon.data.prefs!.window.document
@@ -271,7 +272,6 @@ function bindPrefEvents() {
     });
 }
 function updateUI() {
-  // addon.data.prefs.tableHelper?.props.
-  addon.data.prefs.tableHelper?.rerender()
-  setTimeout(() => addon.data.prefs.tableHelper?.treeInstance.invalidate());
+  addon.data.prefs?.tableHelper?.rerender()
+  setTimeout(() => addon.data.prefs?.tableHelper?.treeInstance.invalidate());
 }
