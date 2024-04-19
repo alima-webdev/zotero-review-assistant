@@ -1,4 +1,5 @@
 import { config } from "../../package.json";
+import hooks from "../hooks";
 
 /**
  * Get preference value.
@@ -16,7 +17,9 @@ export function getPref(key: string) {
  * @param value
  */
 export function setPref(key: string, value: string | number | boolean) {
-  return Zotero.Prefs.set(`${config.prefsPrefix}.${key}`, value, true);
+  const prefsReturn = Zotero.Prefs.set(`${config.prefsPrefix}.${key}`, value, true);
+  hooks.onPrefsEvent('change', {})
+  return prefsReturn
 }
 
 /**

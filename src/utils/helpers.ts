@@ -1,5 +1,5 @@
 // Helper functions
-import { allStatuses, reasonTagPrefix, statusTagPrefix } from "../lib/consts";
+import { allStatuses, reasonTagPrefix, statusTagPrefix } from "../lib/global";
 
 export function getItemStatusTags(item: Zotero.Item) {
   const itemTags = item.getTags();

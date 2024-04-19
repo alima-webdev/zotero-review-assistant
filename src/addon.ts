@@ -34,9 +34,6 @@ class Addon {
     this.hooks = hooks;
     this.api = {};
   }
-  // setRows(rows: Array<{ [dataKey: string]: string }>) {
-  //   this.data.prefs.rows = rows
-  // }
 }
 
 export default Addon;

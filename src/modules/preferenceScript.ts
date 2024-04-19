@@ -3,7 +3,7 @@ import { config } from "../../package.json";
 import { getString } from "../utils/locale";
 import { createModal } from "../ui/modal";
 import { getPref, setPref } from "../utils/prefs";
-import { allStatuses } from "../lib/consts";
+import { allStatuses } from "../lib/global";
 import { config } from "../../package.json";
 import {
   loadXHTMLFromFile,

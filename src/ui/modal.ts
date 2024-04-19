@@ -15,6 +15,7 @@ const modalTemplate = Handlebars.compile(`
         </div>
 `);
 
+// Main modal function
 export function createModal(id: string, title: string, content: HTMLElement) {
   // Process the template and generate the modal HTML element
   const modalElement = document.createElement("div");
@@ -31,9 +32,9 @@ export function createModal(id: string, title: string, content: HTMLElement) {
 }
 
 export function initModal() {
-  // MicroModal.init()
 }
 
+// Modal class
 class ReviewModal {
   id: string;
   root?: HTMLElement | Document;

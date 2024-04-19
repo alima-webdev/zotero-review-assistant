@@ -3,6 +3,7 @@ import { config } from "../package.json";
 import { getString, initLocale } from "./utils/locale";
 // import { registerPrefsScripts } from "./modules/preferenceScript";
 import { createZToolkit } from "./utils/ztoolkit";
+import { loadPrefs, reloadPrefs } from "./lib/global";
 
 async function onStartup() {
   await Promise.all([
@@ -19,6 +20,7 @@ async function onStartup() {
   }
 
   initLocale();
+  loadPrefs();
 
   // Zotero.PreferencePanes.register({
   //   pluginID: config.addonID,
@@ -40,35 +42,9 @@ async function onMainWindowLoad(win: Window): Promise<void> {
   addon.data.ztoolkit = createZToolkit();
 
   ReviewModule.registerDOMElements();
-
-  // const popupWin = new ztoolkit.ProgressWindow(config.addonName, {
-  //   closeOnClick: true,
-  //   closeTime: -1,
-  // })
-  //   .createLine({
-  //     text: getString("startup-begin"),
-  //     type: "default",
-  //     progress: 0,
-  //   })
-  //   .show();
-
-  // await Zotero.Promise.delay(1000);
-  // popupWin.changeLine({
-  //   progress: 30,
-  //   text: `[30%] ${getString("startup-begin")}`,
-  // });
-
   ReviewModule.registerStyleSheet();
 
-  await Zotero.Promise.delay(1000);
-
-  // popupWin.changeLine({
-  //   progress: 100,
-  //   text: `[100%] ${getString("startup-finish")}`,
-  // });
-  // popupWin.startCloseTimer(5000);
-
-  // addon.hooks.onDialogEvents("dialogExample");
+  // await Zotero.Promise.delay(1000);
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {
@@ -114,7 +90,11 @@ async function onNotify(
  * @param data event data
  */
 async function onPrefsEvent(type: string, data: { [key: string]: any }) {
+  ztoolkit.log("PREFSSS")
   switch (type) {
+    case "change":
+      reloadPrefs()
+      break;
     case "load":
       // registerPrefsScripts(data.window);
       ztoolkit.log("Prefs Script Loaded");

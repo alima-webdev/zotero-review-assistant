@@ -6,7 +6,7 @@ export { initLocale, getString };
  * Initialize locale data
  */
 function initLocale() {
-  ztoolkit.log("initLocale");
+  ztoolkit.log("Fn: initLocale");
   const l10n = new (
     typeof Localization === "undefined"
       ? ztoolkit.getGlobal("Localization")
