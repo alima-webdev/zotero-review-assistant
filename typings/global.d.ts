@@ -43,6 +43,7 @@ type Status = {
   color: string;
   askForReason: boolean;
   default: boolean;
+  keyboardShortcut: string;
 };
 
 class Modal {
