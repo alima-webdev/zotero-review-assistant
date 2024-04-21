@@ -1,22 +1,30 @@
-export function attachColorPicker(_window: Window, _document: Document, element?: HTMLInputElement) {
-    ztoolkit.log('Fn: attachColorPicker')
-    
-    if (!element) return false
+export function attachColorPicker(
+  _window: Window,
+  _document: Document,
+  element?: HTMLInputElement,
+) {
+  ztoolkit.log("Fn: attachColorPicker");
 
-    element.type = "color"
+  if (!element) return false;
 
-    const label = element.parentNode?.querySelector('label') as HTMLLabelElement
-    if(!label) return false
+  element.type = "color";
 
-    label.textContent = element.value
+  const label = element.parentNode?.querySelector("label") as HTMLLabelElement;
+  if (!label) return false;
 
-    element.updateLabelValue = () => {
-        label.textContent = element.value
-    }
+  label.textContent = element.value;
 
-    element.addEventListener("input", (ev) => {
-        label.textContent = element.value
-    }, false);
+  element.updateLabelValue = () => {
+    label.textContent = element.value;
+  };
 
-    return true
+  element.addEventListener(
+    "input",
+    (ev) => {
+      label.textContent = element.value;
+    },
+    false,
+  );
+
+  return true;
 }

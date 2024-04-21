@@ -29,7 +29,7 @@ async function onStartup() {
     // helpURL: homepage,
     image: rootURI + "chrome/content/icons/favicon.svg",
     scripts: [],
-    stylesheets: [rootURI + "chrome/content/zoteroPane.css"]
+    stylesheets: [rootURI + "chrome/content/zoteroPane.css"],
   });
 
   ReviewModule.registerExtraColumnWithBindings();
