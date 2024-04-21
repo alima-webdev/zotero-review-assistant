@@ -57,3 +57,7 @@ class Modal {
   close();
   bindEvents();
 }
+
+interface HTMLInputElement {
+  updateLabelValue: () => void;
+}

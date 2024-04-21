@@ -17,9 +17,13 @@ export function getPref(key: string) {
  * @param value
  */
 export function setPref(key: string, value: string | number | boolean) {
-  const prefsReturn = Zotero.Prefs.set(`${config.prefsPrefix}.${key}`, value, true);
-  hooks.onPrefsEvent('change', {})
-  return prefsReturn
+  const prefsReturn = Zotero.Prefs.set(
+    `${config.prefsPrefix}.${key}`,
+    value,
+    true,
+  );
+  hooks.onPrefsEvent("change", {});
+  return prefsReturn;
 }
 
 /**

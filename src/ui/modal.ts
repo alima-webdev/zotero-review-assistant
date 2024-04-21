@@ -31,8 +31,7 @@ export function createModal(id: string, title: string, content: HTMLElement) {
   return modal;
 }
 
-export function initModal() {
-}
+export function initModal() {}
 
 // Modal class
 class ReviewModal {

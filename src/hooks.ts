@@ -1,7 +1,7 @@
 import { ReviewModule } from "./ui/itemTree";
 import { config } from "../package.json";
 import { getString, initLocale } from "./utils/locale";
-// import { registerPrefsScripts } from "./modules/preferenceScript";
+import { registerPrefsScripts, updatePrefsTable } from "./ui/preferenceScript";
 import { createZToolkit } from "./utils/ztoolkit";
 import { loadPrefs, reloadPrefs } from "./lib/global";
 
@@ -22,15 +22,15 @@ async function onStartup() {
   initLocale();
   loadPrefs();
 
-  // Zotero.PreferencePanes.register({
-  //   pluginID: config.addonID,
-  //   src: rootURI + "chrome/content/preferences.xhtml",
-  //   label: getString("prefs-title"),
-  //   // helpURL: homepage,
-  //   image: rootURI + "chrome/content/icons/favicon.png",
-  //   scripts: [],
-  //   stylesheets: [rootURI + "chrome/content/zoteroPane.css"]
-  // });
+  Zotero.PreferencePanes.register({
+    pluginID: config.addonID,
+    src: rootURI + "chrome/content/preferences.xhtml",
+    label: getString("prefs-title"),
+    // helpURL: homepage,
+    image: rootURI + "chrome/content/icons/favicon.svg",
+    scripts: [],
+    stylesheets: [rootURI + "chrome/content/zoteroPane.css"]
+  });
 
   ReviewModule.registerExtraColumnWithBindings();
 
@@ -90,13 +90,14 @@ async function onNotify(
  * @param data event data
  */
 async function onPrefsEvent(type: string, data: { [key: string]: any }) {
-  ztoolkit.log("PREFSSS")
+  ztoolkit.log("PREFSSS");
   switch (type) {
     case "change":
-      reloadPrefs()
+      reloadPrefs();
+      updatePrefsTable();
       break;
     case "load":
-      // registerPrefsScripts(data.window);
+      registerPrefsScripts(data.window);
       ztoolkit.log("Prefs Script Loaded");
       break;
     default:

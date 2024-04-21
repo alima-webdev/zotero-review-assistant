@@ -12,7 +12,7 @@ pref(
       color: "#60a5fa",
       askForReason: false,
       default: false,
-      keyboardShortcut: 'i',
+      keyboardShortcut: "i",
     },
     {
       name: "exclude",
@@ -21,7 +21,7 @@ pref(
       color: "#fe6969",
       askForReason: true,
       default: false,
-      keyboardShortcut: 'x',
+      keyboardShortcut: "x",
     },
     {
       name: "pending",
@@ -30,7 +30,7 @@ pref(
       color: "#9ca3af",
       askForReason: false,
       default: false,
-      keyboardShortcut: 'p',
+      keyboardShortcut: "p",
     },
     {
       name: "unsure",
@@ -39,7 +39,7 @@ pref(
       color: "#facc15",
       askForReason: false,
       default: false,
-      keyboardShortcut: 'u',
+      keyboardShortcut: "u",
     },
     {
       name: "not-reviewed",
@@ -48,7 +48,7 @@ pref(
       color: "transparent",
       askForReason: false,
       default: true,
-      keyboardShortcut: '-',
+      keyboardShortcut: "-",
     },
     // {name: 'not-reviewed', tag: '!review:not-reviewed', label: 'To Be Reviewed', color: 'transparent', askForReason: false, default: true},
   ]),

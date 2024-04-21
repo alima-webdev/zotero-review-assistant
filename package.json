@@ -32,8 +32,11 @@
   },
   "homepage": "https://github.com/alima-webdev/zotero-review#readme",
   "dependencies": {
+    "@melloware/coloris": "^0.24.0",
     "@tarekraafat/autocomplete.js": "^10.2.7",
     "handlebars": "^4.7.8",
+    "nanopop": "^2.4.2",
+    "vanilla-colorful": "^0.7.2",
     "zotero-plugin-toolkit": "^2.3.15"
   },
   "devDependencies": {
