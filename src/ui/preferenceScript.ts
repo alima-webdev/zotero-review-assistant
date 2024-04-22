@@ -7,7 +7,7 @@ import { allStatuses } from "../lib/global";
 import { config } from "../../package.json";
 import { loadXHTMLFromFile, parseXHTML } from "../utils/helpers";
 import { attachColorPicker } from "./colorpicker";
-import { attachKeystrokeInput } from "./keystrokeInput"
+import { attachKeystrokeInput } from "./keystrokeInput";
 
 export async function registerPrefsScripts(_window: Window) {
   // This function is called when the prefs window is opened
@@ -129,7 +129,7 @@ async function loadStatusModal(_window) {
   ztoolkit.log(_window);
   attachColorPicker(_window, _window.document, colorInput);
 
-  attachKeystrokeInput(modalContent.querySelector('.input-keystroke'));
+  attachKeystrokeInput(modalContent.querySelector(".input-keystroke"));
 }
 
 function removeStatus(rowId: number) {
@@ -179,7 +179,8 @@ function editStatus(rowId: number) {
   statusModal.element.querySelector("[name=reason]").checked =
     status.askForReason;
   statusModal.element.querySelector("[name=default]").checked = status.default;
-  statusModal.element.querySelector("[name=keyboardshortcut]").value = status.keyboardShortcut;
+  statusModal.element.querySelector("[name=keyboardshortcut]").value =
+    status.keyboardShortcut;
 
   // Form events: submit
   const formElement = statusModal.element.querySelector("#status-form");
@@ -202,7 +203,8 @@ function addStatusCommit(formElement: HTMLElement, pref: []) {
     color: formElement?.querySelector("[name=color]")?.value,
     askForReason: formElement?.querySelector("[name=reason]")?.checked,
     default: formElement?.querySelector("[name=default]")?.checked,
-    keyboardShortcut: formElement?.querySelector("[name=keyboardshortcut]")?.value,
+    keyboardShortcut: formElement?.querySelector("[name=keyboardshortcut]")
+      ?.value,
   };
 
   // Merge and save the data
@@ -222,7 +224,8 @@ function editStatusCommit(formElement: HTMLElement, pref: []) {
     color: formElement?.querySelector("[name=color]")?.value,
     askForReason: formElement?.querySelector("[name=reason]")?.checked,
     default: formElement?.querySelector("[name=default]")?.checked,
-    keyboardShortcut: formElement?.querySelector("[name=keyboardshortcut]")?.value,
+    keyboardShortcut: formElement?.querySelector("[name=keyboardshortcut]")
+      ?.value,
   };
 
   // Merge and save the data

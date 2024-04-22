@@ -15,10 +15,10 @@ export function reloadPrefs() {
 export function loadPrefs() {
   ztoolkit.log("Fn: loadPrefs");
   allStatuses = JSON.parse(String(getPref("statuses")));
-  allStatuses.map(status => {
-    status.keystroke = Keystroke.fromString(status.keyboardShortcut)
-    return status
-  })
+  allStatuses.map((status) => {
+    status.keystroke = Keystroke.fromString(status.keyboardShortcut);
+    return status;
+  });
   statusTagPrefix = String(getPref("status-tag-prefix"));
   reasonTagPrefix = statusTagPrefix + String(getPref("reason-tag-prefix"));
 }

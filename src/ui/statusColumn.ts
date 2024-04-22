@@ -65,7 +65,6 @@ export function getStatusContextMenu() {
 export function statusKeyboardEvents(ev: KeyboardEvent) {
   // Add the shortcuts for statuses if they have one
   for (const status of allStatuses) {
-
     if (
       ev.altKey == status.keystroke.modifiers.alt &&
       ev.ctrlKey == status.keystroke.modifiers.ctrl &&
