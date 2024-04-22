@@ -12,6 +12,7 @@ prefs-table-label = Label
 prefs-table-color = Color
 prefs-table-askforreason = Ask for a Reason
 prefs-table-default = Default Status
+prefs-table-keyboardshortcut = Keyboard Shortcut
 
 tabpanel-lib-tab-label = Lib Tab
 tabpanel-reader-tab-label = Reader Tab

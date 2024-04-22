@@ -1,4 +1,4 @@
-zoteroreview-pref-title = Addon Template Example
+zoteroreview-pref-title = Review Status
 zoteroreview-pref-enable =
     .label = Enable
 zoteroreview-pref-input = Input

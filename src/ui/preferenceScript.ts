@@ -7,6 +7,7 @@ import { allStatuses } from "../lib/global";
 import { config } from "../../package.json";
 import { loadXHTMLFromFile, parseXHTML } from "../utils/helpers";
 import { attachColorPicker } from "./colorpicker";
+import { attachKeystrokeInput } from "./keystrokeInput"
 
 export async function registerPrefsScripts(_window: Window) {
   // This function is called when the prefs window is opened
@@ -54,6 +55,10 @@ async function loadStatusTable(_window) {
       {
         dataKey: "default",
         label: getString("prefs-table-default"),
+      },
+      {
+        dataKey: "keyboardShortcut",
+        label: getString("prefs-table-keyboardshortcut"),
       },
     ];
 
@@ -123,6 +128,8 @@ async function loadStatusModal(_window) {
   ztoolkit.log("--------------------");
   ztoolkit.log(_window);
   attachColorPicker(_window, _window.document, colorInput);
+
+  attachKeystrokeInput(modalContent.querySelector('.input-keystroke'));
 }
 
 function removeStatus(rowId: number) {
@@ -144,6 +151,7 @@ function addStatus() {
   statusModal.element.querySelector("[name=color]").value = "";
   statusModal.element.querySelector("[name=reason]").checked = false;
   statusModal.element.querySelector("[name=default]").checked = false;
+  statusModal.element.querySelector("[name=keyboardshortcut]").value = "";
   const formElement = statusModal.element.querySelector("#status-form");
   const pref: [] = JSON.parse(getPref("statuses"));
   formElement.onsubmit = (ev) => {
@@ -171,6 +179,7 @@ function editStatus(rowId: number) {
   statusModal.element.querySelector("[name=reason]").checked =
     status.askForReason;
   statusModal.element.querySelector("[name=default]").checked = status.default;
+  statusModal.element.querySelector("[name=keyboardshortcut]").value = status.keyboardShortcut;
 
   // Form events: submit
   const formElement = statusModal.element.querySelector("#status-form");
@@ -193,6 +202,7 @@ function addStatusCommit(formElement: HTMLElement, pref: []) {
     color: formElement?.querySelector("[name=color]")?.value,
     askForReason: formElement?.querySelector("[name=reason]")?.checked,
     default: formElement?.querySelector("[name=default]")?.checked,
+    keyboardShortcut: formElement?.querySelector("[name=keyboardshortcut]")?.value,
   };
 
   // Merge and save the data
@@ -212,6 +222,7 @@ function editStatusCommit(formElement: HTMLElement, pref: []) {
     color: formElement?.querySelector("[name=color]")?.value,
     askForReason: formElement?.querySelector("[name=reason]")?.checked,
     default: formElement?.querySelector("[name=default]")?.checked,
+    keyboardShortcut: formElement?.querySelector("[name=keyboardshortcut]")?.value,
   };
 
   // Merge and save the data

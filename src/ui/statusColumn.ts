@@ -65,7 +65,14 @@ export function getStatusContextMenu() {
 export function statusKeyboardEvents(ev: KeyboardEvent) {
   // Add the shortcuts for statuses if they have one
   for (const status of allStatuses) {
-    if (ev.key == status.keyboardShortcut && status.keyboardShortcut != "") {
+
+    if (
+      ev.altKey == status.keystroke.modifiers.alt &&
+      ev.ctrlKey == status.keystroke.modifiers.ctrl &&
+      ev.metaKey == status.keystroke.modifiers.meta &&
+      ev.shiftKey == status.keystroke.modifiers.shift &&
+      ev.key == status.keystroke.key
+    ) {
       ztoolkit.getGlobal("document").setReviewStatus(status.tag);
     }
   }

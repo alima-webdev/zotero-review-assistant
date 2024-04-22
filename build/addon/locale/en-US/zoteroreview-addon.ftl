@@ -12,6 +12,7 @@ zoteroreview-prefs-table-label = Label
 zoteroreview-prefs-table-color = Color
 zoteroreview-prefs-table-askforreason = Ask for a Reason
 zoteroreview-prefs-table-default = Default Status
+zoteroreview-prefs-table-keyboardshortcut = Keyboard Shortcut
 
 zoteroreview-tabpanel-lib-tab-label = Lib Tab
 zoteroreview-tabpanel-reader-tab-label = Reader Tab
