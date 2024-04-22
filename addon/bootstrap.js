@@ -37,7 +37,8 @@ async function startup({ id, version, resourceURI, rootURI }, reason) {
   ctx._globalThis = ctx;
 
   Services.scriptloader.loadSubScript(
-    `${rootURI}/chrome/content/scripts/__addonRef__.js`,
+    // `${rootURI}/chrome/content/scripts/__addonRef__.js`,
+    `${rootURI}/chrome/content/index.js`,
     ctx,
   );
   Zotero.__addonInstance__.hooks.onStartup();
@@ -67,7 +68,8 @@ function shutdown({ id, version, resourceURI, rootURI }, reason) {
     .getService(Components.interfaces.nsIStringBundleService)
     .flushBundles();
 
-  Cu.unload(`${rootURI}/chrome/content/scripts/__addonRef__.js`);
+  // Cu.unload(`${rootURI}/chrome/content/scripts/__addonRef__.js`);
+  Cu.unload(`${rootURI}/chrome/content/index.js`);
 
   if (chromeHandle) {
     chromeHandle.destruct();

@@ -27,10 +27,11 @@ export class ReviewModule {
       properties: {
         type: "text/css",
         rel: "stylesheet",
-        href: `chrome://${config.addonRef}/content/zoteroPane.css`,
+        href: `chrome://${config.addonRef}/content/styles/styles.css`,
+        id: `${config.addonRef}-stylesheet`
       },
     });
-    document.documentElement.appendChild(styles);
+    ztoolkit.getGlobal('document').documentElement.appendChild(styles);
   }
 
   // Extra Columns

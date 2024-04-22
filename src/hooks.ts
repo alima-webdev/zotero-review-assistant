@@ -29,7 +29,7 @@ async function onStartup() {
     // helpURL: homepage,
     image: rootURI + "chrome/content/icons/favicon.svg",
     scripts: [],
-    stylesheets: [rootURI + "chrome/content/zoteroPane.css"],
+    stylesheets: [rootURI + "chrome/content/styles/styles.css"],
   });
 
   ReviewModule.registerExtraColumnWithBindings();
@@ -43,18 +43,19 @@ async function onMainWindowLoad(win: Window): Promise<void> {
 
   ReviewModule.registerDOMElements();
   ReviewModule.registerStyleSheet();
-
-  // await Zotero.Promise.delay(1000);
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {
+  ztoolkit.getGlobal('document').querySelector(`#${config.addonRef}-stylesheet`)?.remove()
   ztoolkit.unregisterAll();
   addon.data.dialog?.window?.close();
 }
 
 function onShutdown(): void {
+  ztoolkit.getGlobal('document').querySelector(`#${config.addonRef}-stylesheet`)?.remove()
   ztoolkit.unregisterAll();
   addon.data.dialog?.window?.close();
+  
   // Remove addon object
   addon.data.alive = false;
   delete Zotero[config.addonInstance];

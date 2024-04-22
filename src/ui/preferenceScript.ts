@@ -17,7 +17,7 @@ export async function registerPrefsScripts(_window: Window) {
 
   bindPrefEvents(_window);
 
-  await Zotero.Promise.delay(250);
+  await Zotero.Promise.delay(500);
   updateUI();
 }
 

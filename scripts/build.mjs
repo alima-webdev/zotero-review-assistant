@@ -13,6 +13,11 @@ import path from "path";
 import { env, exit } from "process";
 import replaceInFile from "replace-in-file";
 
+// esbuild plugins
+import { sassPlugin } from "esbuild-sass-plugin";
+import postcss from 'postcss';
+import autoprefixer from 'autoprefixer';
+
 const { replaceInFileSync } = replaceInFile;
 
 process.env.NODE_ENV =
@@ -167,10 +172,9 @@ function prepareUpdateJson() {
   });
 
   Logger.debug(
-    `[Build] Prepare Update.json for ${
-      isPreRelease
-        ? "\u001b[31m Prerelease \u001b[0m"
-        : "\u001b[32m Release \u001b[0m"
+    `[Build] Prepare Update.json for ${isPreRelease
+      ? "\u001b[31m Prerelease \u001b[0m"
+      : "\u001b[32m Release \u001b[0m"
     }`,
     replaceResult
       .filter((f) => f.hasChanged)
@@ -179,16 +183,30 @@ function prepareUpdateJson() {
 }
 
 export const esbuildOptions = {
-  entryPoints: ["src/index.ts"],
+  entryPoints: ["src/index.ts", "src/styles/styles.scss"],
   define: {
     __env__: `"${env.NODE_ENV}"`,
   },
   bundle: true,
   target: "firefox102",
-  outfile: path.join(
+  outdir: path.join(
     buildDir,
-    `addon/chrome/content/scripts/${config.addonRef}.js`,
+    `addon/chrome/content/`,
   ),
+  // outfile: path.join(
+  //   buildDir,
+  //   `addon/chrome/content/scripts/${config.addonRef}.js`,
+  // ),
+
+  // SCSS Plugin
+  plugins: [
+    sassPlugin({
+      async transform(source) {
+        const { css } = await postcss([autoprefixer]).process(source);
+        return css;
+      },
+    }),
+  ],
   // Don't turn minify on
   minify: env.NODE_ENV === "production",
 };
