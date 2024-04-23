@@ -1,22 +1,22 @@
 .table {
-  width: 100%;
+    width: 100%;
 
-  th,
-  td {
-    padding: 0.5rem;
-  }
-
-  .border-top {
     th,
     td {
-      border-top: 1px solid #ddd;
+        padding: 0.5rem;
     }
-  }
 
-  .border-bottom {
-    th,
-    td {
-      border-bottom: 1px solid #ddd;
+    .border-top {
+        th,
+        td {
+            border-top: 1px solid #ddd;
+        }
     }
-  }
+
+    .border-bottom {
+        th,
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+    }
 }

@@ -1,25 +1,25 @@
 interface Document {
-  setStatusReason: () => void;
-  setReviewStatus: (status: string) => void;
-  generateReport: () => void;
-  reasonModal: Modal;
-  reportModal: Modal;
-  allReasons: { label: any; value: any }[];
+    setStatusReason: () => void;
+    setReviewStatus: (status: string) => void;
+    generateReport: () => void;
+    reasonModal: Modal;
+    reportModal: Modal;
+    allReasons: { label: any; value: any }[];
 }
 
 declare const _globalThis: {
-  [key: string]: any;
-  Zotero: _ZoteroTypes.Zotero;
-  ZoteroPane: _ZoteroTypes.ZoteroPane;
-  Zotero_Tabs: typeof Zotero_Tabs;
-  window: Window;
-  document: Document;
-  ztoolkit: ZToolkit;
-  addon: typeof addon;
+    [key: string]: any;
+    Zotero: _ZoteroTypes.Zotero;
+    ZoteroPane: _ZoteroTypes.ZoteroPane;
+    Zotero_Tabs: typeof Zotero_Tabs;
+    window: Window;
+    document: Document;
+    ztoolkit: ZToolkit;
+    addon: typeof addon;
 };
 
 declare type ZToolkit = ReturnType<
-  typeof import("../src/utils/ztoolkit").createZToolkit
+    typeof import("../src/utils/ztoolkit").createZToolkit
 >;
 
 declare const ztoolkit: ZToolkit;
@@ -39,14 +39,14 @@ declare class Localization {}
 //     }
 // }
 type Status = {
-  name: string;
-  tag: string;
-  label: string;
-  color: string;
-  askForReason: boolean;
-  default: boolean;
-  keyboardShortcut: string;
-  keystroke: Keystroke;
+    name: string;
+    tag: string;
+    label: string;
+    color: string;
+    askForReason: boolean;
+    default: boolean;
+    keyboardShortcut: string;
+    keystroke: Keystroke;
 };
 
 // class Modal {
@@ -62,5 +62,5 @@ type Status = {
 // }
 
 interface HTMLInputElement {
-  updateLabelValue: () => void;
+    updateLabelValue: () => void;
 }

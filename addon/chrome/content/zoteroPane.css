@@ -1,182 +1,182 @@
 /* Item Tree */
 #zotero-items-tree .review-container {
-  /* text-align: center; */
+    /* text-align: center; */
 }
 
 .review {
-  text-align: center;
-  display: inline-block;
-  padding: 2px 8px;
-  margin: 0 auto;
-  border-radius: 3px;
+    text-align: center;
+    display: inline-block;
+    padding: 2px 8px;
+    margin: 0 auto;
+    border-radius: 3px;
 }
 
 .review:empty {
-  display: none;
+    display: none;
 }
 
 .review.include {
-  background: #60a5fa;
+    background: #60a5fa;
 }
 
 .review.exclude {
-  background: #fa8f8f;
-  background: #faa560;
-  background: #fe6969;
+    background: #fa8f8f;
+    background: #faa560;
+    background: #fe6969;
 }
 
 .review.pending {
-  background: #9ca3af;
+    background: #9ca3af;
 }
 
 .review.unsure {
-  background: #facc15;
+    background: #facc15;
 }
 
 /* Review Status Selector */
 #review-status-selector {
-  position: absolute;
-  padding: 4px 8px;
-  border: 1px solid #e5e7eb;
-  border-radius: 4px;
-  background: #fff;
-  box-shadow:
-    0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
+    position: absolute;
+    padding: 4px 8px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow:
+        0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 /* Modal */
 .modal {
-  display: none;
+    display: none;
 }
 
 .modal.open {
-  display: flex;
+    display: flex;
 }
 
 .modal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
 
-  align-items: center;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
 
-  background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .inner-modal {
-  padding: 2rem;
-  border-radius: 4px;
+    padding: 2rem;
+    border-radius: 4px;
 
-  background: #fff;
+    background: #fff;
 
-  box-shadow:
-    0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
+    box-shadow:
+        0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .inner-modal h2 {
-  padding: 0;
-  margin: 0;
-  margin-bottom: 1rem;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1rem;
 }
 
 .input {
-  margin: 1rem 0;
-  padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    padding: 0.75rem 1rem;
 
-  display: block;
-  width: auto;
+    display: block;
+    width: auto;
 
-  border: 1px solid #e5e7eb;
-  border-radius: 2px;
+    border: 1px solid #e5e7eb;
+    border-radius: 2px;
 
-  background: #fff;
+    background: #fff;
 }
 
 .input:focus {
-  border-color: #60a5fa;
-  outline: none;
+    border-color: #60a5fa;
+    outline: none;
 }
 
 .input[type="color"] {
-  width: 2.5rem;
-  padding: 0.25rem;
+    width: 2.5rem;
+    padding: 0.25rem;
 }
 
 .colorpicker-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .colorpicker-container * {
-  display: flex;
+    display: flex;
 }
 .colorpicker-container label {
-  flex: 1;
-  padding: 0 0.5rem;
+    flex: 1;
+    padding: 0 0.5rem;
 }
 
 /* Autocomplete */
 .autocomplete {
-  margin-top: -4px;
-  /* margin-left: 3px; */
+    margin-top: -4px;
+    /* margin-left: 3px; */
 
-  background: #fff;
-  border: 1px solid #f3f4f6;
-  border-top: none;
-  border-radius: 2px;
-  box-shadow:
-    0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
+    background: #fff;
+    border: 1px solid #f3f4f6;
+    border-top: none;
+    border-radius: 2px;
+    box-shadow:
+        0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
 
-  z-index: 99999;
+    z-index: 99999;
 }
 .autocomplete > * {
-  padding: 0.75rem 1rem;
+    padding: 0.75rem 1rem;
 }
 
 .autocomplete > *:hover,
 .autocomplete [aria-selected="true"],
 .autocomplete .selected {
-  background: #e5e7eb;
+    background: #e5e7eb;
 }
 
 /* Buttons */
 .btn {
-  display: inline-flex;
-  max-height: none;
-  padding: 0.75rem 1.25rem !important;
-  border-radius: 2px;
+    display: inline-flex;
+    max-height: none;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 2px;
 
-  border: none;
-  background: #e5e7eb;
+    border: none;
+    background: #e5e7eb;
 }
 
 .btn:hover {
-  background: #f3f4f6;
+    background: #f3f4f6;
 }
 
 .btn-primary {
-  background: #7dd3fc;
+    background: #7dd3fc;
 }
 
 .btn-primary:hover {
-  background: #bfdbfe;
+    background: #bfdbfe;
 }
 
 .btn-container {
-  display: flex;
-  gap: 1rem;
+    display: flex;
+    gap: 1rem;
 }
 
 /* Alignment boxes */
 .hbox {
-  display: flex;
-  gap: 1rem;
+    display: flex;
+    gap: 1rem;
 }

@@ -1,25 +1,27 @@
 <linkset>
-  <html:link rel="localization" href="zoteroarticlestatus-preferences.ftl" />
+    <html:link rel="localization" href="zoteroarticlestatus-preferences.ftl" />
 </linkset>
 <vbox
-  id="zotero-prefpane-zoteroarticlestatus"
-  onload="Zotero.ZoteroArticleStatus.hooks.onPrefsEvent('load', {window})"
+    id="zotero-prefpane-zoteroarticlestatus"
+    onload="Zotero.ZoteroArticleStatus.hooks.onPrefsEvent('load', {window})"
 >
-  <groupbox>
-    <label><html:h2 data-l10n-id="zoteroarticlestatus-pref-title"></html:h2></label>
-    <hbox class="virtualized-table-container" flex="1" height="300px">
-      <html:div id="zoteroarticlestatus-table-container" />
-    </hbox>
-    <hbox>
-      <button class="btn btn-primary" id="btn-add-status">+ Add Status</button>
-      <button class="btn" id="btn-remove-status">- Remove Status</button>
-    </hbox>
-    <html:div id="zoteroarticlestatus-status-modal" />
-  </groupbox>
+    <groupbox>
+        <label><html:h2 data-l10n-id="zoteroarticlestatus-pref-title"></html:h2></label>
+        <hbox class="virtualized-table-container" flex="1" height="300px">
+            <html:div id="zoteroarticlestatus-table-container" />
+        </hbox>
+        <hbox>
+            <button class="btn btn-primary" id="btn-add-status">
+                + Add Status
+            </button>
+            <button class="btn" id="btn-remove-status">- Remove Status</button>
+        </hbox>
+        <html:div id="zoteroarticlestatus-status-modal" />
+    </groupbox>
 </vbox>
 <vbox>
-  <html:label
-    data-l10n-id="zoteroarticlestatus-pref-help"
-    data-l10n-args='{"time": "2024-04-22 22:17:12","name": "Zotero Article Status","version":"0.0.8"}'
-  ></html:label>
+    <html:label
+        data-l10n-id="zoteroarticlestatus-pref-help"
+        data-l10n-args='{"time": "2024-04-23 13:07:29","name": "Zotero Article Status","version":"0.0.8"}'
+    ></html:label>
 </vbox>

@@ -1,51 +1,51 @@
 /* Review Status Selector */
 #review-status-selector {
-  position: absolute;
-  padding: 4px 8px;
-  border: 1px solid #e5e7eb;
-  border-radius: 4px;
-  background: #fff;
-  box-shadow:
-    0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
+    position: absolute;
+    padding: 4px 8px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow:
+        0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 /* Modal */
 .modal {
-  display: none;
+    display: none;
 }
 
 .modal.open {
-  display: flex;
+    display: flex;
 }
 
 .modal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
 
-  align-items: center;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
 
-  background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .inner-modal {
-  padding: 2rem;
-  border-radius: 4px;
+    padding: 2rem;
+    border-radius: 4px;
 
-  background: #fff;
+    background: #fff;
 
-  box-shadow:
-    0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
+    box-shadow:
+        0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .inner-modal h2 {
-  padding: 0;
-  margin: 0;
-  margin-bottom: 1rem;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1rem;
 }

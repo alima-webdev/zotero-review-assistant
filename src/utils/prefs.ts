@@ -7,7 +7,7 @@ import hooks from "../hooks";
  * @param key
  */
 export function getPref(key: string) {
-  return Zotero.Prefs.get(`${config.prefsPrefix}.${key}`, true);
+    return Zotero.Prefs.get(`${config.prefsPrefix}.${key}`, true);
 }
 
 /**
@@ -17,13 +17,13 @@ export function getPref(key: string) {
  * @param value
  */
 export function setPref(key: string, value: string | number | boolean) {
-  const prefsReturn = Zotero.Prefs.set(
-    `${config.prefsPrefix}.${key}`,
-    value,
-    true,
-  );
-  hooks.onPrefsEvent("change", {});
-  return prefsReturn;
+    const prefsReturn = Zotero.Prefs.set(
+        `${config.prefsPrefix}.${key}`,
+        value,
+        true,
+    );
+    hooks.onPrefsEvent("change", {});
+    return prefsReturn;
 }
 
 /**
@@ -32,5 +32,5 @@ export function setPref(key: string, value: string | number | boolean) {
  * @param key
  */
 export function clearPref(key: string) {
-  return Zotero.Prefs.clear(`${config.prefsPrefix}.${key}`, true);
+    return Zotero.Prefs.clear(`${config.prefsPrefix}.${key}`, true);
 }

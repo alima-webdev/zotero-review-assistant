@@ -24,25 +24,25 @@ var autocomplete = require("autocompleter");
 
 ```javascript
 var countries = [
-  { label: "United Kingdom", value: "UK" },
-  { label: "United States", value: "US" },
+    { label: "United Kingdom", value: "UK" },
+    { label: "United States", value: "US" },
 ];
 
 var input = document.getElementById("country");
 
 autocomplete({
-  input: input,
-  fetch: function (text, update) {
-    text = text.toLowerCase();
-    // you can also use AJAX requests instead of preloaded data
-    var suggestions = countries.filter((n) =>
-      n.label.toLowerCase().startsWith(text),
-    );
-    update(suggestions);
-  },
-  onSelect: function (item) {
-    input.value = item.label;
-  },
+    input: input,
+    fetch: function (text, update) {
+        text = text.toLowerCase();
+        // you can also use AJAX requests instead of preloaded data
+        var suggestions = countries.filter((n) =>
+            n.label.toLowerCase().startsWith(text),
+        );
+        update(suggestions);
+    },
+    onSelect: function (item) {
+        input.value = item.label;
+    },
 });
 ```
 
@@ -183,24 +183,27 @@ If you don't want to pass this function every time, you can also use spread oper
 
 ```typescript
 export default function autocompleteCustomized<T extends AutocompleteItem>(
-  settings: AutocompleteSettings<T>,
+    settings: AutocompleteSettings<T>,
 ): AutocompleteResult {
-  return autocomplete({
-    ...settings,
-    customize: (
-      input: HTMLInputElement,
-      inputRect: ClientRect | DOMRect,
-      container: HTMLDivElement,
-      maxHeight: number,
-    ): void => {
-      if (maxHeight < 100) {
-        container.style.top = "";
-        container.style.bottom =
-          window.innerHeight - inputRect.bottom + input.offsetHeight + "px";
-        container.style.maxHeight = "200px";
-      }
-    },
-  });
+    return autocomplete({
+        ...settings,
+        customize: (
+            input: HTMLInputElement,
+            inputRect: ClientRect | DOMRect,
+            container: HTMLDivElement,
+            maxHeight: number,
+        ): void => {
+            if (maxHeight < 100) {
+                container.style.top = "";
+                container.style.bottom =
+                    window.innerHeight -
+                    inputRect.bottom +
+                    input.offsetHeight +
+                    "px";
+                container.style.maxHeight = "200px";
+            }
+        },
+    });
 }
 ```
 
@@ -210,7 +213,7 @@ You can call `destroy` method on the returned object in order to remove event ha
 
 ```javascript
 var autocompl = autocomplete({
-  /* options */
+    /* options */
 });
 autocompl.destroy();
 ```
@@ -221,24 +224,24 @@ You can display suggestions separated into one or multiple groups/categories:
 
 ```javascript
 var countries = [
-  { label: "Canada", value: "CA", group: "North America" },
-  { label: "United States", value: "US", group: "North America" },
-  { label: "Uzbekistan", value: "UZ", group: "Asia" },
+    { label: "Canada", value: "CA", group: "North America" },
+    { label: "United States", value: "US", group: "North America" },
+    { label: "Uzbekistan", value: "UZ", group: "Asia" },
 ];
 
 autocomplete({
-  minLength: 1,
-  input: document.getElementById("country"),
-  fetch: function (text, update) {
-    text = text.toLowerCase();
-    var suggestions = countries.filter((n) =>
-      n.label.toLowerCase().startsWith(text),
-    );
-    update(suggestions);
-  },
-  onSelect: function (item) {
-    alert(item.value);
-  },
+    minLength: 1,
+    input: document.getElementById("country"),
+    fetch: function (text, update) {
+        text = text.toLowerCase();
+        var suggestions = countries.filter((n) =>
+            n.label.toLowerCase().startsWith(text),
+        );
+        update(suggestions);
+    },
+    onSelect: function (item) {
+        alert(item.value);
+    },
 });
 ```
 

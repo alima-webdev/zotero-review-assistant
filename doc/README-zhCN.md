@@ -54,18 +54,18 @@
 
 ## Features 特性
 
-- 事件驱动、函数式编程的可扩展框架；
-- 简单易用，开箱即用；
-- ⭐[新特性!]自动热重载！每当修改源码时，都会自动编译并重新加载插件；[详情请跳转→](#自动热重载)
-- `src/modules/examples.ts` 中有丰富的示例，涵盖了插件中常用的大部分API (使用的插件工具包 zotero-plugin-toolkit，仓库地址 https://github.com/windingwind/zotero-plugin-toolkit)；
-- TypeScript 支持:
-  - 为使用 JavaScript 编写的Zotero源码提供全面的类型定义支持 (使用类型定义包 zotero-types，仓库地址 https://github.com/windingwind/zotero-types)；
-  - 全局变量和环境设置；
-- 插件开发/构建/发布工作流:
-  - 自动生成/更新插件id和版本、更新配置和设置环境变量 (`development`/`production`)；
-  - 自动在 Zotero 中构建和重新加载代码；
-  - 自动发布到GitHub (使用[release-it](https://github.com/release-it/release-it));
-- 集成Prettier和ES Lint;
+-   事件驱动、函数式编程的可扩展框架；
+-   简单易用，开箱即用；
+-   ⭐[新特性!]自动热重载！每当修改源码时，都会自动编译并重新加载插件；[详情请跳转→](#自动热重载)
+-   `src/modules/examples.ts` 中有丰富的示例，涵盖了插件中常用的大部分API (使用的插件工具包 zotero-plugin-toolkit，仓库地址 https://github.com/windingwind/zotero-plugin-toolkit)；
+-   TypeScript 支持:
+    -   为使用 JavaScript 编写的Zotero源码提供全面的类型定义支持 (使用类型定义包 zotero-types，仓库地址 https://github.com/windingwind/zotero-types)；
+    -   全局变量和环境设置；
+-   插件开发/构建/发布工作流:
+    -   自动生成/更新插件id和版本、更新配置和设置环境变量 (`development`/`production`)；
+    -   自动在 Zotero 中构建和重新加载代码；
+    -   自动发布到GitHub (使用[release-it](https://github.com/release-it/release-it));
+-   集成Prettier和ES Lint;
 
 > [!warning]
 > Zotero本地化已升级(`dtd` 已弃用，我们将不再使用 `.properties`). 主分支将只支持 Zotero 7.0.0-beta.12 或更高版本. 如果需要支持 Zotero 6，你可能需要同时使用`dtd`、`properties` 和`ftl`. 请参考此库的 `zotero6-bootstrap` 分支.
@@ -78,38 +78,38 @@
 
 ### 基本示例(Basic Examples)
 
-- registerNotifier
-- registerPrefs, unregisterPrefs
+-   registerNotifier
+-   registerPrefs, unregisterPrefs
 
 ### 快捷键示例(Shortcut Keys Examples)
 
-- registerShortcuts
-- exampleShortcutLargerCallback
-- exampleShortcutSmallerCallback
-- exampleShortcutConflictionCallback
+-   registerShortcuts
+-   exampleShortcutLargerCallback
+-   exampleShortcutSmallerCallback
+-   exampleShortcutConflictionCallback
 
 ### UI示例(UI Examples)
 
 ![image](https://user-images.githubusercontent.com/33902321/211739774-cc5c2df8-5fd9-42f0-9cdf-0f2e5946d427.png)
 
-- registerStyleSheet(the official make-it-red example)
-- registerRightClickMenuItem
-- registerRightClickMenuPopup
-- registerWindowMenuWithSeprator
-- registerExtraColumn
-- registerExtraColumnWithCustomCell
-- registerCustomItemBoxRow
-- registerLibraryTabPanel
-- registerReaderTabPanel
+-   registerStyleSheet(the official make-it-red example)
+-   registerRightClickMenuItem
+-   registerRightClickMenuPopup
+-   registerWindowMenuWithSeprator
+-   registerExtraColumn
+-   registerExtraColumnWithCustomCell
+-   registerCustomItemBoxRow
+-   registerLibraryTabPanel
+-   registerReaderTabPanel
 
 ### 首选项面板示例(Preference Pane Examples)
 
 ![image](https://user-images.githubusercontent.com/33902321/211737987-cd7c5c87-9177-4159-b975-dc67690d0490.png)
 
-- Preferences bindings
-- UI Events
-- Table
-- Locale
+-   Preferences bindings
+-   UI Events
+-   Table
+-   Locale
 
 详情参见 [`src/modules/preferenceScript.ts`](./src/modules/preferenceScript.ts)
 
@@ -117,11 +117,11 @@
 
 ![image](https://user-images.githubusercontent.com/33902321/215119473-e7d0d0ef-6d96-437e-b989-4805ffcde6cf.png)
 
-- dialogExample
-- clipboardExample
-- filePickerExample
-- progressWindowExample
-- vtableExample(See Preference Pane Examples)
+-   dialogExample
+-   clipboardExample
+-   filePickerExample
+-   progressWindowExample
+-   vtableExample(See Preference Pane Examples)
 
 ### 指令行示例(PromptExamples)
 
@@ -131,7 +131,7 @@ Obsidian风格的指令输入模块，它通过接受文本来运行插件，并
 
 ![image](https://user-images.githubusercontent.com/33902321/215120009-e7c7ed27-33a0-44fe-b021-06c272481a92.png)
 
-- registerAlertPromptExample
+-   registerAlertPromptExample
 
 ## Quick Start Guide 快速入门指南
 
@@ -147,17 +147,17 @@ Obsidian风格的指令输入模块，它通过接受文本来运行插件，并
 
 1. 点击 `Use this template`；
 2. 使用 `git clone` 克隆上一步生成的仓库；
-   <details >
-   <summary>💡 从 GitHub Codespace 开始</summary>
+    <details >
+    <summary>💡 从 GitHub Codespace 开始</summary>
 
-   _GitHub CodeSpace_ 使你可以直接开始开发而无需在本地下载代码/IDE/依赖.
+    _GitHub CodeSpace_ 使你可以直接开始开发而无需在本地下载代码/IDE/依赖.
 
-   重复下列步骤，仅需三十秒即可开始构建你的第一个插件！
+    重复下列步骤，仅需三十秒即可开始构建你的第一个插件！
 
-   - 去 [homepage](https://github.com/windingwind/zotero-plugin-template)顶部，点击绿色按钮`Use this template`，点击 `Open in codespace`， 你需要登录你的GitHub账号.
-   - 等待 codespace 加载.
+    - 去 [homepage](https://github.com/windingwind/zotero-plugin-template)顶部，点击绿色按钮`Use this template`，点击 `Open in codespace`， 你需要登录你的GitHub账号.
+    - 等待 codespace 加载.
 
-   </details>
+    </details>
 
 3. 进入项目文件夹；
 
@@ -165,53 +165,53 @@ Obsidian风格的指令输入模块，它通过接受文本来运行插件，并
 
 1. 修改 `./package.json` 中的设置，包括：
 
-   ```json5
-   {
-     version: "", // to 0.0.0
-     author: "",
-     description: "",
-     homepage: "",
-     config: {
-       addonName: "", // name to be displayed in the plugin manager
-       addonID: "", // ID to avoid conflict. IMPORTANT!
-       addonRef: "", // e.g. Element ID prefix
-       addonInstance: "", // the plugin's root instance: Zotero.${addonInstance}
-       prefsPrefix: "extensions.zotero.${addonRef}", // the prefix of prefs
-       releasePage: "", // URL to releases
-       updateJSON: "", // URL to update.json
-     },
-   }
-   ```
+    ```json5
+    {
+        version: "", // to 0.0.0
+        author: "",
+        description: "",
+        homepage: "",
+        config: {
+            addonName: "", // name to be displayed in the plugin manager
+            addonID: "", // ID to avoid conflict. IMPORTANT!
+            addonRef: "", // e.g. Element ID prefix
+            addonInstance: "", // the plugin's root instance: Zotero.${addonInstance}
+            prefsPrefix: "extensions.zotero.${addonRef}", // the prefix of prefs
+            releasePage: "", // URL to releases
+            updateJSON: "", // URL to update.json
+        },
+    }
+    ```
 
-   > [!warning]
-   > 注意设置 addonID 和 addonRef 以避免冲突.
+    > [!warning]
+    > 注意设置 addonID 和 addonRef 以避免冲突.
 
 如果你需要在GitHub以外的地方托管你的 XPI 包，请删除 `releasePage` 并添加 `updateLink`，并将值设置为你的 XPI 下载地址.
 
 2. 复制 Zotero 启动配置，填入 Zotero 可执行文件路径和 profile 路径.
 
-   > (可选项) 此操作仅需执行一次: 使用 `/path/to/zotero -p` 启动 Zotero，创建一个新的配置文件并用作开发配置文件.
-   > 将配置文件的路径 `profilePath` 放入 `zotero-cmd.json` 中，以指定要使用的配置文件.
+    > (可选项) 此操作仅需执行一次: 使用 `/path/to/zotero -p` 启动 Zotero，创建一个新的配置文件并用作开发配置文件.
+    > 将配置文件的路径 `profilePath` 放入 `zotero-cmd.json` 中，以指定要使用的配置文件.
 
-   ```sh
-   cp ./scripts/zotero-cmd-template.json ./scripts/zotero-cmd.json
-   vim ./scripts/zotero-cmd.json
-   ```
+    ```sh
+    cp ./scripts/zotero-cmd-template.json ./scripts/zotero-cmd.json
+    vim ./scripts/zotero-cmd.json
+    ```
 
 3. 运行 `npm install` 以安装相关依赖
 
-   > 如果你使用 `pnpm` 作为包管理器，你需要添加 `public-hoist-pattern[]=*@types/bluebird*` 到`.npmrc`, 详情请查看 zotero-types（https://github.com/windingwind/zotero-types?tab=readme-ov-file#usage）的文档.
+    > 如果你使用 `pnpm` 作为包管理器，你需要添加 `public-hoist-pattern[]=*@types/bluebird*` 到`.npmrc`, 详情请查看 zotero-types（https://github.com/windingwind/zotero-types?tab=readme-ov-file#usage）的文档.
 
 ### 3 开始开发(Coding)
 
 使用 `npm start` 启动开发服务器，它将：
 
-- 在开发模式下预构建插件
-- 启动 Zotero ，并让其从 `build/` 中加载插件
-- 打开开发者工具（devtool）
-- 监听 `src/**` 和 `addon/**`.
-  - 如果 `src/**` 修改了，运行 esbuild 并且重新加载
-  - 如果 `addon/**` 修改了，(在开发模式下)重新构建插件并且重新加载
+-   在开发模式下预构建插件
+-   启动 Zotero ，并让其从 `build/` 中加载插件
+-   打开开发者工具（devtool）
+-   监听 `src/**` 和 `addon/**`.
+    -   如果 `src/**` 修改了，运行 esbuild 并且重新加载
+    -   如果 `addon/**` 修改了，(在开发模式下)重新构建插件并且重新加载
 
 #### 自动热重载
 
@@ -236,13 +236,13 @@ Obsidian风格的指令输入模块，它通过接受文本来运行插件，并
 
 你还可以:
 
-- 在 Tools->Developer->Run Javascript 中测试代码片段;
+-   在 Tools->Developer->Run Javascript 中测试代码片段;
 
-- 使用 `Zotero.debug()` 调试输出. 在 Help->Debug Output Logging->View Output 查看输出;
+-   使用 `Zotero.debug()` 调试输出. 在 Help->Debug Output Logging->View Output 查看输出;
 
-- 调试 UI. Zotero 建立在 Firefox XUL 框架之上. 使用 [XUL Explorer](https://udn.realityripple.com/docs/Archive/Mozilla/XUL_Explorer) 等软件调试 XUL UI.
+-   调试 UI. Zotero 建立在 Firefox XUL 框架之上. 使用 [XUL Explorer](https://udn.realityripple.com/docs/Archive/Mozilla/XUL_Explorer) 等软件调试 XUL UI.
 
-  > XUL 文档: <http://www.devdoc.net/web/developer.mozilla.org/en-US/docs/XUL.html>
+    > XUL 文档: <http://www.devdoc.net/web/developer.mozilla.org/en-US/docs/XUL.html>
 
 ### 4 构建(Build)
 
@@ -250,23 +250,23 @@ Obsidian风格的指令输入模块，它通过接受文本来运行插件，并
 
 `scripts/build.mjs` 的运行步骤:
 
-- 创建/清空 `build/`
-- 复制 `addon/**` 到 `build/addon/**`
-- 替换占位符：使用 `replace-in-file` 去替换在 `package.json` 中定义的关键字和配置 (`xhtml`、`.flt` 等)
-- 准备本地化文件以避免冲突，查看官方文档了解更多（https://www.zotero.org/support/dev/zotero_7_for_developers#avoiding_localization_conflicts）
-  - 重命名`**/*.flt` 为 `**/${addonRef}-*.flt`
-  - 在每个消息前加上 `addonRef-`
-- 使用 Esbuild 来将 `.ts` 源码构建为 `.js`，从 `src/index.ts` 构建到`./build/addon/chrome/content/scripts`
-- (仅在生产模式下工作) 压缩 `./build/addon` 目录为 `./build/*.xpi`
-- (仅在生产模式下工作) 准备 `update.json` 或 `update-beta.json`
+-   创建/清空 `build/`
+-   复制 `addon/**` 到 `build/addon/**`
+-   替换占位符：使用 `replace-in-file` 去替换在 `package.json` 中定义的关键字和配置 (`xhtml`、`.flt` 等)
+-   准备本地化文件以避免冲突，查看官方文档了解更多（https://www.zotero.org/support/dev/zotero_7_for_developers#avoiding_localization_conflicts）
+    -   重命名`**/*.flt` 为 `**/${addonRef}-*.flt`
+    -   在每个消息前加上 `addonRef-`
+-   使用 Esbuild 来将 `.ts` 源码构建为 `.js`，从 `src/index.ts` 构建到`./build/addon/chrome/content/scripts`
+-   (仅在生产模式下工作) 压缩 `./build/addon` 目录为 `./build/*.xpi`
+-   (仅在生产模式下工作) 准备 `update.json` 或 `update-beta.json`
 
 > [!note]
 >
 > **Dev & prod 两者有什么区别?**
 >
-> - 此环境变量存储在 `Zotero.${addonInstance}.data.env` 中，控制台输出在生产模式下被禁用.
-> - 你可以根据此变量决定用户无法查看/使用的内容.
-> - 在生产模式下，构建脚本将自动打包插件并更新 `update.json`.
+> -   此环境变量存储在 `Zotero.${addonInstance}.data.env` 中，控制台输出在生产模式下被禁用.
+> -   你可以根据此变量决定用户无法查看/使用的内容.
+> -   在生产模式下，构建脚本将自动打包插件并更新 `update.json`.
 
 ### 5 发布(Release)
 
@@ -297,14 +297,14 @@ npm run release
 > 可以在 [`src/hooks.ts`](https://github.com/windingwind/zotero-plugin-template/blob/main/src/hooks.ts) 中查看更多
 
 1. 当在 Zotero 中触发安装/启用/启动时，`bootstrap.js` > `startup` 被调用
-   - 等待 Zotero 就绪
-   - 加载 `index.js` (插件代码的主入口，从 `index.ts` 中构建)
-   - 如果是 Zotero 7 以上的版本则注册资源
+    - 等待 Zotero 就绪
+    - 加载 `index.js` (插件代码的主入口，从 `index.ts` 中构建)
+    - 如果是 Zotero 7 以上的版本则注册资源
 2. 主入口 `index.js` 中，插件对象被注入到 `Zotero` ，并且 `hooks.ts` > `onStartup` 被调用.
-   - 初始化插件需要的资源，包括通知监听器、首选项面板和UI元素.
+    - 初始化插件需要的资源，包括通知监听器、首选项面板和UI元素.
 3. 当在 Zotero 中触发卸载/禁用时，`bootstrap.js` > `shutdown` 被调用.
-   - `events.ts` > `onShutdown` 被调用. 移除 UI 元素、首选项面板或插件创建的任何内容.
-   - 移除脚本并释放资源.
+    - `events.ts` > `onShutdown` 被调用. 移除 UI 元素、首选项面板或插件创建的任何内容.
+    - 移除脚本并释放资源.
 
 ### 关于全局变量(About Global Variables)
 
@@ -322,8 +322,8 @@ Zotero, ZoteroPane, Zotero_Tabs, window, document, rootURI, ztoolkit, addon;
 
 插件模板为 bootstrap 插件提供了一些新的API. 我们有两个原因使用这些 API，而不是使用 `createElement/createElementNS`：
 
-- 在 bootstrap 模式下，插件必须在推出（禁用或卸载）时清理所有 UI 元素，这非常麻烦. 使用 `createElement`，插件模板将维护这些元素. 仅仅在退出时 `unregisterAll` .
-- Zotero 7 需要 createElement()/createElementNS() → createXULElement() 来表示其他的 XUL 元素，而 Zotero 6 并不支持 `createXULElement`. 类似于 React.createElement 的API `createElement` 检测 namespace(xul/html/svg) 并且自动创建元素，返回元素为对应的 TypeScript 元素类型.
+-   在 bootstrap 模式下，插件必须在推出（禁用或卸载）时清理所有 UI 元素，这非常麻烦. 使用 `createElement`，插件模板将维护这些元素. 仅仅在退出时 `unregisterAll` .
+-   Zotero 7 需要 createElement()/createElementNS() → createXULElement() 来表示其他的 XUL 元素，而 Zotero 6 并不支持 `createXULElement`. 类似于 React.createElement 的API `createElement` 检测 namespace(xul/html/svg) 并且自动创建元素，返回元素为对应的 TypeScript 元素类型.
 
 ```ts
 createElement(document, "div"); // returns HTMLDivElement
@@ -345,12 +345,12 @@ Zotero 文档已过时且不完整，克隆 https://github.com/zotero/zotero 并
 
 本部分展示了模板的目录结构.
 
-- 所有的 `.js/.ts` 代码都在 `./src`;
-- 插件配置文件：`./addon/manifest.json`;
-- UI 文件: `./addon/chrome/content/*.xhtml`.
-- 区域设置文件: `./addon/locale/**/*.flt`;
-- 首选项文件: `./addon/prefs.js`;
-  > 不要在 `prefs.js` 中换行
+-   所有的 `.js/.ts` 代码都在 `./src`;
+-   插件配置文件：`./addon/manifest.json`;
+-   UI 文件: `./addon/chrome/content/*.xhtml`.
+-   区域设置文件: `./addon/locale/**/*.flt`;
+-   首选项文件: `./addon/prefs.js`;
+    > 不要在 `prefs.js` 中换行
 
 ```shell
 .

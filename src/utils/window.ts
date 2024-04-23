@@ -6,5 +6,5 @@ export { isWindowAlive };
  * @param win
  */
 function isWindowAlive(win?: Window) {
-  return win && !Components.utils.isDeadWrapper(win) && !win.closed;
+    return win && !Components.utils.isDeadWrapper(win) && !win.closed;
 }

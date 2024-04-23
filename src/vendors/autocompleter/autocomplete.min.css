@@ -1,29 +1,29 @@
 .autocomplete {
-  background: #fff;
-  z-index: 1000;
-  font:
-    14px/22px "-apple-system",
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
-  overflow: auto;
-  box-sizing: border-box;
-  border: 1px solid rgba(50, 50, 50, 0.6);
+    background: #fff;
+    z-index: 1000;
+    font:
+        14px/22px "-apple-system",
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+    overflow: auto;
+    box-sizing: border-box;
+    border: 1px solid rgba(50, 50, 50, 0.6);
 }
 .autocomplete * {
-  font: inherit;
+    font: inherit;
 }
 .autocomplete > div {
-  padding: 0 4px;
+    padding: 0 4px;
 }
 .autocomplete .group {
-  background: #eee;
+    background: #eee;
 }
 .autocomplete > div.selected,
 .autocomplete > div:hover:not(.group) {
-  background: #81ca91;
-  cursor: pointer;
+    background: #81ca91;
+    cursor: pointer;
 }

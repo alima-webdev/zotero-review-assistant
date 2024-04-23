@@ -1,9 +1,9 @@
 .row {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
 
-  .col {
-    flex: 1;
-  }
+    .col {
+        flex: 1;
+    }
 }
