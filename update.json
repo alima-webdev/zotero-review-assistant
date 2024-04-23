@@ -4,7 +4,7 @@
             "updates": [
                 {
                     "version": "0.0.9",
-                    "update_link": "https://github.com/alima-webdev/zotero-article-status/releases/latest/download/zotero-article-status.xpi",
+                    "update_link": "https://github.com/alima-webdev/zotero-article-status/releases/download/v0.0.9/zotero-article-status.xpi",
                     "applications": {
                         "zotero": {
                             "strict_min_version": "6.999"
