@@ -1,23 +1,23 @@
 /* eslint-disable no-undef */
 pref("__prefsPrefix__.enable", true);
-pref("__prefsPrefix__.status-tag-prefix", "!review:");
-pref("__prefsPrefix__.reason-tag-prefix", "reason:");
+pref("__prefsPrefix__.status-tag-prefix", "Status: ");
+pref("__prefsPrefix__.reason-tag-prefix", "Reason: ");
 pref(
     "__prefsPrefix__.statuses",
     JSON.stringify([
         {
-            name: "include",
-            tag: "!review:include",
-            label: "Include",
+            name: "included",
+            tag: "Status: Included",
+            label: "Included",
             color: "#60a5fa",
             askForReason: false,
             default: false,
             keyboardShortcut: "i",
         },
         {
-            name: "exclude",
-            tag: "!review:exclude",
-            label: "Exclude",
+            name: "excluded",
+            tag: "Status: Excluded",
+            label: "Excluded",
             color: "#f87171",
             askForReason: true,
             default: false,
@@ -25,7 +25,7 @@ pref(
         },
         {
             name: "pending",
-            tag: "!review:pending",
+            tag: "Status: Pending",
             label: "Pending",
             color: "#d4d4d4",
             askForReason: false,
@@ -34,7 +34,7 @@ pref(
         },
         {
             name: "unsure",
-            tag: "!review:unsure",
+            tag: "Status: Unsure",
             label: "Unsure",
             color: "#facc15",
             askForReason: false,
@@ -42,7 +42,7 @@ pref(
             keyboardShortcut: "u",
         },
         {
-            name: "not-reviewed",
+            name: "no-status",
             tag: "",
             label: "",
             color: "transparent",
@@ -50,6 +50,5 @@ pref(
             default: true,
             keyboardShortcut: "-",
         },
-        // {name: 'not-reviewed', tag: '!review:not-reviewed', label: 'To Be Reviewed', color: 'transparent', askForReason: false, default: true},
     ]),
 );

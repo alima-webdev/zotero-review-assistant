@@ -1,3 +1,3 @@
-# Zotero Review Plugin
+# Zotero Article Status Plugin
 
-This plugin is inteded to help manage references for writing review articles, as it uses custom tags to create new fields about the reference's inclusion status
+This plugin lets you assign custom statuses to saved articles, enabling efficient organization and tracking of your research progress. It uses custom tags to indicate articles' statuses.
