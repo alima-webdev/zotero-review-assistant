@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Zotero Article Status",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "Zotero Article Status",
     "homepage_url": "https://github.com/alima-webdev/zotero-article-status#readme",
     "author": "alima-webdev",
