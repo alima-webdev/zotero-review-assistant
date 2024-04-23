@@ -2,4 +2,4 @@
 
 This plugin lets you assign custom statuses to saved articles, enabling efficient organization and tracking of your research progress. It uses custom tags to indicate articles' statuses.
 
-[![Preview](https://github.com/alima-webdev/zotero-article-status/blob/main/preview/preview.png?raw=true)](https://github.com/alima-webdev/zotero-article-status/blob/main/preview/preview.mov?raw=true)
+https://github.com/alima-webdev/zotero-article-status/assets/65861197/cb8cfe77-dc0c-41d5-8cf9-4e7932d36aa2
