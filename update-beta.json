@@ -3,8 +3,8 @@
         "zoteroarticlestatus@alima-webdev.com": {
             "updates": [
                 {
-                    "version": "0.0.10-beta.1",
-                    "update_link": "https://github.com/alima-webdev/zotero-article-status/releases/download/v0.0.10-beta.1/zotero-article-status.xpi",
+                    "version": "0.0.10-beta.2",
+                    "update_link": "https://github.com/alima-webdev/zotero-article-status/releases/download/v0.0.10-beta.2/zotero-article-status.xpi",
                     "applications": {
                         "zotero": {
                             "strict_min_version": "6.999"
