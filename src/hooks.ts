@@ -46,16 +46,22 @@ async function onMainWindowLoad(win: Window): Promise<void> {
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {
-  ztoolkit.getGlobal('document').querySelector(`#${config.addonRef}-stylesheet`)?.remove()
+  ztoolkit
+    .getGlobal("document")
+    .querySelector(`#${config.addonRef}-stylesheet`)
+    ?.remove();
   ztoolkit.unregisterAll();
   addon.data.dialog?.window?.close();
 }
 
 function onShutdown(): void {
-  ztoolkit.getGlobal('document').querySelector(`#${config.addonRef}-stylesheet`)?.remove()
+  ztoolkit
+    .getGlobal("document")
+    .querySelector(`#${config.addonRef}-stylesheet`)
+    ?.remove();
   ztoolkit.unregisterAll();
   addon.data.dialog?.window?.close();
-  
+
   // Remove addon object
   addon.data.alive = false;
   delete Zotero[config.addonInstance];

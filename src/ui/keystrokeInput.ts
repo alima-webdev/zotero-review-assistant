@@ -16,18 +16,18 @@ const keyStringWin = {
   ctrl: "Ctrl",
   meta: "Windows",
   shift: "Shift",
-}
+};
 const keyStringLinux = {
   alt: "Alt",
   ctrl: "Ctrl",
   meta: "Super",
   shift: "Shift",
-}
+};
 
 function getKeyStringByOS() {
-  if (Zotero.isMac) return keyStringMac
-  if (Zotero.isWin) return keyStringWin
-  if (Zotero.isLinux) return keyStringLinux
+  if (Zotero.isMac) return keyStringMac;
+  if (Zotero.isWin) return keyStringWin;
+  if (Zotero.isLinux) return keyStringLinux;
   // switch (os) {
   //   case "Darwin":
   //     return keyStringMac
@@ -57,13 +57,19 @@ export class Keystroke {
     keystroke.modifiers.alt = keystrokeString.includes(keyString?.alt || "Alt")
       ? true
       : false;
-    keystroke.modifiers.ctrl = keystrokeString.includes(keyString?.ctrl || "Control")
+    keystroke.modifiers.ctrl = keystrokeString.includes(
+      keyString?.ctrl || "Control",
+    )
       ? true
       : false;
-    keystroke.modifiers.meta = keystrokeString.includes(keyString?.meta || "Meta")
+    keystroke.modifiers.meta = keystrokeString.includes(
+      keyString?.meta || "Meta",
+    )
       ? true
       : false;
-    keystroke.modifiers.shift = keystrokeString.includes(keyString?.shift || "Shift")
+    keystroke.modifiers.shift = keystrokeString.includes(
+      keyString?.shift || "Shift",
+    )
       ? true
       : false;
     keystroke.key = keystrokeString.split("").at(-1) || "";
@@ -96,27 +102,27 @@ interface HTMLKeystrokeInputElement extends HTMLInputElement {
 }
 
 const invalidMainKeys = [
-  'Shift',
-  'Alt',
-  'Control',
-  'Meta',
-  'ContextMenu',
-  'NumLock',
-  'ScrollLock',
-  'VolumeMute',
-  'VolumeDown',
-  'VolumeUp',
-  'MediaSelect',
-  'LaunchApp1',
-  'LaunchApp2',
-]
+  "Shift",
+  "Alt",
+  "Control",
+  "Meta",
+  "ContextMenu",
+  "NumLock",
+  "ScrollLock",
+  "VolumeMute",
+  "VolumeDown",
+  "VolumeUp",
+  "MediaSelect",
+  "LaunchApp1",
+  "LaunchApp2",
+];
 
 function isMainKeyValid(key: string) {
-  let valid = true
+  let valid = true;
   if (invalidMainKeys.includes(key)) {
-    valid = false
+    valid = false;
   }
-  return valid
+  return valid;
 }
 
 class KeystrokeInput {
@@ -135,16 +141,16 @@ class KeystrokeInput {
     this.input.addEventListener("keypress", this.bypassEvent.bind(this));
   }
   bypassEvent(ev: KeyboardEvent) {
-    ev.preventDefault()
+    ev.preventDefault();
   }
   handleKeyUpEvent(ev: KeyboardEvent) {
-    this.input.blur()
-    ev.preventDefault()
+    this.input.blur();
+    ev.preventDefault();
   }
   handleKeyDownEvent(ev: KeyboardEvent) {
-    if (ev.repeat) return
+    if (ev.repeat) return;
     // Get the keystroke and construct the class
-    const key = (isMainKeyValid(ev.key) ? ev.key : '')
+    const key = isMainKeyValid(ev.key) ? ev.key : "";
     const isAlt = ev.altKey;
     const isCtrl = ev.ctrlKey;
     const isMeta = ev.metaKey;
@@ -161,7 +167,7 @@ class KeystrokeInput {
 
     // Set the element value
     this.input.value = keystroke.toString();
-    this.input.keystrokeValue = keystroke
+    this.input.keystrokeValue = keystroke;
 
     // Prevent the default behavior
     ev.preventDefault();

@@ -1,58 +1,116 @@
 <div>
-    <form id="status-form">
-        <div class="row">
-            <div class="col">
-                <!-- Label -->
-                <div class="form-field">
-                    <label for="zoteroarticlestatus-prefs-label" data-l10n-id="zoteroarticlestatus-pref-label"></label><br />
-                    <input id="zoteroarticlestatus-prefs-label" name="label" class="input" type="text" />
-                </div>
-                <!-- Tag -->
-                <div class="form-field">
-                    <label for="zoteroarticlestatus-prefs-tag" data-l10n-id="zoteroarticlestatus-pref-tag"></label><br />
-                    <input id="zoteroarticlestatus-prefs-tag" name="tag" class="input" type="text" />
-                </div>
-            </div>
-            <div class="col">
-                <!-- Name -->
-                <div class="form-field">
-                    <label for="zoteroarticlestatus-prefs-name" data-l10n-id="zoteroarticlestatus-pref-name"></label><br />
-                    <input id="zoteroarticlestatus-prefs-name" name="name" class="input" type="text" />
-                </div>
-                <div class="form-field">
-                    <!-- Color -->
-                    <label for="zoteroarticlestatus-prefs-color" data-l10n-id="zoteroarticlestatus-pref-color"></label>
-                    <div class="colorpicker-container">
-                        <input id="zoteroarticlestatus-prefs-color" name="color" class="input" type="color"
-                            colorpicker="true" />
-                        <label for="zoteroarticlestatus-prefs-color" class="color-label"></label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Keyboard Shortcut -->
+  <form id="status-form">
+    <div class="row">
+      <div class="col">
+        <!-- Label -->
         <div class="form-field">
-            <label for="zoteroarticlestatus-prefs-keyboardshortcut" data-l10n-id="zoteroarticlestatus-pref-keyboardshortcut"></label><br />
-            <input id="zoteroarticlestatus-prefs-keyboardshortcut" name="keyboardshortcut" type="text"
-                class="input input-keystroke" />
-            <span class="input-keystroke-description">
-                Press a key combination
-            </span>
+          <label
+            for="zoteroarticlestatus-prefs-label"
+            data-l10n-id="zoteroarticlestatus-pref-label"
+          ></label
+          ><br />
+          <input
+            id="zoteroarticlestatus-prefs-label"
+            name="label"
+            class="input"
+            type="text"
+          />
         </div>
-        <!-- Default -->
+        <!-- Tag -->
         <div class="form-field">
-            <input id="zoteroarticlestatus-prefs-default" name="default" type="checkbox" />
-            <label for="zoteroarticlestatus-prefs-default" data-l10n-id="zoteroarticlestatus-pref-default"></label>
+          <label
+            for="zoteroarticlestatus-prefs-tag"
+            data-l10n-id="zoteroarticlestatus-pref-tag"
+          ></label
+          ><br />
+          <input
+            id="zoteroarticlestatus-prefs-tag"
+            name="tag"
+            class="input"
+            type="text"
+          />
         </div>
-        <!-- Ask for a Reason -->
+      </div>
+      <div class="col">
+        <!-- Name -->
         <div class="form-field">
-            <input id="zoteroarticlestatus-prefs-reason" name="reason" type="checkbox" />
-            <label for="zoteroarticlestatus-prefs-reason" data-l10n-id="zoteroarticlestatus-pref-askforreason"></label>
+          <label
+            for="zoteroarticlestatus-prefs-name"
+            data-l10n-id="zoteroarticlestatus-pref-name"
+          ></label
+          ><br />
+          <input
+            id="zoteroarticlestatus-prefs-name"
+            name="name"
+            class="input"
+            type="text"
+          />
         </div>
-        <br />
-        <div class="btn-container">
-            <button class="btn" type="button" action="close">Cancel</button>
-            <button class="btn btn-primary" type="submit">Submit</button>
+        <div class="form-field">
+          <!-- Color -->
+          <label
+            for="zoteroarticlestatus-prefs-color"
+            data-l10n-id="zoteroarticlestatus-pref-color"
+          ></label>
+          <div class="colorpicker-container">
+            <input
+              id="zoteroarticlestatus-prefs-color"
+              name="color"
+              class="input"
+              type="color"
+              colorpicker="true"
+            />
+            <label
+              for="zoteroarticlestatus-prefs-color"
+              class="color-label"
+            ></label>
+          </div>
         </div>
-    </form>
+      </div>
+    </div>
+    <!-- Keyboard Shortcut -->
+    <div class="form-field">
+      <label
+        for="zoteroarticlestatus-prefs-keyboardshortcut"
+        data-l10n-id="zoteroarticlestatus-pref-keyboardshortcut"
+      ></label
+      ><br />
+      <input
+        id="zoteroarticlestatus-prefs-keyboardshortcut"
+        name="keyboardshortcut"
+        type="text"
+        class="input input-keystroke"
+      />
+      <span class="input-keystroke-description"> Press a key combination </span>
+    </div>
+    <!-- Default -->
+    <div class="form-field">
+      <input
+        id="zoteroarticlestatus-prefs-default"
+        name="default"
+        type="checkbox"
+      />
+      <label
+        for="zoteroarticlestatus-prefs-default"
+        data-l10n-id="zoteroarticlestatus-pref-default"
+      ></label>
+    </div>
+    <!-- Ask for a Reason -->
+    <div class="form-field">
+      <input
+        id="zoteroarticlestatus-prefs-reason"
+        name="reason"
+        type="checkbox"
+      />
+      <label
+        for="zoteroarticlestatus-prefs-reason"
+        data-l10n-id="zoteroarticlestatus-pref-askforreason"
+      ></label>
+    </div>
+    <br />
+    <div class="btn-container">
+      <button class="btn" type="button" action="close">Cancel</button>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </form>
 </div>

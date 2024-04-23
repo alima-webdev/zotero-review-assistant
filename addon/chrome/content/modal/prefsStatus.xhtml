@@ -1,58 +1,99 @@
 <div>
-    <form id="status-form">
-        <div class="row">
-            <div class="col">
-                <!-- Label -->
-                <div class="form-field">
-                    <label for="__addonRef__-prefs-label" data-l10n-id="pref-label"></label><br />
-                    <input id="__addonRef__-prefs-label" name="label" class="input" type="text" />
-                </div>
-                <!-- Tag -->
-                <div class="form-field">
-                    <label for="__addonRef__-prefs-tag" data-l10n-id="pref-tag"></label><br />
-                    <input id="__addonRef__-prefs-tag" name="tag" class="input" type="text" />
-                </div>
-            </div>
-            <div class="col">
-                <!-- Name -->
-                <div class="form-field">
-                    <label for="__addonRef__-prefs-name" data-l10n-id="pref-name"></label><br />
-                    <input id="__addonRef__-prefs-name" name="name" class="input" type="text" />
-                </div>
-                <div class="form-field">
-                    <!-- Color -->
-                    <label for="__addonRef__-prefs-color" data-l10n-id="pref-color"></label>
-                    <div class="colorpicker-container">
-                        <input id="__addonRef__-prefs-color" name="color" class="input" type="color"
-                            colorpicker="true" />
-                        <label for="__addonRef__-prefs-color" class="color-label"></label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Keyboard Shortcut -->
+  <form id="status-form">
+    <div class="row">
+      <div class="col">
+        <!-- Label -->
         <div class="form-field">
-            <label for="__addonRef__-prefs-keyboardshortcut" data-l10n-id="pref-keyboardshortcut"></label><br />
-            <input id="__addonRef__-prefs-keyboardshortcut" name="keyboardshortcut" type="text"
-                class="input input-keystroke" />
-            <span class="input-keystroke-description">
-                Press a key combination
-            </span>
+          <label
+            for="__addonRef__-prefs-label"
+            data-l10n-id="pref-label"
+          ></label
+          ><br />
+          <input
+            id="__addonRef__-prefs-label"
+            name="label"
+            class="input"
+            type="text"
+          />
         </div>
-        <!-- Default -->
+        <!-- Tag -->
         <div class="form-field">
-            <input id="__addonRef__-prefs-default" name="default" type="checkbox" />
-            <label for="__addonRef__-prefs-default" data-l10n-id="pref-default"></label>
+          <label for="__addonRef__-prefs-tag" data-l10n-id="pref-tag"></label
+          ><br />
+          <input
+            id="__addonRef__-prefs-tag"
+            name="tag"
+            class="input"
+            type="text"
+          />
         </div>
-        <!-- Ask for a Reason -->
+      </div>
+      <div class="col">
+        <!-- Name -->
         <div class="form-field">
-            <input id="__addonRef__-prefs-reason" name="reason" type="checkbox" />
-            <label for="__addonRef__-prefs-reason" data-l10n-id="pref-askforreason"></label>
+          <label for="__addonRef__-prefs-name" data-l10n-id="pref-name"></label
+          ><br />
+          <input
+            id="__addonRef__-prefs-name"
+            name="name"
+            class="input"
+            type="text"
+          />
         </div>
-        <br />
-        <div class="btn-container">
-            <button class="btn" type="button" action="close">Cancel</button>
-            <button class="btn btn-primary" type="submit">Submit</button>
+        <div class="form-field">
+          <!-- Color -->
+          <label
+            for="__addonRef__-prefs-color"
+            data-l10n-id="pref-color"
+          ></label>
+          <div class="colorpicker-container">
+            <input
+              id="__addonRef__-prefs-color"
+              name="color"
+              class="input"
+              type="color"
+              colorpicker="true"
+            />
+            <label for="__addonRef__-prefs-color" class="color-label"></label>
+          </div>
         </div>
-    </form>
+      </div>
+    </div>
+    <!-- Keyboard Shortcut -->
+    <div class="form-field">
+      <label
+        for="__addonRef__-prefs-keyboardshortcut"
+        data-l10n-id="pref-keyboardshortcut"
+      ></label
+      ><br />
+      <input
+        id="__addonRef__-prefs-keyboardshortcut"
+        name="keyboardshortcut"
+        type="text"
+        class="input input-keystroke"
+      />
+      <span class="input-keystroke-description"> Press a key combination </span>
+    </div>
+    <!-- Default -->
+    <div class="form-field">
+      <input id="__addonRef__-prefs-default" name="default" type="checkbox" />
+      <label
+        for="__addonRef__-prefs-default"
+        data-l10n-id="pref-default"
+      ></label>
+    </div>
+    <!-- Ask for a Reason -->
+    <div class="form-field">
+      <input id="__addonRef__-prefs-reason" name="reason" type="checkbox" />
+      <label
+        for="__addonRef__-prefs-reason"
+        data-l10n-id="pref-askforreason"
+      ></label>
+    </div>
+    <br />
+    <div class="btn-container">
+      <button class="btn" type="button" action="close">Cancel</button>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </form>
 </div>

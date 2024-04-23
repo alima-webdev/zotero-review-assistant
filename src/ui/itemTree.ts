@@ -17,7 +17,7 @@ import {
 import {
   getReportContextMenu,
   reportRegisterGlobalFunctions,
-  reportRegisterDOM
+  reportRegisterDOM,
 } from "./report";
 
 // ---------------------------------------------
@@ -32,10 +32,10 @@ export class ReviewModule {
         type: "text/css",
         rel: "stylesheet",
         href: `chrome://${config.addonRef}/content/styles/styles.css`,
-        id: `${config.addonRef}-stylesheet`
+        id: `${config.addonRef}-stylesheet`,
       },
     });
-    ztoolkit.getGlobal('document').documentElement.appendChild(styles);
+    ztoolkit.getGlobal("document").documentElement.appendChild(styles);
   }
 
   // Extra Columns

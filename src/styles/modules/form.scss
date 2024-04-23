@@ -1,117 +1,117 @@
 /* Review Status Selector */
 .form-field {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 #review-status-selector {
-    position: absolute;
-    padding: 4px 8px;
-    border: 1px solid #e5e7eb;
-    border-radius: 4px;
-    background: #fff;
-    box-shadow:
-        0 10px 15px -3px rgb(0 0 0 / 0.1),
-        0 4px 6px -4px rgb(0 0 0 / 0.1);
+  position: absolute;
+  padding: 4px 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .input {
-    margin: 1rem 0;
-    padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
 
-    display: inline-block;
-    width: auto;
+  display: inline-block;
+  width: auto;
 
-    border: 1px solid #e5e7eb;
-    border-radius: 2px;
+  border: 1px solid #e5e7eb;
+  border-radius: 2px;
 
-    background: #fff;
+  background: #fff;
 }
 
 .input:focus {
-    border-color: #60a5fa;
-    outline: none;
+  border-color: #60a5fa;
+  outline: none;
 }
 
 .input[type="color"] {
-    width: 2.5rem;
-    padding: 0.25rem;
+  width: 2.5rem;
+  padding: 0.25rem;
 }
 
 .colorpicker-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .colorpicker-container * {
-    display: flex;
+  display: flex;
 }
 
 .colorpicker-container label {
-    flex: 1;
-    padding: 0 0.5rem;
+  flex: 1;
+  padding: 0 0.5rem;
 }
 
 /* Autocomplete */
 .autocomplete {
-    margin-top: -4px;
-    /* margin-left: 3px; */
+  margin-top: -4px;
+  /* margin-left: 3px; */
 
-    background: #fff;
-    border: 1px solid #f3f4f6;
-    border-top: none;
-    border-radius: 2px;
-    box-shadow:
-        0 4px 6px -1px rgb(0 0 0 / 0.1),
-        0 2px 4px -2px rgb(0 0 0 / 0.1);
+  background: #fff;
+  border: 1px solid #f3f4f6;
+  border-top: none;
+  border-radius: 2px;
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
 
-    z-index: 99999;
+  z-index: 99999;
 }
 
-.autocomplete>* {
-    padding: 0.75rem 1rem;
+.autocomplete > * {
+  padding: 0.75rem 1rem;
 }
 
-.autocomplete>*:hover,
+.autocomplete > *:hover,
 .autocomplete [aria-selected="true"],
 .autocomplete .selected {
-    background: #e5e7eb;
+  background: #e5e7eb;
 }
 
 /* Buttons */
 .btn {
-    display: inline-flex;
-    max-height: none;
-    padding: 0.75rem 1.25rem !important;
-    border-radius: 2px;
+  display: inline-flex;
+  max-height: none;
+  padding: 0.75rem 1.25rem !important;
+  border-radius: 2px;
 
-    border: none;
-    background: #e5e7eb;
+  border: none;
+  background: #e5e7eb;
 }
 
 .btn:hover {
-    background: #f3f4f6;
+  background: #f3f4f6;
 }
 
 .btn-primary {
-    background: #7dd3fc;
+  background: #7dd3fc;
 }
 
 .btn-primary:hover {
-    background: #bfdbfe;
+  background: #bfdbfe;
 }
 
 .btn-container {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 /* Keystroke Input */
 .input-keystroke-description {
-    display: none;
-    margin-left: .5rem;
+  display: none;
+  margin-left: 0.5rem;
 }
 
 .input-keystroke:focus + .input-keystroke-description {
-    display: inline;
+  display: inline;
 }

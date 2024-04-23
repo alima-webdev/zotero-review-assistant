@@ -6,7 +6,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "sourceMap": true,
+    "sourceMap": true
   },
   "include": ["src", "typings", "node_modules/zotero-types"],
   "exclude": ["build", "addon"]

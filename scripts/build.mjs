@@ -15,8 +15,8 @@ import replaceInFile from "replace-in-file";
 
 // esbuild plugins
 import { sassPlugin } from "esbuild-sass-plugin";
-import postcss from 'postcss';
-import autoprefixer from 'autoprefixer';
+import postcss from "postcss";
+import autoprefixer from "autoprefixer";
 
 const { replaceInFileSync } = replaceInFile;
 
@@ -172,9 +172,10 @@ function prepareUpdateJson() {
   });
 
   Logger.debug(
-    `[Build] Prepare Update.json for ${isPreRelease
-      ? "\u001b[31m Prerelease \u001b[0m"
-      : "\u001b[32m Release \u001b[0m"
+    `[Build] Prepare Update.json for ${
+      isPreRelease
+        ? "\u001b[31m Prerelease \u001b[0m"
+        : "\u001b[32m Release \u001b[0m"
     }`,
     replaceResult
       .filter((f) => f.hasChanged)
@@ -189,10 +190,7 @@ export const esbuildOptions = {
   },
   bundle: true,
   target: "firefox102",
-  outdir: path.join(
-    buildDir,
-    `addon/chrome/content/`,
-  ),
+  outdir: path.join(buildDir, `addon/chrome/content/`),
   // outfile: path.join(
   //   buildDir,
   //   `addon/chrome/content/scripts/${config.addonRef}.js`,
