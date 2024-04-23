@@ -72,16 +72,16 @@ async function onNotify(
   extraData: { [key: string]: any },
 ) {
   // You can add your code to the corresponding notify type
-  ztoolkit.log("notify", event, type, ids, extraData);
-  if (
-    event == "select" &&
-    type == "tab" &&
-    extraData[ids[0]].type == "reader"
-  ) {
-    // BasicExampleFactory.exampleNotifierCallback();
-  } else {
-    return;
-  }
+  // ztoolkit.log("notify", event, type, ids, extraData);
+  // if (
+  //   event == "select" &&
+  //   type == "tab" &&
+  //   extraData[ids[0]].type == "reader"
+  // ) {
+  //   BasicExampleFactory.exampleNotifierCallback();
+  // } else {
+  //   return;
+  // }
 }
 
 /**
@@ -91,7 +91,6 @@ async function onNotify(
  * @param data event data
  */
 async function onPrefsEvent(type: string, data: { [key: string]: any }) {
-  ztoolkit.log("PREFSSS");
   switch (type) {
     case "change":
       reloadPrefs();
@@ -99,7 +98,6 @@ async function onPrefsEvent(type: string, data: { [key: string]: any }) {
       break;
     case "load":
       registerPrefsScripts(data.window);
-      ztoolkit.log("Prefs Script Loaded");
       break;
     default:
       return;

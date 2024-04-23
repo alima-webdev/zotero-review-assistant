@@ -1,0 +1,9 @@
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    .col {
+        flex: 1;
+    }
+}

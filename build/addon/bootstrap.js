@@ -22,7 +22,7 @@ async function startup({ id, version, resourceURI, rootURI }, reason) {
   ].getService(Components.interfaces.amIAddonManagerStartup);
   var manifestURI = Services.io.newURI(rootURI + "manifest.json");
   chromeHandle = aomStartup.registerChrome(manifestURI, [
-    ["content", "zoteroreview", rootURI + "chrome/content/"],
+    ["content", "zoteroarticlestatus", rootURI + "chrome/content/"],
   ]);
 
   /**
@@ -37,19 +37,19 @@ async function startup({ id, version, resourceURI, rootURI }, reason) {
   ctx._globalThis = ctx;
 
   Services.scriptloader.loadSubScript(
-    // `${rootURI}/chrome/content/scripts/zoteroreview.js`,
+    // `${rootURI}/chrome/content/scripts/zoteroarticlestatus.js`,
     `${rootURI}/chrome/content/index.js`,
     ctx,
   );
-  Zotero.ZoteroReview.hooks.onStartup();
+  Zotero.ZoteroArticleStatus.hooks.onStartup();
 }
 
 async function onMainWindowLoad({ window }, reason) {
-  Zotero.ZoteroReview?.hooks.onMainWindowLoad(window);
+  Zotero.ZoteroArticleStatus?.hooks.onMainWindowLoad(window);
 }
 
 async function onMainWindowUnload({ window }, reason) {
-  Zotero.ZoteroReview?.hooks.onMainWindowUnload(window);
+  Zotero.ZoteroArticleStatus?.hooks.onMainWindowUnload(window);
 }
 
 function shutdown({ id, version, resourceURI, rootURI }, reason) {
@@ -62,13 +62,13 @@ function shutdown({ id, version, resourceURI, rootURI }, reason) {
       Components.interfaces.nsISupports,
     ).wrappedJSObject;
   }
-  Zotero.ZoteroReview?.hooks.onShutdown();
+  Zotero.ZoteroArticleStatus?.hooks.onShutdown();
 
   Cc["@mozilla.org/intl/stringbundle;1"]
     .getService(Components.interfaces.nsIStringBundleService)
     .flushBundles();
 
-  // Cu.unload(`${rootURI}/chrome/content/scripts/zoteroreview.js`);
+  // Cu.unload(`${rootURI}/chrome/content/scripts/zoteroarticlestatus.js`);
   Cu.unload(`${rootURI}/chrome/content/index.js`);
 
   if (chromeHandle) {

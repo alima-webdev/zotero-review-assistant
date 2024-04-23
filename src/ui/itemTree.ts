@@ -14,7 +14,11 @@ import {
   reasonRegisterDOM,
   reasonRegisterGlobalFunctions,
 } from "./reasonColumn";
-import { MenuitemOptions } from "zotero-plugin-toolkit/dist/managers/menu";
+import {
+  getReportContextMenu,
+  reportRegisterGlobalFunctions,
+  reportRegisterDOM
+} from "./report";
 
 // ---------------------------------------------
 // Review Module
@@ -42,7 +46,10 @@ export class ReviewModule {
 
     const statusContextMenu = getStatusContextMenu();
     const reasonContextMenu = getReasonContextMenu();
-    const contextMenu = statusContextMenu.concat(reasonContextMenu);
+    const reportContextMenu = getReportContextMenu();
+    const contextMenu = statusContextMenu
+      .concat(reasonContextMenu)
+      .concat(reportContextMenu);
 
     ztoolkit.Menu.register("item", { tag: "menuseparator" });
     ztoolkit.Menu.register("item", {
@@ -54,7 +61,7 @@ export class ReviewModule {
     // Keyboard Shortcuts
     ztoolkit
       .getGlobal("document")
-      .addEventListener("keyup", (ev: KeyboardEvent) => {
+      .addEventListener("keydown", (ev: KeyboardEvent) => {
         // Check if the ItemTree is focused to use keyboard shortcuts
         const activeElement = ztoolkit.getGlobal("document").activeElement;
         const itemTreeElement = ztoolkit
@@ -69,11 +76,13 @@ export class ReviewModule {
     // Register the global context menu functions
     statusRegisterGlobalFunctions();
     reasonRegisterGlobalFunctions();
+    reportRegisterGlobalFunctions();
   }
 
   // DOM Events
   @module
   static async registerDOMElements() {
     await reasonRegisterDOM();
+    await reportRegisterDOM();
   }
 }

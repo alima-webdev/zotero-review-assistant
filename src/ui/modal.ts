@@ -27,14 +27,14 @@ export function createModal(id: string, title: string, content: HTMLElement) {
   modalElement.querySelector(".modal-content")?.appendChild(content);
 
   // Create a modal class
-  const modal = new ReviewModal(id, modalElement);
+  const modal = new Modal(id, modalElement);
   return modal;
 }
 
 export function initModal() {}
 
 // Modal class
-class ReviewModal {
+class Modal {
   id: string;
   root?: HTMLElement | Document;
   element: HTMLElement;

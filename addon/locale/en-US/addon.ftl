@@ -1,10 +1,10 @@
-startup-begin = Review Status is loading
-startup-finish = Review Status is ready
-menuitem-label = Review Status: Helper Examples
-menupopup-label = Review Status: Menupopup
-menuitem-submenulabel = Review Status
-menuitem-filemenulabel = Review Status: File Menuitem
-prefs-title = Review Status
+startup-begin = Article Status is loading
+startup-finish = Article Status is ready
+menuitem-label = Article Status: Helper Examples
+menupopup-label = Article Status: Menupopup
+menuitem-submenulabel = Article Status
+menuitem-filemenulabel = Article Status: File Menuitem
+prefs-title = Article Status
 prefs-table-id = Id
 prefs-table-name = Name
 prefs-table-tag = Tag
@@ -14,10 +14,16 @@ prefs-table-askforreason = Ask for a Reason
 prefs-table-default = Default Status
 prefs-table-keyboardshortcut = Keyboard Shortcut
 
-tabpanel-lib-tab-label = Lib Tab
-tabpanel-reader-tab-label = Reader Tab
-context-menu-status = Review Status
+context-menu-status = Article Status
+
 reason-dialog-title = Reason
 reason-dialog-text = Provide a reason for the selected status (optional)
-status-column-header = Status
 reason-column-header = Reason
+
+status-column-header = Status
+status-blank-label = Not Reviewed
+status-total-label = Total
+
+report-dialog-title = Report on the Selected Items
+report-dialog-table-status = Status
+report-dialog-table-count = Number of Articles

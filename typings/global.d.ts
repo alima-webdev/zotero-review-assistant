@@ -1,7 +1,9 @@
 interface Document {
   setStatusReason: () => void;
   setReviewStatus: (status: string) => void;
-  reasonModal: ReviewModal;
+  generateReport: () => void;
+  reasonModal: Modal;
+  reportModal: Modal;
   allReasons: { label: any; value: any }[];
 }
 
@@ -47,17 +49,17 @@ type Status = {
   keystroke: Keystroke;
 };
 
-class Modal {
-  id: string;
-  root?: HTMLElement | Document;
-  element: HTMLElement;
-  constructor(id: string, element: HTMLElement);
-  appendTo(root: HTMLElement | Document);
-  open();
-  closeKeyStroke(ev: any);
-  close();
-  bindEvents();
-}
+// class Modal {
+//   id: string;
+//   root?: HTMLElement | Document;
+//   element: HTMLElement;
+//   constructor(id: string, element: HTMLElement);
+//   appendTo(root: HTMLElement | Document);
+//   open();
+//   closeKeyStroke(ev: any);
+//   close();
+//   bindEvents();
+// }
 
 interface HTMLInputElement {
   updateLabelValue: () => void;

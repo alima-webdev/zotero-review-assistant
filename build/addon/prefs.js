@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
-pref("extensions.zoteroreview.enable", true);
-pref("extensions.zoteroreview.status-tag-prefix", "!review:");
-pref("extensions.zoteroreview.reason-tag-prefix", "reason:");
+pref("extensions.zoteroarticlestatus.enable", true);
+pref("extensions.zoteroarticlestatus.status-tag-prefix", "!review:");
+pref("extensions.zoteroarticlestatus.reason-tag-prefix", "reason:");
 pref(
-  "extensions.zoteroreview.statuses",
+  "extensions.zoteroarticlestatus.statuses",
   JSON.stringify([
     {
       name: "include",
@@ -18,7 +18,7 @@ pref(
       name: "exclude",
       tag: "!review:exclude",
       label: "Exclude",
-      color: "#fe6969",
+      color: "#f87171",
       askForReason: true,
       default: false,
       keyboardShortcut: "x",
@@ -27,7 +27,7 @@ pref(
       name: "pending",
       tag: "!review:pending",
       label: "Pending",
-      color: "#9ca3af",
+      color: "#d4d4d4",
       askForReason: false,
       default: false,
       keyboardShortcut: "p",

@@ -1,4 +1,8 @@
 /* Review Status Selector */
+.form-field {
+    margin-bottom: 1rem;
+}
+
 #review-status-selector {
     position: absolute;
     padding: 4px 8px;
@@ -14,7 +18,7 @@
     margin: 1rem 0;
     padding: 0.75rem 1rem;
 
-    display: block;
+    display: inline-block;
     width: auto;
 
     border: 1px solid #e5e7eb;
@@ -102,8 +106,12 @@
     gap: 1rem;
 }
 
-/* Alignment boxes */
-.hbox {
-    // display: flex;
-    // gap: 1rem;
+/* Keystroke Input */
+.input-keystroke-description {
+    display: none;
+    margin-left: .5rem;
+}
+
+.input-keystroke:focus + .input-keystroke-description {
+    display: inline;
 }

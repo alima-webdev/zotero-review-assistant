@@ -1,15 +1,15 @@
 {
-  "name": "zotero-review",
+  "name": "zotero-article-status",
   "version": "0.0.7",
-  "description": "Zotero Review",
+  "description": "Zotero Article Status",
   "config": {
-    "addonName": "Zotero Review",
-    "addonID": "zoteroreview@alima-webdev.com",
-    "addonRef": "zoteroreview",
-    "addonInstance": "ZoteroReview",
-    "prefsPrefix": "extensions.zoteroreview",
-    "releasePage": "https://github.com/alima-webdev/zotero-review/releases",
-    "updateJSON": "https://raw.githubusercontent.com/alima-webdev/zotero-review/main/update.json"
+    "addonName": "Zotero Article Status",
+    "addonID": "zoteroarticlestatus@alima-webdev.com",
+    "addonRef": "zoteroarticlestatus",
+    "addonInstance": "ZoteroArticleStatus",
+    "prefsPrefix": "extensions.zoteroarticlestatus",
+    "releasePage": "https://github.com/alima-webdev/zotero-article-status/releases",
+    "updateJSON": "https://raw.githubusercontent.com/alima-webdev/zotero-article-status/main/update.json"
   },
   "main": "src/index.ts",
   "scripts": {
@@ -23,14 +23,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alima-webdev/zotero-review.git"
+    "url": "git+https://github.com/alima-webdev/zotero-article-status.git"
   },
   "author": "alima-webdev",
   "license": "AGPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/alima-webdev/zotero-review/issues"
+    "url": "https://github.com/alima-webdev/zotero-article-status/issues"
   },
-  "homepage": "https://github.com/alima-webdev/zotero-review#readme",
+  "homepage": "https://github.com/alima-webdev/zotero-article-status#readme",
   "dependencies": {
     "@melloware/coloris": "^0.24.0",
     "@tarekraafat/autocomplete.js": "^10.2.7",

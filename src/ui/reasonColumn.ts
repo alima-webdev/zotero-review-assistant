@@ -8,7 +8,6 @@ import { getAllReasonsFromItems, getItemStatusTags } from "../utils/helpers";
 import { getString } from "../utils/locale";
 import { initAutoComplete } from "./autocomplete";
 import { createModal, initModal } from "./modal";
-import { attachColorPicker } from "./colorpicker";
 
 export function initReasonColumn() {
   const columnReasonId = "reason";
@@ -119,9 +118,6 @@ export async function reasonRegisterDOM() {
 
   // Form submission
   reasonForm.onsubmit = () => {
-    ztoolkit.log("Submit");
-    ztoolkit.log(reasonInput.value);
-
     const selectedItems: Zotero.Item[] = ztoolkit
       .getGlobal("ZoteroPane")
       .getSelectedItems();

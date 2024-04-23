@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Zotero Review",
+  "name": "Zotero Article Status",
   "version": "0.0.7",
-  "description": "Zotero Review",
-  "homepage_url": "https://github.com/alima-webdev/zotero-review#readme",
+  "description": "Zotero Article Status",
+  "homepage_url": "https://github.com/alima-webdev/zotero-article-status#readme",
   "author": "alima-webdev",
   "icons": {
     "48": "chrome/content/icons/favicon.svg",
@@ -11,8 +11,8 @@
   },
   "applications": {
     "zotero": {
-      "id": "zoteroreview@alima-webdev.com",
-      "update_url": "https://raw.githubusercontent.com/alima-webdev/zotero-review/main/update.json",
+      "id": "zoteroarticlestatus@alima-webdev.com",
+      "update_url": "https://raw.githubusercontent.com/alima-webdev/zotero-article-status/main/update.json",
       "strict_min_version": "6.999",
       "strict_max_version": "7.0.*"
     }
