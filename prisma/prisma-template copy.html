@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRISMA Diagram</title>
+    <link rel="stylesheet" type="text/css" href="prisma-template.css" />
+</head>
+
+<body>
+
+    <!-- Section Template -->
+    <template>
+        <!-- Title -->
+        <div class="col">
+        </div>
+        <div class="col col-wide">
+            <div class="table-title">Title</div>
+        </div>
+
+        {{#each sections}}
+        {{#with this}}
+        <div class="col">
+            <div class="section-title-container">
+                <div class="section-title">{{title}}</div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="box">
+                {{#unless firstSection}}
+                <div class="arrow from-top"></div>
+                {{/unless}}
+                Records Identified from:<br />
+                <div class="indent">
+                    Databases (n = {{nDatabases}})<br />
+                    Registers (n = {{nRegisters}})
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="box">
+                <div class="arrow from-right"></div>
+                Records removed before screening:<br />
+                <div class="indent">
+                    {{#each reasons}}
+                    {{#with this}}
+                    {{label}} (n = {{nReason}})<br />
+                    {{/with}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        {{/with}}
+        {{/each}}
+    </template>
+
+    <main class="prisma-diagram">
+        <!-- Title -->
+        <div class="col">
+        </div>
+        <div class="col col-wide">
+            <div class="table-title">Title</div>
+        </div>
+
+        <!-- Identification -->
+        <!--
+        <div class="col">
+            <div class="section-title-container">
+                <div class="section-title">Identification</div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="box">
+                Records Identified from:<br />
+                <div class="indent">
+                    Databases (n = {{nDatabases}})<br />
+                    Registers (n = {{nRegisters}})
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="box">
+                <div class="arrow from-right"></div>
+                Records removed before screening:<br />
+                <div class="indent">
+                    {{Reason1}} (n = {{nReason1}})<br />
+                    {{Reason2}} (n = {{nReason2}})
+                </div>
+            </div>
+        </div>
+
+        <!-- Screening -->
+        <!--
+        <div class="col">
+            <div class="section-title-container">
+                <div class="section-title">Screening</div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="box">
+                <div class="arrow from-top"></div>
+                Records Identified from:<br />
+                <div class="indent">
+                    Databases (n = {{nDatabases}})<br />
+                    Registers (n = {{nRegisters}})
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="box">
+                <div class="arrow from-right"></div>
+                Records removed before screening:<br />
+                <div class="indent">
+                    Reason 1 (n = {{reason1}})<br />
+                    Reason 2 (n = {{reason2}})
+                </div>
+            </div>
+        </div>
+    </main>
+    -->
+
+    <script>
+        // Adjust section title parent elements
+        document.querySelectorAll('.section-title-container').forEach(el => {
+            el.parentElement.style.minHeight = el.offsetHeight + "px"
+        })
+    </script>
+
+    <!-- TEST -->
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script>
+        // compile the template
+        var template = Handlebars.compile(document.querySelector('template').innerHTML);
+        // execute the compiled template and print the output to the console
+        let prismaData = {
+            sections: [
+                {
+                    title: 'Identification',
+                    nDatabases: 10,
+                    nRegisters: 20,
+                    reasons: [
+                        { label: 'Reason 1', nReason: 30 }
+                    ]
+                }
+            ]
+        }
+
+        prismaData = {
+            sections: [
+                {
+                    title: 'Identification',
+                    nDatabases: 10,
+                    nRegisters: 20,
+                    reasons: [
+                        { label: 'Reason 1', nReason: 30 }
+                    ],
+                    firstSection: true,
+                },
+                {
+                    title: 'Screening',
+                    nDatabases: 10,
+                    nRegisters: 20,
+                    reasons: [
+                        { label: 'Reason 1', nReason: 30 }
+                    ],
+                },
+            ]
+        }
+        document.querySelector('.prisma-diagram').innerHTML = template(prismaData)
+    </script>
+    <!-- // TEST -->
+</body>
+
+</html>

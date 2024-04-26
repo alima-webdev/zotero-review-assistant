@@ -1,0 +1,51 @@
+{
+    "title": "Identification of new studies via databases and registers",
+    "identification": {
+        "title": "Identification",
+        "collection": {
+            "databases": 10,
+            "registers": 20,
+            "other": {
+                "websites": 30,
+                "organizations": 40,
+                "citation": 50
+            }
+        },
+        "excluded": {
+            "duplicates": 60,
+            "automation": 70,
+            "other": 80
+        }
+    },
+    "screening": {
+        "title": "Screening",
+        "screen": {
+            "total": 90,
+            "excluded": 95
+        },
+        "retrieval": {
+            "total": 100,
+            "excluded": 105
+        },
+        "eligibility": {
+            "total": 110,
+            "reasons": [
+                {
+                    "label": "Reason 1",
+                    "records": 115
+                },
+                {
+                    "label": "Reason 2",
+                    "records": 125
+                }
+            ]
+        }
+    },
+    "included": {
+        "title": "Included",
+        "records": {
+            "new": 200,
+            "reports": 300
+        }
+    }
+}

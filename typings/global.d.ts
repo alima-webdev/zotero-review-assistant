@@ -64,3 +64,10 @@ type Status = {
 interface HTMLInputElement {
     updateLabelValue: () => void;
 }
+
+// PRISMA
+type PRISMASection = {
+    label: string,
+    name: string,
+    tag: string,
+}

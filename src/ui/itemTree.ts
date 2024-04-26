@@ -18,6 +18,7 @@ import {
     getReportContextMenu,
     reportRegisterGlobalFunctions,
     reportRegisterDOM,
+    reportKeyboardEvents,
 } from "./report";
 
 // ---------------------------------------------
@@ -71,6 +72,7 @@ export class ReviewModule {
                 if (itemTreeElement?.contains(activeElement)) {
                     statusKeyboardEvents(ev);
                     reasonKeyboardEvents(ev);
+                    reportKeyboardEvents(ev);
                 }
             });
 

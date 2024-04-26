@@ -1,8 +1,9 @@
 import { MenuitemOptions } from "zotero-plugin-toolkit/dist/managers/menu";
-import { allStatuses } from "../lib/global";
+import { allStatuses, prismaEligibilityReasonTagPrefix } from "../lib/global";
 import { createModal, initModal } from "./modal";
 import { getString } from "../utils/locale";
-import { parseXHTML } from "../utils/helpers";
+import { loadLocalFile, parseXHTML } from "../utils/helpers";
+import { getPrismaDOM, getPrismaData } from "../lib/prisma";
 
 export function getReportContextMenu(): MenuitemOptions[] {
     return [
@@ -60,11 +61,11 @@ export function reportRegisterGlobalFunctions() {
         const defaultStatusCount = selectedItems.length - totalCount;
 
         reportModalTBody.innerHTML += `
-      <tr>
-        <td>${defaultStatusLabel}</td>
-        <td align="center">${defaultStatusCount}</td>
-      </tr>
-    `;
+            <tr>
+                <td>${defaultStatusLabel}</td>
+                <td align="center">${defaultStatusCount}</td>
+            </tr>
+        `;
 
         // Total count
         totalCount = selectedItems.length;
@@ -75,6 +76,22 @@ export function reportRegisterGlobalFunctions() {
         <td align="center">${totalCount}</td>
         </tr>
         `;
+
+        // PRISMA Diagram
+
+        // TEST
+        ztoolkit.log("PRISMA:")
+        // TEST
+        // const prismaData = JSON.parse(loadLocalFile(
+        //     rootURI + "chrome/content/prisma/test.json",
+        // ));
+        // -- TEST
+        const prismaData = getPrismaData('Title', selectedItems)
+        const prismaDOM = getPrismaDOM(prismaData)
+        document.reportModal.element.querySelector(".inner-modal").style.width = '80%'
+        document.reportModal.element.querySelector(".prisma").contentWindow.document.body.innerHTML = ``
+        document.reportModal.element.querySelector(".prisma").contentWindow.document.body.appendChild(prismaDOM)
+        // -- TEST
 
         document.reportModal.open();
         return;
@@ -87,7 +104,7 @@ export async function reportRegisterDOM() {
     const bodyContent = document.importNode(
         parseXHTML(`
         <div>
-            <table class="table">
+            <table class="table" style="display: none;">
                 <thead>
                     <tr class="border-bottom">
                         <th>${getString("report-dialog-table-status")}</th>
@@ -97,6 +114,8 @@ export async function reportRegisterDOM() {
                 <tbody>
                 </tbody>
             </table>
+
+            <iframe class="prisma iframe vh-80"></iframe>
             <br />
             <div class="text-center">
                 <button class="btn" action="close">Close</button>
@@ -109,12 +128,21 @@ export async function reportRegisterDOM() {
     reportModalTBody = reportModalBody.querySelector("tbody");
 
     // Modal
+    const itemTreeElement = ztoolkit.getGlobal("document").querySelector("#item-tree-main-default") as HTMLElement
     const reportModal = createModal(
         "report-modal",
         getString("report-dialog-title"),
         reportModalBody,
+        { onCloseFocus: itemTreeElement }
     );
     reportModal.appendTo(document.documentElement);
     document.reportModal = reportModal;
+
     initModal();
+}
+
+export function reportKeyboardEvents(ev: KeyboardEvent) {
+    if (ev.key == "t") {
+        ztoolkit.getGlobal("document").generateReport();
+    }
 }

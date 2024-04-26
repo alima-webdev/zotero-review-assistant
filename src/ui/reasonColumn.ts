@@ -3,11 +3,13 @@
 // ---------------------------------------------
 
 import { MenuitemOptions } from "zotero-plugin-toolkit/dist/managers/menu";
-import { reasonTagPrefix } from "../lib/global";
-import { getAllReasonsFromItems, getItemStatusTags } from "../utils/helpers";
+import { reasonTagPrefix, prismaSections } from "../lib/global";
+import { getAllReasonsFromItems, getItemStatusTags, getPRISMASectionFromItem, getReasonFromItem, getReasonsFromItems, loadXHTMLFromFile, parseXHTML, removePRISMASectionFromItem } from "../utils/helpers";
 import { getString } from "../utils/locale";
 import { initAutoComplete } from "./autocomplete";
 import { createModal, initModal } from "./modal";
+import { log } from "../utils/development";
+import { getPRISMAEligibilityOtherReason } from "../lib/prisma";
 
 export function initReasonColumn() {
     const columnReasonId = "reason";
@@ -18,6 +20,8 @@ export function initReasonColumn() {
         item: Zotero.Item,
     ) => {
         const statusTags = getItemStatusTags(item);
+        ztoolkit.log("Column")
+        ztoolkit.log(statusTags, reasonTagPrefix)
         const reason =
             statusTags
                 .find((obj) => obj.tag.includes(reasonTagPrefix))
@@ -61,66 +65,76 @@ export function reasonRegisterGlobalFunctions() {
             .getSelectedItems();
         if (selectedItems.length == 0) return;
 
+        // Get all reasons to be used for autocompletion
         document.allReasons = getAllReasonsFromItems(
             await ztoolkit.getGlobal("Zotero").Tags.getAll(),
         );
-        const inputReason = document.reasonModal.element.querySelector(
-            "#input-reason",
-        ) as HTMLInputElement;
-        inputReason.value = "";
+
+        // Set the default form values
+        const reasonInput = document.reasonModal.element.querySelector("#input-reason") as HTMLInputElement;
+        reasonInput.value = ""
+
+        const prismaSelect = document.reasonModal.element.querySelector("#prisma-section") as HTMLInputElement;
+        prismaSelect.value = ""
+
+        // Pull the current reason to set the input value
+        const reasons = getReasonsFromItems(selectedItems);
+        if (reasons.length == 1) {
+            reasonInput.value = reasons[0];
+
+            // Set the current PRISMA section
+            prismaSelect.value = getPRISMASectionFromItem(selectedItems[0])?.tag || ""
+        }
+
         document.reasonModal.open();
-        inputReason.focus();
+        prismaSelect.focus();
     };
 }
 
 export async function reasonRegisterDOM() {
-    const reasonModalBody = document.createElement("div");
-    const reasonModalDescription = document.createElement("div");
-    reasonModalDescription.textContent = getString("reason-dialog-text");
-    reasonModalBody.appendChild(reasonModalDescription);
+
+    // Roots
+    const rootElement = document.documentElement;
+
+    const reasonModalBody = document.createElement('div')
+    // Load the form from the XHTML file
+    const formTemplate = loadXHTMLFromFile(
+        rootURI + "chrome/content/modal/reason.xhtml",
+    );
+    const formNodes = parseXHTML(formTemplate);
+    // Import and append
+    const formNodesImported = document.importNode(formNodes, true);
+    reasonModalBody.appendChild(formNodesImported);
+
+    // Modal
+    const itemTreeElement = ztoolkit.getGlobal("document").querySelector("#item-tree-main-default") as HTMLElement
+    const reasonModal = createModal(
+        "reason-modal",
+        getString("reason-dialog-title"),
+        reasonModalBody,
+        { onCloseFocus: itemTreeElement }
+    );
+    reasonModal.appendTo(rootElement);
+    document.reasonModal = reasonModal;
+
+    // Reason input
+    const reasonInput = reasonModalBody.querySelector('#input-reason') as HTMLInputElement
+    const autocompleteContainer = reasonModalBody.querySelector('#input-reason-autocomplete') as HTMLDivElement
+    // Populate the reason autocomplete
+    document.allReasons = getAllReasonsFromItems(
+        // @ts-ignore Get all tags (no specific library)
+        await ztoolkit.getGlobal("Zotero").Tags.getAll(),
+    );
 
     // Form
-    const reasonForm = document.createElement("form");
-
-    // Input + Autocomplete
-    const reasonInput = ztoolkit.UI.createElement(document, "input");
-    reasonInput.id = "input-reason";
-    reasonInput.type = "text";
-    reasonInput.classList.add("input");
-    const autocompleteContainer = document.createElement("div");
-    const inputContainer = document.createElement("div");
-    inputContainer.appendChild(reasonInput);
-    inputContainer.appendChild(autocompleteContainer);
-    reasonForm.appendChild(inputContainer);
-
-    // Buttons
-    const buttonContainer = document.createElement("div");
-    buttonContainer.classList.add("btn-container");
-
-    const btnCancel = document.createElement("button");
-    btnCancel.type = "button";
-    btnCancel.setAttribute("action", "close");
-    btnCancel.classList.add("btn");
-    btnCancel.textContent = "Cancel";
-
-    const btnSubmit = document.createElement("button");
-    btnSubmit.type = "submit";
-    btnSubmit.classList.add("btn");
-    btnSubmit.classList.add("btn-primary");
-    btnSubmit.textContent = "Submit";
-
-    buttonContainer.appendChild(btnCancel);
-    buttonContainer.appendChild(btnSubmit);
-
-    reasonForm.appendChild(buttonContainer);
-
-    reasonModalBody.appendChild(reasonForm);
-
-    // Form submission
+    const reasonForm = reasonModalBody.querySelector('#reason-form') as HTMLFormElement
     reasonForm.onsubmit = () => {
         const selectedItems: Zotero.Item[] = ztoolkit
             .getGlobal("ZoteroPane")
             .getSelectedItems();
+
+        // Get the reason tag
+        const reasonTag = reasonTagPrefix + reasonInput.value
 
         // Update the exclusion criteria
         for (const item of selectedItems) {
@@ -130,7 +144,7 @@ export async function reasonRegisterDOM() {
             });
 
             if (reasonInput.value != "") {
-                item.addTag(reasonTagPrefix + reasonInput.value);
+                item.addTag(reasonTag);
             }
             item.saveTx();
         }
@@ -138,25 +152,21 @@ export async function reasonRegisterDOM() {
         document.reasonModal.close();
     };
 
-    // Modal
-    const reasonModal = createModal(
-        "reason-modal",
-        getString("reason-dialog-title"),
-        reasonModalBody,
-    );
-    reasonModal.appendTo(document.documentElement);
-    document.reasonModal = reasonModal;
+    // PRISMA Section
+    const prismaSelect = reasonModalBody.querySelector('#prisma-section') as HTMLSelectElement
+    let prismaSelectHTML = ``
+    for (const section of prismaSections) {
+        const optionTag = document.createElement('option')
+        optionTag.value = section.tag
+        optionTag.textContent = section.label
+        prismaSelect.appendChild(optionTag)
+        prismaSelectHTML += `<option value="${section.tag}">${section.label}</option>`
+    }
 
-    btnCancel.onclick = () => {
-        reasonInput.value = "";
-        document.reasonModal.close();
-    };
-
-    // eslint-disable-next-line
-    document.allReasons = getAllReasonsFromItems(
-        await ztoolkit.getGlobal("Zotero").Tags.getAll(),
-    );
+    prismaSelect.addEventListener('change', ev => {
+        reasonInput.value = prismaSelect.value.replace(reasonTagPrefix, '')
+    })
 
     initAutoComplete(reasonInput, autocompleteContainer);
-    initModal();
+    initModal()
 }

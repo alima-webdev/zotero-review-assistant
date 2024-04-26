@@ -1,5 +1,5 @@
 // Helper functions
-import { allStatuses, reasonTagPrefix, statusTagPrefix } from "../lib/global";
+import { allStatuses, prismaSections, reasonTagPrefix, statusTagPrefix } from "../lib/global";
 
 export function getItemStatusTags(item: Zotero.Item) {
     const itemTags = item.getTags();
@@ -39,6 +39,27 @@ export function getAllReasonsFromItems(tags: any[]) {
         });
 }
 
+export function getReasonFromItem(item: Zotero.Item): string {
+    const tags = item.getTags()
+    return tags.filter((obj) => {
+        return obj.tag.includes(reasonTagPrefix);
+    }) .map((obj) => {
+            return obj.tag.replace(reasonTagPrefix, "");
+        })[0];
+}
+
+export function getReasonsFromItems(items: Zotero.Item[]) {
+    const reasons = []
+    for (const item of items) {
+        const reason = getReasonFromItem(item)
+        // If reason is found and is unique
+        if (reason && !reasons.includes(reason)) {
+            reasons.push(reason)
+        }
+    }
+    return reasons
+}
+
 // Get the status from a tag name
 export function getStatusFromTag(tag: string) {
     const status = allStatuses.find((obj) => obj.tag == tag);
@@ -72,6 +93,10 @@ export function loadXHTMLFromFile(src: string) {
     return Zotero.File.getContentsFromURL(src);
 }
 
+export function loadLocalFile(src: string) {
+    return Zotero.File.getContentsFromURL(src);
+}
+
 // Parse XHTML from String
 export function parseXHTML(str: string) {
     const parser = new DOMParser();
@@ -86,4 +111,27 @@ export function parseXHTML(str: string) {
     const range = doc.createRange();
     range.selectNodeContents(doc.querySelector("div") as Node);
     return range.extractContents();
+}
+
+// PRISMA
+export function getPRISMASectionFromItem(item: Zotero.Item) {
+    const section = prismaSections.find((obj) => item.hasTag(obj.tag));
+    return prismaSections.find((obj) => item.hasTag(obj.tag)) || [];
+}
+export function removePRISMASectionFromItem(item: Zotero.Item) {
+    const section = getPRISMASectionFromItem(item)
+    item.removeTag(section.tag)
+}
+
+// Count the number of items with a certain tag given an array of items
+export function countItemsWithTag(tag: string, items: Zotero.Item[]) {
+    let count = 0
+
+    for (const item of items) {
+        if (item.hasTag(tag)) {
+            count++;
+        }
+    }
+
+    return count
 }

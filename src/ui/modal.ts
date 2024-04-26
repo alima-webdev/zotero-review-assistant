@@ -16,7 +16,7 @@ const modalTemplate = Handlebars.compile(`
 `);
 
 // Main modal function
-export function createModal(id: string, title: string, content: HTMLElement) {
+export function createModal(id: string, title: string, content: HTMLElement, options: ModalOptions = {}) {
     // Process the template and generate the modal HTML element
     const modalElement = document.createElement("div");
     modalElement.setAttribute("aria-hidden", "true");
@@ -27,20 +27,27 @@ export function createModal(id: string, title: string, content: HTMLElement) {
     modalElement.querySelector(".modal-content")?.appendChild(content);
 
     // Create a modal class
-    const modal = new Modal(id, modalElement);
+    const modal = new Modal(id, modalElement, options);
     return modal;
 }
 
 export function initModal() {}
+
+type ModalOptions = {
+    onCloseFocus?: HTMLElement
+}
 
 // Modal class
 class Modal {
     id: string;
     root?: HTMLElement | Document;
     element: HTMLElement;
-    constructor(id: string, element: HTMLElement) {
-        this.id = id;
-        this.element = element;
+    options?: ModalOptions;
+    constructor(id: string, element: HTMLElement, options?: ModalOptions) {
+        this.id = id
+        this.element = element
+        ztoolkit.log(options)
+        this.options = options
     }
     appendTo(root: HTMLElement | Document) {
         root.appendChild(this.element);
@@ -68,7 +75,12 @@ class Modal {
             "keydown",
             this.closeKeyStroke,
         );
-        // MicroModal.close(this.id)
+
+        ztoolkit.log(this.options)
+        // Focus on the main element when closing
+        if (this.options?.onCloseFocus) {
+            this.options.onCloseFocus.focus()
+        }
     }
     bindEvents() {
         ztoolkit.log(this.element);

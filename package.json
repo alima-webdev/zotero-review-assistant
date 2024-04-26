@@ -19,7 +19,9 @@
         "lint": "prettier --write . && eslint . --ext .ts --fix",
         "test": "echo \"Error: no test specified\" && exit 1",
         "release": "release-it --only-version --preReleaseId=beta",
-        "update-deps": "npm update --save"
+        "update-deps": "npm update --save",
+        "prisma-scss": "sass ./prisma/styles/styles.scss ./addon/chrome/content/template.css -w",
+        "start-all": "concurrently 'npm start' 'npm run prisma-scss'"
     },
     "repository": {
         "type": "git",
@@ -36,7 +38,10 @@
         "@tarekraafat/autocomplete.js": "^10.2.7",
         "docx": "^8.5.0",
         "handlebars": "^4.7.8",
+        "html2canvas": "^1.4.1",
+        "jspdf": "^2.5.1",
         "nanopop": "^2.4.2",
+        "rasterizehtml": "^1.3.1",
         "vanilla-colorful": "^0.7.2",
         "zotero-plugin-toolkit": "^2.3.15"
     },
@@ -48,6 +53,7 @@
         "autoprefixer": "^10.4.19",
         "chokidar": "^3.5.3",
         "compressing": "^1.10.0",
+        "concurrently": "^8.2.2",
         "esbuild": "^0.20.1",
         "esbuild-sass-plugin": "^3.2.0",
         "eslint": "^8.55.0",
