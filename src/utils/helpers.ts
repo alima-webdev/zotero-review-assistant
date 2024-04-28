@@ -1,57 +1,11 @@
 // Helper functions
-import { allStatuses, reasonTagPrefix, statusTagPrefix } from "../lib/global";
+import { prismaSections } from "../lib/global";
+import { log } from "./devtools";
 
-export function getItemStatusTags(item: Zotero.Item) {
-    const itemTags = item.getTags();
-    const statusTags = itemTags.filter((obj) => {
-        return obj.tag.includes(statusTagPrefix);
-    });
-    return statusTags;
-}
-
-// Get the status from item
-export function getItemStatus(item: Zotero.Item) {
-    let statusObj = allStatuses.find((obj) => obj.default == true);
-    for (const status of allStatuses) {
-        if (item.hasTag(status.tag)) statusObj = status;
-    }
-    return statusObj;
-}
-
-// Get the all status from item
-export function getItemStatusAll(item: Zotero.Item) {
-    let statusObj = allStatuses.find((obj) => obj.default == true);
-    for (const status of allStatuses) {
-        if (item.hasTag(status.tag)) statusObj = status;
-    }
-    return statusObj;
-}
-
-// Get the all status from item
-export function getAllReasonsFromItems(tags: any[]) {
-    return tags
-        .filter((obj) => {
-            return obj.tag.includes(reasonTagPrefix);
-        })
-        .map((obj) => {
-            const label = obj.tag.replace(reasonTagPrefix, "");
-            return { label: label, value: label };
-        });
-}
-
-// Get the status from a tag name
-export function getStatusFromTag(tag: string) {
-    const status = allStatuses.find((obj) => obj.tag == tag);
-    return status;
-}
-
-// Remove all statuses from item
-export function removeAllStatuses(item: Zotero.Item) {
-    // Remove the exclusion criteria
-    item.getTags().map((tag) => {
-        if (tag.tag.includes(statusTagPrefix)) item.removeTag(tag.tag);
-    });
-}
+// File picker
+const { FilePicker } = ChromeUtils.importESModule(
+    "chrome://zotero/content/modules/filePicker.mjs",
+);
 
 export function generateMenuIcon(color: string) {
     return (
@@ -62,28 +16,38 @@ export function generateMenuIcon(color: string) {
     );
 }
 
-// Parse XHTML from File
-export function parseXHTMLFromFile(src: string) {
-    const markup = loadXHTMLFromFile(src);
-    return parseXHTML(markup);
-}
-
-export function loadXHTMLFromFile(src: string) {
+export function loadLocalFile(src: string) {
     return Zotero.File.getContentsFromURL(src);
 }
 
-// Parse XHTML from String
-export function parseXHTML(str: string) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(str, "text/html");
+// Count the number of items with a certain tag given an array of items
+export function countItemsWithTag(tag: string, items: Zotero.Item[]) {
+    let count = 0;
 
-    if (doc.documentElement.localName === "parsererror") {
-        throw new Error("not well-formed XHTML");
+    for (const item of items) {
+        if (item.hasTag(tag)) {
+            count++;
+        }
     }
 
-    // We use a range here so that we don't access the inner DOM elements from
-    // JavaScript before they are imported and inserted into a document.
-    const range = doc.createRange();
-    range.selectNodeContents(doc.querySelector("div") as Node);
-    return range.extractContents();
+    return count;
+}
+
+export async function showFilePicker(
+    mime = "*",
+    filter: number = FilePicker.filterAll,
+    name: string = "",
+): Promise<string | undefined> {
+    const ext = Zotero.MIME.getPrimaryExtension(mime, "");
+    const fp = new FilePicker();
+    fp.init(ztoolkit.getGlobal("window"), name, fp.modeSave);
+    fp.appendFilters(filter);
+    fp.defaultString = name + "." + ext;
+    const rv = await fp.show();
+
+    let outputPath;
+    if (rv === fp.returnOK || rv === fp.returnReplace) {
+        outputPath = fp.file;
+    }
+    return outputPath;
 }

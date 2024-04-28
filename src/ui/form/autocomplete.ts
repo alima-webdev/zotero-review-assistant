@@ -1,4 +1,4 @@
-import autocomplete from "../vendors/autocompleter/autocomplete";
+import autocomplete from "../../vendors/autocompleter/autocomplete";
 
 export function initAutoComplete(
     input: HTMLInputElement,

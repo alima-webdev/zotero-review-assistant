@@ -1,11 +1,14 @@
-import { Keystroke } from "../ui/keystrokeInput";
+import { Keystroke } from "../ui/form/keystrokeInput";
 import { getPref } from "../utils/prefs";
 
 // Load Preferences
 export let allStatuses: Status[] = JSON.parse(String(getPref("statuses")));
 export let statusTagPrefix = String(getPref("status-tag-prefix"));
-export let reasonTagPrefix =
-    statusTagPrefix + String(getPref("reason-tag-prefix"));
+export let reasonTagPrefix = String(getPref("reason-tag-prefix"));
+export let prismaSections: PRISMASection[] = JSON.parse(
+    String(getPref("prisma-sections")),
+);
+export let prismaEligibilityReasonTagPrefix = reasonTagPrefix;
 
 // Load and reload prefs
 export function reloadPrefs() {
@@ -20,5 +23,7 @@ export function loadPrefs() {
         return status;
     });
     statusTagPrefix = String(getPref("status-tag-prefix"));
-    reasonTagPrefix = statusTagPrefix + String(getPref("reason-tag-prefix"));
+    reasonTagPrefix = String(getPref("reason-tag-prefix"));
+    prismaSections = JSON.parse(String(getPref("prisma-sections")));
+    prismaEligibilityReasonTagPrefix = reasonTagPrefix;
 }

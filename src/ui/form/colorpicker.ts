@@ -1,3 +1,5 @@
+import { registerEventListener } from "../../utils/events";
+
 export function attachColorPicker(
     _window: Window,
     _document: Document,
@@ -20,7 +22,8 @@ export function attachColorPicker(
         label.textContent = element.value;
     };
 
-    element.addEventListener(
+    registerEventListener(
+        element,
         "input",
         (ev) => {
             label.textContent = element.value;

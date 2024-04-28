@@ -3,14 +3,15 @@
 // ---------------------------------------------
 
 import { MenuitemOptions } from "zotero-plugin-toolkit/dist/managers/menu";
+import { generateMenuIcon } from "../../../utils/helpers";
 import {
-    generateMenuIcon,
     getItemStatus,
     getStatusFromTag,
-    removeAllStatuses,
-} from "../utils/helpers";
-import { getString } from "../utils/locale";
-import { allStatuses } from "../lib/global";
+    removeItemStatus,
+} from "../../../utils/status";
+import { getString } from "../../../utils/locale";
+import { allStatuses } from "../../../lib/global";
+import { log } from "../../../utils/devtools";
 
 export function initStatusColumn() {
     const columnId = "status";
@@ -20,8 +21,8 @@ export function initStatusColumn() {
         includeBaseMapped: boolean,
         item: Zotero.Item,
     ) => {
-        const reviewStatus = getItemStatus(item);
-        return String(reviewStatus?.tag);
+        // log("Fn: getStatusColumnHook")
+        return JSON.stringify(getItemStatus(item));
     };
 
     function renderStatusCell(
@@ -29,13 +30,18 @@ export function initStatusColumn() {
         data: any,
         column: any,
     ): HTMLElement {
+        // log("Fn: renderStatusCell")
+        const status = JSON.parse(data);
+
         const element = document.createElement("span");
         element.className = `cell ${column.className} review-container`;
+
         const innerElement = document.createElement("div");
         innerElement.classList.add("review");
-        const status = getStatusFromTag(data);
+
         innerElement.style.backgroundColor = status?.color ?? "";
         innerElement.textContent = status?.label ?? "";
+
         element.appendChild(innerElement);
         return element;
     }
@@ -52,6 +58,7 @@ export function initStatusColumn() {
 }
 
 export function getStatusContextMenu() {
+    // log("Fn: getStatusContextMenu")
     return allStatuses.map((status: Status): MenuitemOptions => {
         return {
             tag: "menuitem",
@@ -63,6 +70,7 @@ export function getStatusContextMenu() {
 }
 
 export function statusKeyboardEvents(ev: KeyboardEvent) {
+    // log("Fn: statusKeyboardEvents")
     // Add the shortcuts for statuses if they have one
     for (const status of allStatuses) {
         if (
@@ -78,6 +86,8 @@ export function statusKeyboardEvents(ev: KeyboardEvent) {
 }
 
 export function statusRegisterGlobalFunctions() {
+    // log("Fn: statusRegisterGlobalFunctions")
+
     // Register the global context menu functions
     // Set Status
     ztoolkit.getGlobal("document").setReviewStatus = (statusTag) => {
@@ -88,7 +98,7 @@ export function statusRegisterGlobalFunctions() {
         if (selectedItems.length == 0) return;
         for (const item of selectedItems) {
             // Remove the old tag status
-            removeAllStatuses(item);
+            removeItemStatus(item);
 
             if (statusTag != "") {
                 item.addTag(statusTag);

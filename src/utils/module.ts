@@ -1,5 +1,6 @@
-// Module backbone
-
+/**
+ * Module Wrapper
+ */
 export function module(
     target: any,
     propertyKey: string | symbol,

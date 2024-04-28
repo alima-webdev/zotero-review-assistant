@@ -1,6 +1,6 @@
 {
     "name": "zotero-article-status",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Zotero Article Status",
     "config": {
         "addonName": "Zotero Article Status",
@@ -19,7 +19,9 @@
         "lint": "prettier --write . && eslint . --ext .ts --fix",
         "test": "echo \"Error: no test specified\" && exit 1",
         "release": "release-it --only-version --preReleaseId=beta",
-        "update-deps": "npm update --save"
+        "update-deps": "npm update --save",
+        "prisma-scss": "sass ./prisma/styles/styles.scss ./addon/chrome/content/template.css -w",
+        "start-all": "concurrently 'npm start' 'npm run prisma-scss'"
     },
     "repository": {
         "type": "git",
@@ -32,22 +34,23 @@
     },
     "homepage": "https://github.com/alima-webdev/zotero-article-status#readme",
     "dependencies": {
-        "@melloware/coloris": "^0.24.0",
-        "@tarekraafat/autocomplete.js": "^10.2.7",
-        "docx": "^8.5.0",
+        "docxtemplater": "^3.47.1",
         "handlebars": "^4.7.8",
-        "nanopop": "^2.4.2",
-        "vanilla-colorful": "^0.7.2",
+        "pdfmake": "^0.2.10",
+        "pizzip": "^3.1.7",
         "zotero-plugin-toolkit": "^2.3.15"
     },
     "devDependencies": {
+        "@types/html-docx-js": "^0.3.4",
         "@types/micromodal": "^0.3.5",
         "@types/node": "^20.10.4",
+        "@types/pdfmake": "^0.2.9",
         "@typescript-eslint/eslint-plugin": "^7.3.1",
         "@typescript-eslint/parser": "^7.1.1",
         "autoprefixer": "^10.4.19",
         "chokidar": "^3.5.3",
         "compressing": "^1.10.0",
+        "concurrently": "^8.2.2",
         "esbuild": "^0.20.1",
         "esbuild-sass-plugin": "^3.2.0",
         "eslint": "^8.55.0",
