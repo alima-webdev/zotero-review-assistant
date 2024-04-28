@@ -39,6 +39,10 @@ export class ReviewModule {
         });
         ztoolkit.getGlobal("document").documentElement.appendChild(styles);
     }
+    @module
+    static deregisterStyleSheet() {
+        ztoolkit.getGlobal('document').querySelector(`#${config.addonRef}-stylesheet`)?.remove()
+    }
 
     // Extra Columns
     @module

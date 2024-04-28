@@ -12,11 +12,11 @@ export let prismaEligibilityReasonTagPrefix = reasonTagPrefix;
 
 // Load and reload prefs
 export function reloadPrefs() {
-    ztoolkit.log("Fn: reloadPrefs");
+    // ztoolkit.log("Fn: reloadPrefs");
     loadPrefs();
 }
 export function loadPrefs() {
-    ztoolkit.log("Fn: loadPrefs");
+    // ztoolkit.log("Fn: loadPrefs");
     allStatuses = JSON.parse(String(getPref("statuses")));
     allStatuses.map((status) => {
         status.keystroke = Keystroke.fromString(status.keyboardShortcut);

@@ -1,15 +1,15 @@
 {
-    "name": "zotero-article-status",
+    "name": "zotero-review-helper",
     "version": "2.0.0",
-    "description": "Zotero Article Status",
+    "description": "Zotero Review Helper",
     "config": {
-        "addonName": "Zotero Article Status",
-        "addonID": "zoteroarticlestatus@alima-webdev.com",
-        "addonRef": "zoteroarticlestatus",
-        "addonInstance": "ZoteroArticleStatus",
-        "prefsPrefix": "extensions.zoteroarticlestatus",
-        "releasePage": "https://github.com/alima-webdev/zotero-article-status/releases",
-        "updateJSON": "https://raw.githubusercontent.com/alima-webdev/zotero-article-status/main/update.json"
+        "addonName": "Zotero Review Helper",
+        "addonID": "zoteroreviewhelper@alima-webdev.com",
+        "addonRef": "zoteroreviewhelper",
+        "addonInstance": "ZoteroReviewHelper",
+        "prefsPrefix": "extensions.zoteroreviewhelper",
+        "releasePage": "https://github.com/alima-webdev/zotero-review-helper/releases",
+        "updateJSON": "https://raw.githubusercontent.com/alima-webdev/zotero-review-helper/main/update.json"
     },
     "main": "src/index.ts",
     "scripts": {
@@ -25,14 +25,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/alima-webdev/zotero-article-status.git"
+        "url": "git+https://github.com/alima-webdev/zotero-review-helper.git"
     },
     "author": "alima-webdev",
     "license": "AGPL-3.0-or-later",
     "bugs": {
-        "url": "https://github.com/alima-webdev/zotero-article-status/issues"
+        "url": "https://github.com/alima-webdev/zotero-review-helpers/issues"
     },
-    "homepage": "https://github.com/alima-webdev/zotero-article-status#readme",
+    "homepage": "https://github.com/alima-webdev/zotero-review-helper#readme",
     "dependencies": {
         "docxtemplater": "^3.47.1",
         "handlebars": "^4.7.8",

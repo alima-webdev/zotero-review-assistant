@@ -93,7 +93,6 @@ export function reasonRegisterGlobalFunctions() {
         }
 
         document.reasonModal.open();
-        prismaSelect.focus();
     };
 }
 

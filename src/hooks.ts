@@ -50,10 +50,7 @@ async function onMainWindowLoad(win: Window): Promise<void> {
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {
-    ztoolkit
-        .getGlobal("document")
-        .querySelector(`#${config.addonRef}-stylesheet`)
-        ?.remove();
+    ReviewModule.deregisterStyleSheet();
     ztoolkit.unregisterAll();
     addon.data.dialog?.window?.close();
 }
@@ -116,9 +113,9 @@ async function onPrefsEvent(type: string, data: { [key: string]: any }) {
     }
 }
 
-function onShortcuts(type: string) {}
+function onShortcuts(type: string) { }
 
-function onDialogEvents(type: string) {}
+function onDialogEvents(type: string) { }
 
 export default {
     onStartup,

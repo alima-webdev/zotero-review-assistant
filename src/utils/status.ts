@@ -15,16 +15,16 @@ export function getItemStatus(item: Zotero.Item): Status | undefined {
 
 // Get the status from a tag name
 export function getStatusFromTag(tag: string) {
-    log("Fn: getStatusFromTag");
+    // log("Fn: getStatusFromTag");
     const status = allStatuses.find((obj) => obj.tag == tag);
     return status;
 }
 
 // Remove all statuses from item
 export function removeItemStatus(item: Zotero.Item) {
-    log("Fn: removeItemStatus");
+    // log("Fn: removeItemStatus");
     // Remove the exclusion criteria
     item.getTags().map((tag) => {
-        if (tag.tag.includes(statusTagPrefix)) item.removeTag(tag.tag);
+        if (tag.tag.includes(statusTagPrefix) && allStatuses.filter(stat => stat.tag == tag.tag).length > 0) item.removeTag(tag.tag);
     });
 }

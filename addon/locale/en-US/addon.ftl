@@ -26,7 +26,7 @@ status-column-header = Status
 status-blank-label = Not Reviewed
 status-total-label = Total
 
-report-dialog-title = Report on the Selected Items
+report-dialog-title = Generate a PRISMA Diagram
 report-dialog-table-status = Status
 report-dialog-table-count = Number of Articles
 
