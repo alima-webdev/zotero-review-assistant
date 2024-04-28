@@ -105,7 +105,7 @@ export function reasonRegisterGlobalFunctions() {
 }
 
 export async function reasonRegisterDOM() {
-    log("Fn: reasonRegisterDOM")
+    log("Fn: reasonRegisterDOM");
     // Roots
     const rootElement = document.documentElement;
 
@@ -181,8 +181,8 @@ export async function reasonRegisterDOM() {
     //     const optionTag = document.createElement("option");
     //     optionTag.value = section.tag;
     //     optionTag.textContent = section.label;
-        // prismaSelect.appendChild(optionTag);
-        // prismaSelectHTML += `<option value="${section.tag}">${section.label}</option>`;
+    // prismaSelect.appendChild(optionTag);
+    // prismaSelectHTML += `<option value="${section.tag}">${section.label}</option>`;
     // }
     // prismaSelect.innerHTML = prismaSelectHTML
 

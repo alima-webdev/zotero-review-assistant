@@ -12,23 +12,29 @@ export function initAutoComplete(
         fetch: function (text, update) {
             text = text.toLowerCase();
 
-            const prismaSuggestions = prismaSections.map(section => {
-                const label = section.tag.replace(reasonTagPrefix, "")
-                if (label.toLowerCase().includes(text.toLowerCase())) {
-                    return label
-                }
-            }).filter(Boolean)
+            const prismaSuggestions = prismaSections
+                .map((section) => {
+                    const label = section.tag.replace(reasonTagPrefix, "");
+                    if (label.toLowerCase().includes(text.toLowerCase())) {
+                        return label;
+                    }
+                })
+                .filter(Boolean);
 
-            const statusSuggestions = document.allReasons.map(reason => {
-                const label = reason.value.replace(reasonTagPrefix, "")
-                if (label.toLowerCase().includes(text.toLowerCase())) {
-                    return label
-                }
-            }).filter(Boolean)
+            const statusSuggestions = document.allReasons
+                .map((reason) => {
+                    const label = reason.value.replace(reasonTagPrefix, "");
+                    if (label.toLowerCase().includes(text.toLowerCase())) {
+                        return label;
+                    }
+                })
+                .filter(Boolean);
 
-            const suggestions = [...new Set(prismaSuggestions.concat(statusSuggestions))].map(suggestion => {
-                return { label: suggestion, value: suggestion }
-            })
+            const suggestions = [
+                ...new Set(prismaSuggestions.concat(statusSuggestions)),
+            ].map((suggestion) => {
+                return { label: suggestion, value: suggestion };
+            });
 
             update(suggestions);
         },
