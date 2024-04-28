@@ -1,6 +1,6 @@
 {
     "name": "zotero-review-helper",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Zotero Review Helper",
     "config": {
         "addonName": "Zotero Review Helper",
