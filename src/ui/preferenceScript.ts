@@ -5,9 +5,11 @@ import { createModal } from "./modal";
 import { getPref, setPref } from "../utils/prefs";
 import { allStatuses } from "../lib/global";
 import { config } from "../../package.json";
-import { loadXHTMLFromFile, parseXHTML } from "../utils/helpers";
+import { loadLocalFile } from "../utils/helpers";
 import { attachColorPicker } from "./colorpicker";
 import { attachKeystrokeInput } from "./keystrokeInput";
+import { parseXHTML } from "../utils/parser";
+import { registerEventListener } from "../utils/events";
 
 export async function registerPrefsScripts(_window: Window) {
     // This function is called when the prefs window is opened
@@ -112,7 +114,7 @@ async function loadStatusModal(_window) {
     statusModal.appendTo(prefsElement);
 
     // Load the form from the XHTML file
-    const formTemplate = loadXHTMLFromFile(
+    const formTemplate = loadLocalFile(
         rootURI + "chrome/content/modal/prefsStatus.xhtml",
     );
     const formNodes = parseXHTML(formTemplate);
@@ -248,33 +250,49 @@ function editStatusCommit(formElement: HTMLElement, pref: []) {
 
 function bindPrefEvents(_window) {
     // Add and remove buttons
-    _window.document
-        .querySelector("#btn-add-status")
-        ?.addEventListener("click", (ev) => {
-            addStatus();
-        });
-    _window.document
-        .querySelector("#btn-remove-status")
-        ?.addEventListener("click", (ev) => {
-            removeStatus(selectedRow);
-        });
-    _window.document
-        .querySelector(`#zotero-prefpane-${config.addonRef}-enable`)
-        ?.addEventListener("command", (e) => {
-            ztoolkit.log(e);
-            _.window.alert(
-                `Successfully changed to ${(e.target as XUL.Checkbox).checked}!`,
-            );
-        });
+    registerEventListener(_window.document.querySelector("#btn-add-status"), 'click', (ev) => {
+        addStatus();
+    })
+    registerEventListener(_window.document.querySelector("#btn-remove-status"), 'click', (ev) => {
+        removeStatus(selectedRow);
+    });
+    registerEventListener(_window.document.querySelector(`#zotero-prefpane-${config.addonRef}-enable`), 'command', (e) => {
+        _.window.alert(
+            `Successfully changed to ${(e.target as XUL.Checkbox).checked}!`,
+        );
+    });
+    registerEventListener(_window.document.querySelector(`#zotero-prefpane-${config.addonRef}-input`), 'change', (e) => {
+        addon.data.prefs!.window.alert(
+            `Successfully changed to ${(e.target as HTMLInputElement).value}!`,
+        );
+    })
+    // _window.document
+    //     .querySelector("#btn-add-status")
+    //     ?.addEventListener("click", (ev) => {
+    //         addStatus();
+    //     });
+    // _window.document
+    //     .querySelector("#btn-remove-status")
+    //     ?.addEventListener("click", (ev) => {
+    //         removeStatus(selectedRow);
+    //     });
+    // _window.document
+    //     .querySelector(`#zotero-prefpane-${config.addonRef}-enable`)
+    //     ?.addEventListener("command", (e) => {
+    //         ztoolkit.log(e);
+    //         _.window.alert(
+    //             `Successfully changed to ${(e.target as XUL.Checkbox).checked}!`,
+    //         );
+    //     });
 
-    _window.document
-        .querySelector(`#zotero-prefpane-${config.addonRef}-input`)
-        ?.addEventListener("change", (e) => {
-            ztoolkit.log(e);
-            addon.data.prefs!.window.alert(
-                `Successfully changed to ${(e.target as HTMLInputElement).value}!`,
-            );
-        });
+    // _window.document
+    //     .querySelector(`#zotero-prefpane-${config.addonRef}-input`)
+    //     ?.addEventListener("change", (e) => {
+    //         ztoolkit.log(e);
+    //         addon.data.prefs!.window.alert(
+    //             `Successfully changed to ${(e.target as HTMLInputElement).value}!`,
+    //         );
+    //     });
 }
 function updateUI() {
     ztoolkit.log("Fn: updateUI");

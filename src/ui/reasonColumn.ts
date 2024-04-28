@@ -4,13 +4,15 @@
 
 import { MenuitemOptions } from "zotero-plugin-toolkit/dist/managers/menu";
 import { reasonTagPrefix, prismaSections } from "../lib/global";
-import { getAllReasonsFromItems, getItemStatusTags, getPRISMASectionFromItem, getReasonFromItem, getReasonsFromItems, loadXHTMLFromFile, parseXHTML, removePRISMASectionFromItem } from "../utils/helpers";
+import { getPRISMASectionFromItem, loadLocalFile } from "../utils/helpers";
+import { getReasonFromItem, getReasonsFromItems, updateGlobalReasons } from "../utils/reason"
 import { getString } from "../utils/locale";
 import { initAutoComplete } from "./autocomplete";
 import { createModal, initModal } from "./modal";
-import { log } from "../utils/development";
-import { getPRISMAEligibilityOtherReason } from "../lib/prisma";
+import { parseXHTML } from "../utils/parser";
+import { registerEventListener } from "../utils/events";
 
+// Init Reason Column
 export function initReasonColumn() {
     const columnReasonId = "reason";
     const getReasonColumnHook = (
@@ -19,17 +21,10 @@ export function initReasonColumn() {
         includeBaseMapped: boolean,
         item: Zotero.Item,
     ) => {
-        const statusTags = getItemStatusTags(item);
-        ztoolkit.log("Column")
-        ztoolkit.log(statusTags, reasonTagPrefix)
-        const reason =
-            statusTags
-                .find((obj) => obj.tag.includes(reasonTagPrefix))
-                ?.tag.replace(reasonTagPrefix, "") ?? "";
-        return reason;
+        return getReasonFromItem(item)
     };
-    const columnReasonOptions = {};
 
+    const columnReasonOptions = {};
     const columnReasonName: string = getString("reason-column-header");
     ztoolkit.ItemTree.register(
         columnReasonId,
@@ -39,6 +34,7 @@ export function initReasonColumn() {
     );
 }
 
+// Context Menu
 export function getReasonContextMenu(): MenuitemOptions[] {
     return [
         { tag: "menuseparator" },
@@ -50,6 +46,7 @@ export function getReasonContextMenu(): MenuitemOptions[] {
     ];
 }
 
+// Keyboard Events
 export function reasonKeyboardEvents(ev: KeyboardEvent) {
     if (ev.key == "r") {
         ztoolkit.getGlobal("document").setStatusReason();
@@ -66,9 +63,7 @@ export function reasonRegisterGlobalFunctions() {
         if (selectedItems.length == 0) return;
 
         // Get all reasons to be used for autocompletion
-        document.allReasons = getAllReasonsFromItems(
-            await ztoolkit.getGlobal("Zotero").Tags.getAll(),
-        );
+        await updateGlobalReasons()
 
         // Set the default form values
         const reasonInput = document.reasonModal.element.querySelector("#input-reason") as HTMLInputElement;
@@ -98,7 +93,7 @@ export async function reasonRegisterDOM() {
 
     const reasonModalBody = document.createElement('div')
     // Load the form from the XHTML file
-    const formTemplate = loadXHTMLFromFile(
+    const formTemplate = loadLocalFile(
         rootURI + "chrome/content/modal/reason.xhtml",
     );
     const formNodes = parseXHTML(formTemplate);
@@ -121,10 +116,7 @@ export async function reasonRegisterDOM() {
     const reasonInput = reasonModalBody.querySelector('#input-reason') as HTMLInputElement
     const autocompleteContainer = reasonModalBody.querySelector('#input-reason-autocomplete') as HTMLDivElement
     // Populate the reason autocomplete
-    document.allReasons = getAllReasonsFromItems(
-        // @ts-ignore Get all tags (no specific library)
-        await ztoolkit.getGlobal("Zotero").Tags.getAll(),
-    );
+    await updateGlobalReasons()
 
     // Form
     const reasonForm = reasonModalBody.querySelector('#reason-form') as HTMLFormElement
@@ -163,9 +155,12 @@ export async function reasonRegisterDOM() {
         prismaSelectHTML += `<option value="${section.tag}">${section.label}</option>`
     }
 
-    prismaSelect.addEventListener('change', ev => {
+    registerEventListener(prismaSelect, 'change', ev => {
         reasonInput.value = prismaSelect.value.replace(reasonTagPrefix, '')
     })
+    // prismaSelect.addEventListener('change', ev => {
+    //     reasonInput.value = prismaSelect.value.replace(reasonTagPrefix, '')
+    // })
 
     initAutoComplete(reasonInput, autocompleteContainer);
     initModal()

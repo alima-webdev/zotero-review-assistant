@@ -20,6 +20,7 @@ import {
     reportRegisterDOM,
     reportKeyboardEvents,
 } from "./report";
+import { registerEventListener } from "../utils/events";
 
 // ---------------------------------------------
 // Review Module
@@ -60,21 +61,34 @@ export class ReviewModule {
         });
 
         // Keyboard Shortcuts
-        ztoolkit
-            .getGlobal("document")
-            .addEventListener("keydown", (ev: KeyboardEvent) => {
-                // Check if the ItemTree is focused to use keyboard shortcuts
-                const activeElement =
-                    ztoolkit.getGlobal("document").activeElement;
-                const itemTreeElement = ztoolkit
-                    .getGlobal("document")
-                    .querySelector("#item-tree-main-default");
-                if (itemTreeElement?.contains(activeElement)) {
-                    statusKeyboardEvents(ev);
-                    reasonKeyboardEvents(ev);
-                    reportKeyboardEvents(ev);
-                }
-            });
+        registerEventListener(ztoolkit.getGlobal("document"), 'keydown', (ev: KeyboardEvent) => {
+            // Check if the ItemTree is focused to use keyboard shortcuts
+            const activeElement =
+                ztoolkit.getGlobal("document").activeElement;
+            const itemTreeElement = ztoolkit
+                .getGlobal("document")
+                .querySelector("#item-tree-main-default");
+            if (itemTreeElement?.contains(activeElement)) {
+                statusKeyboardEvents(ev);
+                reasonKeyboardEvents(ev);
+                reportKeyboardEvents(ev);
+            }
+        })
+        // ztoolkit
+        //     .getGlobal("document")
+        //     .addEventListener("keydown", (ev: KeyboardEvent) => {
+        //         // Check if the ItemTree is focused to use keyboard shortcuts
+        //         const activeElement =
+        //             ztoolkit.getGlobal("document").activeElement;
+        //         const itemTreeElement = ztoolkit
+        //             .getGlobal("document")
+        //             .querySelector("#item-tree-main-default");
+        //         if (itemTreeElement?.contains(activeElement)) {
+        //             statusKeyboardEvents(ev);
+        //             reasonKeyboardEvents(ev);
+        //             reportKeyboardEvents(ev);
+        //         }
+        //     });
 
         // Register the global context menu functions
         statusRegisterGlobalFunctions();

@@ -4,6 +4,7 @@ import { getString, initLocale } from "./utils/locale";
 import { registerPrefsScripts, updatePrefsTable } from "./ui/preferenceScript";
 import { createZToolkit } from "./utils/ztoolkit";
 import { loadPrefs, reloadPrefs } from "./lib/global";
+import { deregisterAllEventListeners } from "./utils/events";
 
 async function onStartup() {
     await Promise.all([
@@ -64,6 +65,8 @@ function onShutdown(): void {
 
     // Remove addon object
     addon.data.alive = false;
+
+    deregisterAllEventListeners()
     delete Zotero[config.addonInstance];
 }
 

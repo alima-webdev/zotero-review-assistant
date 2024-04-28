@@ -1,8 +1,10 @@
-// import html2canvas from '../vendors/html2canvas/src/index';
+
+// import pdfMake from "pdfmake"
 import Handlebars = require("handlebars");
-import { countItemsWithTag, loadLocalFile, loadXHTMLFromFile, parseXHTML, parseXHTMLFromFile } from "../utils/helpers";
-import { log } from "../utils/development";
-import { allStatuses, prismaEligibilityReasonTagPrefix, prismaSections } from "./global";
+import { countItemsWithTag, loadLocalFile } from "../utils/helpers";
+import { log } from "../utils/devtools";
+import { allStatuses, prismaEligibilityReasonTagPrefix, prismaSections, reasonTagPrefix } from "./global";
+import { getReasonFromItem, getReasonsFromItems } from "../utils/reason";
 
 const prismaTemplateURL = "chrome/content/prisma/template.html"
 const prismaTemplateCSSURL = "chrome/content/prisma/template.css"
@@ -10,51 +12,8 @@ const prismaTemplateCSSURL = "chrome/content/prisma/template.css"
 const prismaTestDataURL = "chrome/content/prisma/test.json"
 const prismaTestExportURL = "chrome/content/prisma/test.pdf"
 
-
-type PRISMAData = {
-    title: string,
-    identification: {
-        title: string,
-        collection: {
-            databases: number,
-            registers: number,
-            other: number
-        },
-        excluded: {
-            duplicates: number,
-            automation: number,
-            other: number
-        }
-    },
-    screening: {
-        title: string,
-        screen: {
-            total: number,
-            excluded: number,
-        },
-        retrieval: {
-            total: number,
-            excluded: number,
-        },
-        eligibility: {
-            total: number,
-            reasons: {
-                label: string,
-                records: number,
-            }[]
-        }
-    },
-    included: {
-        title: string,
-        records: {
-            new: number,
-            reports: number,
-        }
-    }
-}
-
 export function getPrismaHTML(prismaData: PRISMAData) {
-    const prismaTemplate = loadXHTMLFromFile(
+    const prismaTemplate = loadLocalFile(
         rootURI + prismaTemplateURL,
     );
 
@@ -81,6 +40,150 @@ export function getPrismaDOM(prismaData: PRISMAData) {
 
     return prismaDOM
 }
+
+export function getPrismaSectionFromName(name: string) {
+    const section = prismaSections.filter(obj => obj.name == name)
+    return section[0]
+}
+
+export function countItemsWithStatusName(name: string, items: Zotero.Item[]) {
+    const section = getPrismaSectionFromName(name)
+    log(section)
+    return countItemsWithTag(section.tag, items)
+}
+
+export function getItemsWithTag(items: Zotero.Item[], tag: string) {
+    const itemsWithTag = []
+    for(const item of items) {
+        if(item.hasTag(tag)) {
+            itemsWithTag.push(item)
+        }
+    }
+    return itemsWithTag
+}
+
+function isOtherReason(reason: string) {
+    return !prismaSections.find(obj => {return obj.tag == reasonTagPrefix + reason})
+}
+
+export function getPrismaData(title: string = 'Title', items: Zotero.Item[]) {
+
+    log("Fn: getPrismaData")
+
+    // Get excluded items
+    const exclusionTag = allStatuses.filter(obj => obj.name == 'excluded')[0].tag
+    const excludedItems = getItemsWithTag(items, exclusionTag)
+
+    const idTotal = items.length
+    const idDuplicates = countItemsWithStatusName('identification:duplicated', excludedItems)
+    const idAutomation = countItemsWithStatusName('identification:automation', excludedItems)
+    const idOther = countItemsWithStatusName('identification:other', excludedItems)
+
+    // log(idTotal, idDuplicates, idAutomation, idOther)
+
+    const scTotal = idTotal - idDuplicates - idAutomation - idOther
+    const scScExcluded = countItemsWithStatusName('screening:screen:excluded', excludedItems)
+
+    const scRetTotal = scTotal - scScExcluded
+    const scRetExcluded = countItemsWithStatusName('screening:retrieval:excluded', excludedItems)
+
+    const scElTotal = scRetTotal - scRetExcluded
+
+    // Get the label and count for all the other reasons
+    let otherTotal = 0
+    const otherReasons: {label: string, records: number}[] = []
+    for(const item of items) {
+        const reason = getReasonFromItem(item)
+        if(isOtherReason(reason)) {
+            // If reason is already created, increment
+            const currentReasonInArray = otherReasons.filter(obj => obj.label == reason)[0]
+            if(currentReasonInArray) {
+                currentReasonInArray.records += 1
+            } else {
+                const currentReason = {
+                    label: reason,
+                    records: 1
+                }
+                otherReasons.push(currentReason)
+            }
+
+            otherTotal++
+        }
+    }
+
+    log(scTotal)
+    log(scScExcluded, scRetTotal, scRetExcluded, scElTotal)
+    log(otherTotal)
+
+    const incReports = scElTotal - otherTotal
+
+    const prismaData: PRISMAData = {
+        title: "Title",
+        identification: {
+            title: 'Identification',
+            collection: {
+                databases: 2, // TEST
+                registers: idTotal,
+                other: idOther,
+            },
+            excluded: {
+                duplicates: idDuplicates,
+                automation: idAutomation,
+                other: idOther,
+            }
+        },
+        screening: {
+            title: 'Screening',
+            screen: {
+                total: scTotal,
+                excluded: scScExcluded,
+            },
+            retrieval: {
+                total: scRetTotal,
+                excluded: scRetExcluded,
+            },
+            eligibility: {
+                total: scElTotal,
+                reasons: otherReasons
+            }
+        },
+        included: {
+            title: 'Included',
+            records: {
+                new: 0, // TEST
+                reports: incReports,
+            }
+        }
+    }
+
+    return prismaData;
+}
+
+export function getPRISMAEligibilityOtherReasons(items: Zotero.Item[]) {
+    const reasons = []
+    for (const item of items) {
+        const reason = getPRISMAEligibilityOtherReason(item)
+        if (reason) {
+            reasons.push(reason)
+        }
+    }
+
+    return reasons
+}
+export function getPRISMAEligibilityOtherReason(item: Zotero.Item) {
+    const tags = item.getTags()
+    const reasonTags = tags.filter(obj => {
+        return prismaEligibilityReasonTagPrefix.includes(obj.tag)
+    })
+    log(tags, reasonTags)
+    return reasonTags[0] || undefined
+}
+
+
+
+
+
+
 
 export async function generatePrismaPDF() {
 
@@ -146,121 +249,3 @@ async function generatePRISMAPDF() {
     doc.save("a4.pdf");
 }
 */
-
-export function getPrismaSectionFromName(name: string) {
-    const section = prismaSections.filter(obj => obj.name == name)
-    return section[0]
-}
-
-export function countItemsWithStatusName(name: string, items: Zotero.Item[]) {
-    const section = getPrismaSectionFromName(name)
-    log(section)
-    return countItemsWithTag(section.tag, items)
-}
-
-export function getItemsWithTag(items: Zotero.Item[], tag: string) {
-    const itemsWithTag = []
-    for(const item of items) {
-        if(item.hasTag(tag)) {
-            itemsWithTag.push(item)
-        }
-    }
-    return itemsWithTag
-}
-
-export function getPrismaData(title: string = 'Title', items: Zotero.Item[]) {
-
-    // Get excluded items
-    const exclusionTag = allStatuses.filter(obj => obj.name == 'excluded')[0].tag
-    const excludedItems = getItemsWithTag(items, exclusionTag)
-
-    const idTotal = items.length
-    const idDuplicates = countItemsWithStatusName('identification:duplicated', excludedItems)
-    const idAutomation = countItemsWithStatusName('identification:automation', excludedItems)
-    const idOther = countItemsWithStatusName('identification:other', excludedItems)
-
-    // log(idTotal, idDuplicates, idAutomation, idOther)
-
-    const scTotal = idTotal - idDuplicates - idAutomation - idOther
-    const scScExcluded = countItemsWithStatusName('screening:screen:excluded', excludedItems)
-
-    const scRetTotal = scTotal - scScExcluded
-    const scRetExcluded = countItemsWithStatusName('screening:retrieval:excluded', excludedItems)
-
-    const scElTotal = scRetTotal - scRetExcluded
-
-    // log(scTotal, scScExcluded, scRetTotal, scRetExcluded, scElTotal)
-    // TODO: Reasons
-
-    const incReports = scElTotal
-
-    const prismaData: PRISMAData = {
-        title: "Title",
-        identification: {
-            title: 'Identification',
-            collection: {
-                databases: 2, // TEST
-                registers: idTotal,
-                other: idOther,
-            },
-            excluded: {
-                duplicates: idDuplicates,
-                automation: idAutomation,
-                other: idOther,
-            }
-        },
-        screening: {
-            title: 'Screening',
-            screen: {
-                total: scTotal,
-                excluded: scScExcluded,
-            },
-            retrieval: {
-                total: scRetTotal,
-                excluded: scRetExcluded,
-            },
-            eligibility: {
-                total: scElTotal,
-                reasons: [
-                    // {
-                    //     "label": "Reason 1",
-                    //     "records": 115
-                    // },
-                    // {
-                    //     "label": "Reason 2",
-                    //     "records": 125
-                    // }
-                ]
-            }
-        },
-        included: {
-            title: 'Included',
-            records: {
-                new: 0,
-                reports: incReports,
-            }
-        }
-    }
-
-    return prismaData;
-}
-
-export function getPRISMAEligibilityOtherReasons(items: Zotero.Item[]) {
-    const reasons = []
-    for (const item of items) {
-        const reason = getPRISMAEligibilityOtherReason(item)
-        if (reason) {
-            reasons.push(reason)
-        }
-    }
-
-    return reasons
-}
-export function getPRISMAEligibilityOtherReason(item: Zotero.Item) {
-    const tags = item.getTags()
-    const reasonTags = tags.filter(obj => {
-        return prismaEligibilityReasonTagPrefix.includes(obj.tag)
-    })
-    log(tags, reasonTags)
-    return reasonTags[0] || undefined
-}

@@ -71,3 +71,45 @@ type PRISMASection = {
     name: string,
     tag: string,
 }
+
+type PRISMAData = {
+    title: string,
+    identification: {
+        title: string,
+        collection: {
+            databases: number,
+            registers: number,
+            other: number
+        },
+        excluded: {
+            duplicates: number,
+            automation: number,
+            other: number
+        }
+    },
+    screening: {
+        title: string,
+        screen: {
+            total: number,
+            excluded: number,
+        },
+        retrieval: {
+            total: number,
+            excluded: number,
+        },
+        eligibility: {
+            total: number,
+            reasons: {
+                label: string,
+                records: number,
+            }[]
+        }
+    },
+    included: {
+        title: string,
+        records: {
+            new: number,
+            reports: number,
+        }
+    }
+}

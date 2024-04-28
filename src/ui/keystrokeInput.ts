@@ -1,3 +1,5 @@
+import { registerEventListener } from "../utils/events";
+
 type KeystrokeModifiers = {
     alt: boolean;
     ctrl: boolean;
@@ -136,14 +138,18 @@ class KeystrokeInput {
         this.bindEvents();
     }
     bindEvents() {
-        this.input.addEventListener(
-            "keydown",
-            this.handleKeyDownEvent.bind(this),
-        );
+        registerEventListener(this.input, 'keydown', this.handleKeyDownEvent.bind(this))
 
         // Prevent keypress from adding an extra character to the input value
-        this.input.addEventListener("keyup", this.handleKeyUpEvent.bind(this));
-        this.input.addEventListener("keypress", this.bypassEvent.bind(this));
+        registerEventListener(this.input, 'keyup', this.handleKeyUpEvent.bind(this))
+        registerEventListener(this.input, 'keypress', this.bypassEvent.bind(this))
+
+        // this.input.addEventListener(
+        //     "keydown",
+        //     this.handleKeyDownEvent.bind(this),
+        // );
+        // this.input.addEventListener("keyup", this.handleKeyUpEvent.bind(this));
+        // this.input.addEventListener("keypress", this.bypassEvent.bind(this));
     }
     bypassEvent(ev: KeyboardEvent) {
         ev.preventDefault();

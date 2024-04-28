@@ -1,4 +1,5 @@
 import Handlebars = require("handlebars");
+import { deregisterEventListener, registerEventListener } from "../utils/events";
 
 const modalTemplate = Handlebars.compile(`
         <div class="inner-modal" tabindex="-1">
@@ -31,7 +32,7 @@ export function createModal(id: string, title: string, content: HTMLElement, opt
     return modal;
 }
 
-export function initModal() {}
+export function initModal() { }
 
 type ModalOptions = {
     onCloseFocus?: HTMLElement
@@ -58,6 +59,7 @@ class Modal {
     open() {
         this.element.classList.add("open");
 
+        // registerEventListener(this.root?.parentNode, 'keydown', this.closeKeyStroke.bind(this))
         this.root?.parentNode?.addEventListener(
             "keydown",
             this.closeKeyStroke.bind(this),
@@ -71,6 +73,7 @@ class Modal {
     }
     close() {
         this.element.classList.remove("open");
+        // deregisterEventListener(this.root?.parentNode, 'keydown', this.closeKeyStroke.bind(this))
         this.root?.parentNode?.removeEventListener(
             "keydown",
             this.closeKeyStroke,
@@ -88,12 +91,18 @@ class Modal {
         const closeActionElements =
             this.element.querySelectorAll("[action=close]");
         for (const el of closeActionElements) {
+            // registerEventListener(el, 'click', (ev: Event) => {
+            //     this.close();
+            // })
             el.addEventListener("click", (ev: Event) => {
                 this.close();
             });
         }
 
         // Close background
+        // registerEventListener(this.element, 'click', (ev) => {
+        //     if (ev.target == this.element) this.close();
+        // })
         this.element.onclick = (ev) => {
             if (ev.target == this.element) this.close();
         };

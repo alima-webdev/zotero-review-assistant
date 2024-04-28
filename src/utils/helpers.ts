@@ -1,78 +1,17 @@
 // Helper functions
 import { allStatuses, prismaSections, reasonTagPrefix, statusTagPrefix } from "../lib/global";
+import { log } from "./devtools";
+// import { jsPDF } from "jspdf";
+// import * as htmlToImage from 'html-to-image';
+// import * as htmlToImageUtils from 'html-to-image/src/util';
+// import * as htmlToImage from 'html-to-image';
+// import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
+import { toPng, toCanvas, toJpeg, toBlob, toPixelData, toSvg } from '../vendors/html-to-image/src/index';
+// import { htmlToPng, testDocx } from "./test";
+// import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
+import htmlToSvg from "htmlsvg";
 
-export function getItemStatusTags(item: Zotero.Item) {
-    const itemTags = item.getTags();
-    const statusTags = itemTags.filter((obj) => {
-        return obj.tag.includes(statusTagPrefix);
-    });
-    return statusTags;
-}
-
-// Get the status from item
-export function getItemStatus(item: Zotero.Item) {
-    let statusObj = allStatuses.find((obj) => obj.default == true);
-    for (const status of allStatuses) {
-        if (item.hasTag(status.tag)) statusObj = status;
-    }
-    return statusObj;
-}
-
-// Get the all status from item
-export function getItemStatusAll(item: Zotero.Item) {
-    let statusObj = allStatuses.find((obj) => obj.default == true);
-    for (const status of allStatuses) {
-        if (item.hasTag(status.tag)) statusObj = status;
-    }
-    return statusObj;
-}
-
-// Get the all status from item
-export function getAllReasonsFromItems(tags: any[]) {
-    return tags
-        .filter((obj) => {
-            return obj.tag.includes(reasonTagPrefix);
-        })
-        .map((obj) => {
-            const label = obj.tag.replace(reasonTagPrefix, "");
-            return { label: label, value: label };
-        });
-}
-
-export function getReasonFromItem(item: Zotero.Item): string {
-    const tags = item.getTags()
-    return tags.filter((obj) => {
-        return obj.tag.includes(reasonTagPrefix);
-    }) .map((obj) => {
-            return obj.tag.replace(reasonTagPrefix, "");
-        })[0];
-}
-
-export function getReasonsFromItems(items: Zotero.Item[]) {
-    const reasons = []
-    for (const item of items) {
-        const reason = getReasonFromItem(item)
-        // If reason is found and is unique
-        if (reason && !reasons.includes(reason)) {
-            reasons.push(reason)
-        }
-    }
-    return reasons
-}
-
-// Get the status from a tag name
-export function getStatusFromTag(tag: string) {
-    const status = allStatuses.find((obj) => obj.tag == tag);
-    return status;
-}
-
-// Remove all statuses from item
-export function removeAllStatuses(item: Zotero.Item) {
-    // Remove the exclusion criteria
-    item.getTags().map((tag) => {
-        if (tag.tag.includes(statusTagPrefix)) item.removeTag(tag.tag);
-    });
-}
+const { FilePicker } = ChromeUtils.importESModule('chrome://zotero/content/modules/filePicker.mjs');
 
 export function generateMenuIcon(color: string) {
     return (
@@ -83,35 +22,10 @@ export function generateMenuIcon(color: string) {
     );
 }
 
-// Parse XHTML from File
-export function parseXHTMLFromFile(src: string) {
-    const markup = loadXHTMLFromFile(src);
-    return parseXHTML(markup);
-}
-
-export function loadXHTMLFromFile(src: string) {
-    return Zotero.File.getContentsFromURL(src);
-}
-
 export function loadLocalFile(src: string) {
     return Zotero.File.getContentsFromURL(src);
 }
 
-// Parse XHTML from String
-export function parseXHTML(str: string) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(str, "text/html");
-
-    if (doc.documentElement.localName === "parsererror") {
-        throw new Error("not well-formed XHTML");
-    }
-
-    // We use a range here so that we don't access the inner DOM elements from
-    // JavaScript before they are imported and inserted into a document.
-    const range = doc.createRange();
-    range.selectNodeContents(doc.querySelector("div") as Node);
-    return range.extractContents();
-}
 
 // PRISMA
 export function getPRISMASectionFromItem(item: Zotero.Item) {
@@ -134,4 +48,64 @@ export function countItemsWithTag(tag: string, items: Zotero.Item[]) {
     }
 
     return count
+}
+
+export async function showFilePicker(mime = "*", filter: number = FilePicker.filterAll, name: string = ''): Promise<string | undefined> {
+
+    let ext = Zotero.MIME.getPrimaryExtension(mime, '');
+    let fp = new FilePicker();
+    fp.init(ztoolkit.getGlobal('window'), name, fp.modeSave);
+    fp.appendFilters(filter);
+    fp.defaultString = name + '.' + ext;
+    let rv = await fp.show();
+
+    let outputPath;
+    if (rv === fp.returnOK || rv === fp.returnReplace) {
+        outputPath = fp.file;
+    }
+    return outputPath
+}
+
+export async function exportFileWithContents(content: any, mimeType: string = '*', filter: any) {
+
+    // Show file picker and save the file
+    // const outputPath = await showFilePicker(mimeType, filter)
+    const outputPath = "~/Downloads/image.svg"
+    if (outputPath) {
+        const outputFile = Zotero.File.pathToFile(outputPath)
+        Zotero.File.putContents(outputFile, content)
+    }
+}
+
+export async function downloadContent(element: HTMLIFrameElement) {
+
+    // await testDocx()
+    return;
+    /*
+    // const data = await htmlToPng(element) as ImageData
+    const data = await htmlToSvg(element.contentWindow?.document.body)
+
+    let s = new XMLSerializer();
+    let str = s.serializeToString(data);
+
+    exportFileWithContents(str, 'image/svg', FilePicker.filterImage)
+    log(data)
+
+    return;
+
+    // Show file picker and save the file
+    const outputPath = await showFilePicker('text/html', FilePicker.filterHTML)
+    if (outputPath) {
+        const outputFile = Zotero.File.pathToFile(outputPath)
+        Zotero.File.putContents(outputFile, content)
+        // Zotero.launchFile(outputFile.path)
+
+    }
+
+    // Generate temporary file (optional)
+    // const path = Zotero.getTempDirectory()
+    // const fileName = "prisma-" + new Date().toISOString() + ".html"
+    // const file = Zotero.File.putContents(path, content)
+    // const uri = await Zotero.File.generateDataURI(path.path, 'text/html')
+    */
 }

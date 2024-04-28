@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Font1';
+  src: url('https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu72xKKTU1Kvnz.woff2')
+      format('woff2'),
+    url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaorCFPrcVIT9d0c-dYA.woff')
+      format('woff'),
+    local(Arial);
+  font-weight: normal;
+  font-style: normal;
+}

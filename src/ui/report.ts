@@ -1,9 +1,11 @@
 import { MenuitemOptions } from "zotero-plugin-toolkit/dist/managers/menu";
-import { allStatuses, prismaEligibilityReasonTagPrefix } from "../lib/global";
+import { allStatuses } from "../lib/global";
 import { createModal, initModal } from "./modal";
 import { getString } from "../utils/locale";
-import { loadLocalFile, parseXHTML } from "../utils/helpers";
 import { getPrismaDOM, getPrismaData } from "../lib/prisma";
+import { parseXHTML } from "../utils/parser";
+import { downloadContent } from "../utils/helpers";
+import { generatePrismaFromTemplate } from "../utils/test";
 
 export function getReportContextMenu(): MenuitemOptions[] {
     return [
@@ -94,6 +96,12 @@ export function reportRegisterGlobalFunctions() {
         // -- TEST
 
         document.reportModal.open();
+
+        generatePrismaFromTemplate(prismaData)
+
+        // downloadContent(document.reportModal.element.querySelector(".prisma"))
+        // downloadContent(document.reportModal.element.querySelector(".prisma").contentWindow)
+        // downloadContent(document.reportModal.element.querySelector(".prisma"))
         return;
     };
 }
