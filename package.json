@@ -1,6 +1,6 @@
 {
     "name": "zotero-article-status",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "description": "Zotero Article Status",
     "config": {
         "addonName": "Zotero Article Status",
