@@ -1,3 +1,5 @@
+import { prismaSections, reasonTagPrefix } from "../../lib/global";
+import { log } from "../../utils/devtools";
 import autocomplete from "../../vendors/autocompleter/autocomplete";
 
 export function initAutoComplete(
@@ -9,9 +11,31 @@ export function initAutoComplete(
         input: input,
         fetch: function (text, update) {
             text = text.toLowerCase();
-            const suggestions = document.allReasons.filter((n) =>
-                n.label.toLowerCase().startsWith(text),
-            );
+
+            const prismaSuggestions = prismaSections
+                .map((section) => {
+                    const label = section.tag.replace(reasonTagPrefix, "");
+                    if (label.toLowerCase().includes(text.toLowerCase())) {
+                        return label;
+                    }
+                })
+                .filter(Boolean);
+
+            const statusSuggestions = document.allReasons
+                .map((reason) => {
+                    const label = reason.value.replace(reasonTagPrefix, "");
+                    if (label.toLowerCase().includes(text.toLowerCase())) {
+                        return label;
+                    }
+                })
+                .filter(Boolean);
+
+            const suggestions = [
+                ...new Set(prismaSuggestions.concat(statusSuggestions)),
+            ].map((suggestion) => {
+                return { label: suggestion, value: suggestion };
+            });
+
             update(suggestions);
         },
         onSelect: function (item) {
