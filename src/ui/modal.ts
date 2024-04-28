@@ -51,12 +51,11 @@ class Modal {
     id: string;
     root?: HTMLElement | Document;
     element: HTMLElement;
-    options?: ModalOptions;
+    options: ModalOptions;
     constructor(id: string, element: HTMLElement, options?: ModalOptions) {
         this.id = id;
         this.element = element;
-        ztoolkit.log(options);
-        this.options = options;
+        this.options = options as ModalOptions;
     }
     appendTo(root: HTMLElement | Document) {
         root.appendChild(this.element);
@@ -72,6 +71,12 @@ class Modal {
             "keydown",
             this.closeKeyStroke.bind(this),
         );
+
+        // Autofocus
+        const autofocusElement = this.element.querySelector('[autofocus="true"]')
+        if(autofocusElement) {
+            (autofocusElement as HTMLElement).focus()
+        }
     }
     closeKeyStroke(ev: any) {
         if (ev.key === "Escape") {
@@ -87,14 +92,12 @@ class Modal {
             this.closeKeyStroke,
         );
 
-        ztoolkit.log(this.options);
         // Focus on the main element when closing
         if (this.options?.onCloseFocus) {
             this.options.onCloseFocus.focus();
         }
     }
     bindEvents() {
-        ztoolkit.log(this.element);
         // Close buttons
         const closeActionElements =
             this.element.querySelectorAll("[action=close]");

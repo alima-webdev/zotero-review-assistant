@@ -15,51 +15,51 @@ const { FilePicker } = ChromeUtils.importESModule(
 );
 
 export async function generatePrismaFromTemplate(prismaData: PRISMAData) {
-    // return new Promise((resolve, reject) => {
-    const typeDocx =
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
     const PizZip = await require("pizzip");
     const PizZipUtils = await require("pizzip/utils");
     const Docxtemplater = await require("docxtemplater");
 
-    // Template path
-    const templatePath = rootURI + "chrome/content/prisma/template.docx";
-    return PizZipUtils.getBinaryContent(
-        templatePath,
-        async (error: any, content: any) => {
-            const zip = new PizZip(content);
-            const doc = new Docxtemplater(zip, {
-                paragraphLoop: true,
-                linebreaks: true,
-            });
-            doc.render(prismaData);
+    return new Promise((resolve, reject) => {
+        const typeDocx =
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 
-            const blob = doc.getZip().generate({
-                type: "blob",
-                mimeType: typeDocx,
-                // compression: DEFLATE adds a compression step.
-                // For a 50MB output document, expect 500ms additional CPU time
-                compression: "DEFLATE",
-            });
+        // Template path
+        const templatePath = rootURI + "chrome/content/prisma/template.docx";
+        PizZipUtils.getBinaryContent(
+            templatePath,
+            async (error: any, content: any) => {
+                const zip = new PizZip(content);
+                const doc = new Docxtemplater(zip, {
+                    paragraphLoop: true,
+                    linebreaks: true,
+                });
+                doc.render(prismaData);
 
-            // Show filepicker dialog to ask the user where to save it
-            const outputPath = await showFilePicker(
-                typeDocx,
-                FilePicker.filterAll,
-                "prisma",
-            );
-            if (!outputPath) return false;
+                const blob = doc.getZip().generate({
+                    type: "blob",
+                    mimeType: typeDocx,
+                    // compression: DEFLATE adds a compression step.
+                    // For a 50MB output document, expect 500ms additional CPU time
+                    compression: "DEFLATE",
+                });
 
-            const outputFile = Zotero.File.pathToFile(outputPath || "");
-            const file = new File([blob], "prisma.docx", {
-                type: typeDocx,
-            });
-            Zotero.File.putContentsAsync(outputFile, file);
-            // resolve(true);
-            return true;
-        },
-    );
-    // });
+                // Show filepicker dialog to ask the user where to save it
+                const outputPath = await showFilePicker(
+                    typeDocx,
+                    FilePicker.filterAll,
+                    "prisma",
+                );
+                if (!outputPath) reject(false);
+
+                const outputFile = Zotero.File.pathToFile(outputPath || "");
+                const file = new File([blob], "prisma.docx", {
+                    type: typeDocx,
+                });
+                Zotero.File.putContentsAsync(outputFile, file);
+                resolve(true);
+            },
+        );
+    });
 }
 
 export function getPrismaSectionFromName(name: string) {
@@ -69,7 +69,7 @@ export function getPrismaSectionFromName(name: string) {
 
 export function countItemsWithStatusName(name: string, items: Zotero.Item[]) {
     const section = getPrismaSectionFromName(name);
-    log(section);
+    // log(section);
     return countItemsWithTag(section.tag, items);
 }
 
@@ -217,6 +217,6 @@ export function getPRISMAEligibilityOtherReason(item: Zotero.Item) {
     const reasonTags = tags.filter((obj) => {
         return prismaEligibilityReasonTagPrefix.includes(obj.tag);
     });
-    log(tags, reasonTags);
+    // log(tags, reasonTags);
     return reasonTags[0] || undefined;
 }

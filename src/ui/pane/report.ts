@@ -12,7 +12,7 @@ export function getReportContextMenu(): MenuitemOptions[] {
         { tag: "menuseparator" },
         {
             tag: "menuitem",
-            label: "Generate Report",
+            label: "Generate PRISMA Diagram",
             oncommand: `document.generateReport()`,
         },
     ];
@@ -79,7 +79,7 @@ export async function reportRegisterDOM() {
         "#report-form",
     ) as HTMLFormElement;
     registerEventListener(reportForm, "submit", async (ev: Event) => {
-        log("Report Form Submit");
+        // log("Report Form Submit");
         const databases = (
             reportForm.querySelector("#databases") as HTMLInputElement
         ).value;
@@ -111,7 +111,9 @@ export async function reportRegisterDOM() {
 }
 
 export function reportKeyboardEvents(ev: KeyboardEvent) {
-    if (ev.key == "t") {
-        ztoolkit.getGlobal("document").generateReport();
+    if (__env__ == 'development') {
+        if (ev.key == "t") {
+            ztoolkit.getGlobal("document").generateReport();
+        }
     }
 }

@@ -131,8 +131,8 @@ async function loadStatusModal(_window: Window) {
     const colorInput = modalContent.querySelector(
         "[type=color]",
     ) as HTMLInputElement;
-    ztoolkit.log("--------------------");
-    ztoolkit.log(_window);
+    // ztoolkit.log("--------------------");
+    // ztoolkit.log(_window);
     attachColorPicker(_window, _window.document, colorInput);
 
     attachKeystrokeInput(
@@ -148,7 +148,7 @@ function removeStatus(rowId: number) {
 }
 
 function addStatus() {
-    ztoolkit.log("Add Status");
+    // ztoolkit.log("Add Status");
 
     // Change the modal title
     (
@@ -192,7 +192,7 @@ function addStatus() {
 }
 
 function editStatus(rowId: number) {
-    ztoolkit.log("Edit status (Id: " + rowId + ")");
+    // ztoolkit.log("Edit status (Id: " + rowId + ")");
 
     const status = allStatuses[rowId];
     // Change the modal title
@@ -377,7 +377,7 @@ function bindPrefEvents(_window: Window) {
     //     });
 }
 function updateUI() {
-    ztoolkit.log("Fn: updateUI");
+    // ztoolkit.log("Fn: updateUI");
     statusTable.render(-1);
 }
 export function updatePrefsTable() {

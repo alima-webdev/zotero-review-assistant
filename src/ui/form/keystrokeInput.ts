@@ -88,7 +88,7 @@ export class Keystroke {
         if (this.modifiers.shift) modifiers += keyString?.shift + " ";
         const strKeystroke = modifiers + this.key;
 
-        ztoolkit.log(this.key);
+        // ztoolkit.log(this.key);
         return strKeystroke;
     }
 

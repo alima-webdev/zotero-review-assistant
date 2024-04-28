@@ -1,45 +1,40 @@
 <div>
     <form id="report-form">
-        <br />
         <h3>Identification</h3>
         <div class="form-field">
             <label for="databases">Number of Databases Used:</label><br />
-            <input
-                id="databases"
-                name="databases"
-                class="input"
-                type="number"
-            />
+            <input id="databases" name="databases" class="input" type="text" autofocus="true" />
         </div>
         <h3>Inclusion</h3>
         <div class="form-field">
             Total of Studies and Reports:
             <strong><span id="included-total"></span></strong>
         </div>
-        <div class="form-field">
-            <label for="included-studies">Number of Studies Included:</label
-            ><br />
-            <input
-                id="included-studies"
-                name="included-studies"
-                class="input"
-                type="number"
-            />
-        </div>
-        <div class="form-field">
-            <label for="included-reports">Number of Reports Included:</label
-            ><br />
-            <input
-                id="included-reports"
-                name="included-reports"
-                class="input"
-                type="number"
-            />
+        <div class="row">
+            <div class="col">
+                <div class="form-field">
+                    <label for="included-studies">Number of Studies Included:</label><br />
+                    <input id="included-studies" name="included-studies" class="input" type="text" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-field">
+                    <label for="included-reports">Number of Reports Included:</label><br />
+                    <input id="included-reports" name="included-reports" class="input" type="text" />
+                </div>
+            </div>
         </div>
         <div class="btn-container">
             <input id="prisma-data" name="prisma-data" type="hidden" />
             <button type="button" action="close" class="btn">Cancel</button>
             <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="form-field" style="max-width: 430px;">
+            <br />
+            <strong>References</strong><br />
+            <small>
+                From: Page MJ, McKenzie JE, Bossuyt PM, Boutron I, Hoffmann TC, Mulrow CD, et al. The PRISMA 2020 statement: an updated guideline for reporting systematic reviews. BMJ 2021;372:n71. doi: 10.1136/bmj.n71
+            </small>
         </div>
     </form>
 </div>

@@ -5,7 +5,7 @@ export function attachColorPicker(
     _document: Document,
     element?: HTMLInputElement,
 ) {
-    ztoolkit.log("Fn: attachColorPicker");
+    // ztoolkit.log("Fn: attachColorPicker");
 
     if (!element) return false;
 
