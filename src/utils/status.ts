@@ -25,6 +25,10 @@ export function removeItemStatus(item: Zotero.Item) {
     // log("Fn: removeItemStatus");
     // Remove the exclusion criteria
     item.getTags().map((tag) => {
-        if (tag.tag.includes(statusTagPrefix) && allStatuses.filter(stat => stat.tag == tag.tag).length > 0) item.removeTag(tag.tag);
+        if (
+            tag.tag.includes(statusTagPrefix) &&
+            allStatuses.filter((stat) => stat.tag == tag.tag).length > 0
+        )
+            item.removeTag(tag.tag);
     });
 }

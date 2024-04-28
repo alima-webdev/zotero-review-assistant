@@ -113,9 +113,9 @@ async function onPrefsEvent(type: string, data: { [key: string]: any }) {
     }
 }
 
-function onShortcuts(type: string) { }
+function onShortcuts(type: string) {}
 
-function onDialogEvents(type: string) { }
+function onDialogEvents(type: string) {}
 
 export default {
     onStartup,

@@ -73,9 +73,10 @@ class Modal {
         );
 
         // Autofocus
-        const autofocusElement = this.element.querySelector('[autofocus="true"]')
-        if(autofocusElement) {
-            (autofocusElement as HTMLElement).focus()
+        const autofocusElement =
+            this.element.querySelector('[autofocus="true"]');
+        if (autofocusElement) {
+            (autofocusElement as HTMLElement).focus();
         }
     }
     closeKeyStroke(ev: any) {
