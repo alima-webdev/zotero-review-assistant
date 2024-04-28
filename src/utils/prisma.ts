@@ -15,7 +15,7 @@ const { FilePicker } = ChromeUtils.importESModule(
 );
 
 export async function generatePrismaFromTemplate(prismaData: PRISMAData) {
-    return new Promise(async (resolve, reject) => {
+    // return new Promise((resolve, reject) => {
         const typeDocx =
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
         const PizZip = await require("pizzip");
@@ -24,7 +24,7 @@ export async function generatePrismaFromTemplate(prismaData: PRISMAData) {
 
         // Template path
         const templatePath = rootURI + "chrome/content/prisma/template.docx";
-        PizZipUtils.getBinaryContent(
+        return PizZipUtils.getBinaryContent(
             templatePath,
             async (error: any, content: any) => {
                 const zip = new PizZip(content);
@@ -48,17 +48,18 @@ export async function generatePrismaFromTemplate(prismaData: PRISMAData) {
                     FilePicker.filterAll,
                     "prisma",
                 );
-                if (!outputPath) reject(false);
+                if (!outputPath) return false;
 
                 const outputFile = Zotero.File.pathToFile(outputPath || "");
                 const file = new File([blob], "prisma.docx", {
                     type: typeDocx,
                 });
                 Zotero.File.putContentsAsync(outputFile, file);
-                resolve(true);
+                // resolve(true);
+                return true;
             },
         );
-    });
+    // });
 }
 
 export function getPrismaSectionFromName(name: string) {
