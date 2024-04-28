@@ -1,5 +1,8 @@
 import Handlebars = require("handlebars");
-import { deregisterEventListener, registerEventListener } from "../utils/events";
+import {
+    deregisterEventListener,
+    registerEventListener,
+} from "../utils/events";
 
 const modalTemplate = Handlebars.compile(`
         <div class="inner-modal" tabindex="-1">
@@ -17,7 +20,12 @@ const modalTemplate = Handlebars.compile(`
 `);
 
 // Main modal function
-export function createModal(id: string, title: string, content: HTMLElement, options: ModalOptions = {}) {
+export function createModal(
+    id: string,
+    title: string,
+    content: HTMLElement,
+    options: ModalOptions = {},
+) {
     // Process the template and generate the modal HTML element
     const modalElement = document.createElement("div");
     modalElement.setAttribute("aria-hidden", "true");
@@ -32,11 +40,11 @@ export function createModal(id: string, title: string, content: HTMLElement, opt
     return modal;
 }
 
-export function initModal() { }
+export function initModal() {}
 
 type ModalOptions = {
-    onCloseFocus?: HTMLElement
-}
+    onCloseFocus?: HTMLElement;
+};
 
 // Modal class
 class Modal {
@@ -45,10 +53,10 @@ class Modal {
     element: HTMLElement;
     options?: ModalOptions;
     constructor(id: string, element: HTMLElement, options?: ModalOptions) {
-        this.id = id
-        this.element = element
-        ztoolkit.log(options)
-        this.options = options
+        this.id = id;
+        this.element = element;
+        ztoolkit.log(options);
+        this.options = options;
     }
     appendTo(root: HTMLElement | Document) {
         root.appendChild(this.element);
@@ -79,10 +87,10 @@ class Modal {
             this.closeKeyStroke,
         );
 
-        ztoolkit.log(this.options)
+        ztoolkit.log(this.options);
         // Focus on the main element when closing
         if (this.options?.onCloseFocus) {
-            this.options.onCloseFocus.focus()
+            this.options.onCloseFocus.focus();
         }
     }
     bindEvents() {

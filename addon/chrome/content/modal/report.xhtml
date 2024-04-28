@@ -1,0 +1,45 @@
+<div>
+    <form id="report-form">
+        <br />
+        <h3>Identification</h3>
+        <div class="form-field">
+            <label for="databases">Number of Databases Used:</label><br />
+            <input
+                id="databases"
+                name="databases"
+                class="input"
+                type="number"
+            />
+        </div>
+        <h3>Inclusion</h3>
+        <div class="form-field">
+            Total of Studies and Reports:
+            <strong><span id="included-total"></span></strong>
+        </div>
+        <div class="form-field">
+            <label for="included-studies">Number of Studies Included:</label
+            ><br />
+            <input
+                id="included-studies"
+                name="included-studies"
+                class="input"
+                type="number"
+            />
+        </div>
+        <div class="form-field">
+            <label for="included-reports">Number of Reports Included:</label
+            ><br />
+            <input
+                id="included-reports"
+                name="included-reports"
+                class="input"
+                type="number"
+            />
+        </div>
+        <div class="btn-container">
+            <input id="prisma-data" name="prisma-data" type="hidden" />
+            <button type="button" action="close" class="btn">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>

@@ -7,7 +7,7 @@
         "skipLibCheck": true,
         "strict": true,
         "sourceMap": true,
-        "esModuleInterop": true,
+        "esModuleInterop": true
     },
     "include": ["src", "typings", "node_modules/zotero-types"],
     "exclude": ["build", "addon"]

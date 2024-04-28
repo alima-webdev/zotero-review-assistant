@@ -1,7 +1,10 @@
-import { ReviewModule } from "./ui/itemTree";
+import { ReviewModule } from "./ui//pane/itemTree";
 import { config } from "../package.json";
 import { getString, initLocale } from "./utils/locale";
-import { registerPrefsScripts, updatePrefsTable } from "./ui/preferenceScript";
+import {
+    registerPrefsScripts,
+    updatePrefsTable,
+} from "./ui//preferences/preferences";
 import { createZToolkit } from "./utils/ztoolkit";
 import { loadPrefs, reloadPrefs } from "./lib/global";
 import { deregisterAllEventListeners } from "./utils/events";
@@ -66,7 +69,7 @@ function onShutdown(): void {
     // Remove addon object
     addon.data.alive = false;
 
-    deregisterAllEventListeners()
+    deregisterAllEventListeners();
     delete Zotero[config.addonInstance];
 }
 

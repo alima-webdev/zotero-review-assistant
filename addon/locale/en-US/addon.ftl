@@ -1,9 +1,11 @@
 startup-begin = Article Status is loading
 startup-finish = Article Status is ready
+
 menuitem-label = Article Status: Helper Examples
 menupopup-label = Article Status: Menupopup
 menuitem-submenulabel = Article Status
 menuitem-filemenulabel = Article Status: File Menuitem
+
 prefs-title = Article Status
 prefs-table-id = Id
 prefs-table-name = Name
@@ -27,3 +29,5 @@ status-total-label = Total
 report-dialog-title = Report on the Selected Items
 report-dialog-table-status = Status
 report-dialog-table-count = Number of Articles
+
+report-reason-default-label = No reason provided

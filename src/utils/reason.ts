@@ -13,27 +13,31 @@ export function getReasonsFromTags(tags: any[]) {
 }
 
 export async function updateGlobalReasons() {
-    document.allReasons = getReasonsFromTags(await ztoolkit.getGlobal("Zotero").Tags.getAll());
+    document.allReasons = getReasonsFromTags(
+        //@ts-ignore Get all tags
+        await ztoolkit.getGlobal("Zotero").Tags.getAll(),
+    );
 }
 
 export function getReasonFromItem(item: Zotero.Item): string {
-    const tags = item.getTags()
-    return tags.filter((obj) => {
-        return obj.tag.includes(reasonTagPrefix);
-    }) .map((obj) => {
+    const tags = item.getTags();
+    return tags
+        .filter((obj) => {
+            return obj.tag.includes(reasonTagPrefix);
+        })
+        .map((obj) => {
             return obj.tag.replace(reasonTagPrefix, "");
         })[0];
 }
 
 export function getReasonsFromItems(items: Zotero.Item[]) {
-    const reasons = []
+    const reasons: string[] = [];
     for (const item of items) {
-        const reason = getReasonFromItem(item)
+        const reason = getReasonFromItem(item);
         // If reason is found and is unique
         if (reason && !reasons.includes(reason)) {
-            reasons.push(reason)
+            reasons.push(reason);
         }
     }
-    return reasons
+    return reasons;
 }
-
