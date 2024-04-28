@@ -16,6 +16,8 @@ import { createModal, initModal } from "../../modal";
 import { parseXHTML } from "../../../utils/parser";
 import { registerEventListener } from "../../../utils/events";
 import { getPRISMASectionFromItem } from "../../../utils/prisma";
+import { Keystroke } from "../../form/keystrokeInput";
+import { log } from "../../../utils/devtools";
 
 // Init Reason Column
 export function initReasonColumn() {
@@ -53,11 +55,17 @@ export function getReasonContextMenu(): MenuitemOptions[] {
 
 // Keyboard Events
 export function reasonKeyboardEvents(ev: KeyboardEvent) {
-    if (ev.key == "r") {
+    const reasonKeystroke = new Keystroke()
+    reasonKeystroke.key = 'R'
+    reasonKeystroke.modifiers.alt = true
+    reasonKeystroke.modifiers.ctrl = false
+    reasonKeystroke.modifiers.shift = false
+    reasonKeystroke.modifiers.meta = false
+
+    if (reasonKeystroke.validateAgainst(ev)) {
         ztoolkit.getGlobal("document").setStatusReason();
     }
 }
-
 export function reasonRegisterGlobalFunctions() {
     // Set Reason
     ztoolkit.getGlobal("document").setStatusReason = async () => {

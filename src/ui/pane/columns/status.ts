@@ -73,13 +73,7 @@ export function statusKeyboardEvents(ev: KeyboardEvent) {
     // log("Fn: statusKeyboardEvents")
     // Add the shortcuts for statuses if they have one
     for (const status of allStatuses) {
-        if (
-            ev.altKey == status.keystroke.modifiers.alt &&
-            ev.ctrlKey == status.keystroke.modifiers.ctrl &&
-            ev.metaKey == status.keystroke.modifiers.meta &&
-            ev.shiftKey == status.keystroke.modifiers.shift &&
-            ev.key == status.keystroke.key
-        ) {
+        if (status.keystroke.validateAgainst(ev)) {
             ztoolkit.getGlobal("document").setReviewStatus(status.tag);
         }
     }
