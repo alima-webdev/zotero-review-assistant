@@ -84,10 +84,10 @@ export function reasonRegisterGlobalFunctions() {
         ) as HTMLInputElement;
         reasonInput.value = "";
 
-        const prismaSelect = document.reasonModal.element.querySelector(
-            "#prisma-section",
-        ) as HTMLInputElement;
-        prismaSelect.value = "";
+        // const prismaSelect = document.reasonModal.element.querySelector(
+        //     "#prisma-section",
+        // ) as HTMLInputElement;
+        // prismaSelect.value = "";
 
         // Pull the current reason to set the input value
         const reasons = getReasonsFromItems(selectedItems);
@@ -95,9 +95,9 @@ export function reasonRegisterGlobalFunctions() {
             reasonInput.value = reasons[0];
 
             // Set the current PRISMA section
-            prismaSelect.value =
-                (getPRISMASectionFromItem(selectedItems[0]) as PRISMASection)
-                    .tag || "";
+            // prismaSelect.value =
+            //     (getPRISMASectionFromItem(selectedItems[0]) as PRISMASection)
+            //         .tag || "";
         }
 
         document.reasonModal.open();
@@ -105,6 +105,7 @@ export function reasonRegisterGlobalFunctions() {
 }
 
 export async function reasonRegisterDOM() {
+    log("Fn: reasonRegisterDOM")
     // Roots
     const rootElement = document.documentElement;
 
@@ -170,21 +171,24 @@ export async function reasonRegisterDOM() {
     };
 
     // PRISMA Section
-    const prismaSelect = reasonModalBody.querySelector(
-        "#prisma-section",
-    ) as HTMLSelectElement;
-    let prismaSelectHTML = ``;
-    for (const section of prismaSections) {
-        const optionTag = document.createElement("option");
-        optionTag.value = section.tag;
-        optionTag.textContent = section.label;
-        prismaSelect.appendChild(optionTag);
-        prismaSelectHTML += `<option value="${section.tag}">${section.label}</option>`;
-    }
+    // const prismaSelect = reasonModalBody.querySelector(
+    //     "#prisma-section",
+    // ) as HTMLSelectElement;
+    // let prismaSelectHTML = ``;
+    // log("Prisma Sections")
+    // log(prismaSections)
+    // for (const section of prismaSections) {
+    //     const optionTag = document.createElement("option");
+    //     optionTag.value = section.tag;
+    //     optionTag.textContent = section.label;
+        // prismaSelect.appendChild(optionTag);
+        // prismaSelectHTML += `<option value="${section.tag}">${section.label}</option>`;
+    // }
+    // prismaSelect.innerHTML = prismaSelectHTML
 
-    registerEventListener(prismaSelect, "change", (ev) => {
-        reasonInput.value = prismaSelect.value.replace(reasonTagPrefix, "");
-    });
+    // registerEventListener(prismaSelect, "change", (ev) => {
+    //     reasonInput.value = prismaSelect.value.replace(reasonTagPrefix, "");
+    // });
     // prismaSelect.addEventListener('change', ev => {
     //     reasonInput.value = prismaSelect.value.replace(reasonTagPrefix, '')
     // })
