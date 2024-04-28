@@ -41,7 +41,10 @@ export class ReviewModule {
     }
     @module
     static deregisterStyleSheet() {
-        ztoolkit.getGlobal('document').querySelector(`#${config.addonRef}-stylesheet`)?.remove()
+        ztoolkit
+            .getGlobal("document")
+            .querySelector(`#${config.addonRef}-stylesheet`)
+            ?.remove();
     }
 
     // Extra Columns

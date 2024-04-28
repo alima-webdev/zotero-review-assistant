@@ -111,7 +111,7 @@ export async function reportRegisterDOM() {
 }
 
 export function reportKeyboardEvents(ev: KeyboardEvent) {
-    if (__env__ == 'development') {
+    if (__env__ == "development") {
         if (ev.key == "t") {
             ztoolkit.getGlobal("document").generateReport();
         }
