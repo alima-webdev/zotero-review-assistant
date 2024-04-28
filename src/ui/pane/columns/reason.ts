@@ -55,12 +55,12 @@ export function getReasonContextMenu(): MenuitemOptions[] {
 
 // Keyboard Events
 export function reasonKeyboardEvents(ev: KeyboardEvent) {
-    const reasonKeystroke = new Keystroke()
-    reasonKeystroke.key = 'R'
-    reasonKeystroke.modifiers.alt = true
-    reasonKeystroke.modifiers.ctrl = false
-    reasonKeystroke.modifiers.shift = false
-    reasonKeystroke.modifiers.meta = false
+    const reasonKeystroke = new Keystroke();
+    reasonKeystroke.key = "R";
+    reasonKeystroke.modifiers.alt = true;
+    reasonKeystroke.modifiers.ctrl = false;
+    reasonKeystroke.modifiers.shift = false;
+    reasonKeystroke.modifiers.meta = false;
 
     if (reasonKeystroke.validateAgainst(ev)) {
         ztoolkit.getGlobal("document").setStatusReason();

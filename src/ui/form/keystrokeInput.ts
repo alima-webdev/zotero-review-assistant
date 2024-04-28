@@ -55,19 +55,31 @@ export class Keystroke {
     };
     key: string = "";
 
-    constructor() { }
+    constructor() {}
 
     static fromString(keystrokeString: string) {
-        log("Fn: Keystroke.fromString")
+        log("Fn: Keystroke.fromString");
         const keystroke = new Keystroke();
-        keystroke.modifiers.alt = (keystrokeString.includes(keyString!.alt) || keystrokeString.includes("Alt")) ? true : false;
-        keystroke.modifiers.ctrl = (keystrokeString.includes(keyString!.ctrl) || keystrokeString.includes("Ctrl")) ? true : false;
-        keystroke.modifiers.meta = (keystrokeString.includes(keyString!.meta) || keystrokeString.includes("Meta"))
-            ? true
-            : false;
-        keystroke.modifiers.shift = (keystrokeString.includes(keyString!.shift) || keystrokeString.includes("Shift"))
-            ? true
-            : false;
+        keystroke.modifiers.alt =
+            keystrokeString.includes(keyString!.alt) ||
+            keystrokeString.includes("Alt")
+                ? true
+                : false;
+        keystroke.modifiers.ctrl =
+            keystrokeString.includes(keyString!.ctrl) ||
+            keystrokeString.includes("Ctrl")
+                ? true
+                : false;
+        keystroke.modifiers.meta =
+            keystrokeString.includes(keyString!.meta) ||
+            keystrokeString.includes("Meta")
+                ? true
+                : false;
+        keystroke.modifiers.shift =
+            keystrokeString.includes(keyString!.shift) ||
+            keystrokeString.includes("Shift")
+                ? true
+                : false;
         keystroke.key = keystrokeString.split("").at(-1) || "";
         return keystroke;
     }
@@ -91,14 +103,13 @@ export class Keystroke {
     }
 
     validateAgainst(ev: KeyboardEvent) {
-
         return (
             ev.altKey == this.modifiers.alt &&
             ev.ctrlKey == this.modifiers.ctrl &&
             ev.metaKey == this.modifiers.meta &&
             ev.shiftKey == this.modifiers.shift &&
             ev.code == "Key" + this.key.toUpperCase()
-        )
+        );
     }
 }
 
@@ -135,7 +146,7 @@ class KeystrokeInput {
 
     constructor(input: HTMLInputElement) {
         this.input = input as HTMLKeystrokeInputElement;
-        this.input.setAttribute('readonly', 'true')
+        this.input.setAttribute("readonly", "true");
 
         this.bindEvents();
     }
