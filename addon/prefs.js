@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const statusTagPrefix = "Status: ";
 const reasonTagPrefix = statusTagPrefix + "Reason: ";
 pref("__prefsPrefix__.enable", true);
@@ -14,7 +13,7 @@ pref(
             color: "#60a5fa",
             askForReason: false,
             default: false,
-            keyboardShortcut: "i",
+            keyboardShortcut: "Alt I",
         },
         {
             name: "excluded",
@@ -23,7 +22,7 @@ pref(
             color: "#f87171",
             askForReason: true,
             default: false,
-            keyboardShortcut: "x",
+            keyboardShortcut: "Alt X",
         },
         {
             name: "pending",
@@ -32,7 +31,7 @@ pref(
             color: "#d4d4d4",
             askForReason: false,
             default: false,
-            keyboardShortcut: "p",
+            keyboardShortcut: "Alt P",
         },
         {
             name: "unsure",
@@ -41,7 +40,7 @@ pref(
             color: "#facc15",
             askForReason: false,
             default: false,
-            keyboardShortcut: "u",
+            keyboardShortcut: "Alt U",
         },
         {
             name: "no-status",
@@ -50,7 +49,7 @@ pref(
             color: "transparent",
             askForReason: false,
             default: true,
-            keyboardShortcut: "-",
+            keyboardShortcut: "Alt -",
         },
     ]),
 );

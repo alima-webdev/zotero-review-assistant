@@ -1,3 +1,4 @@
+import { log } from "../../utils/devtools";
 import { registerEventListener } from "../../utils/events";
 
 type KeystrokeModifiers = {
@@ -7,26 +8,26 @@ type KeystrokeModifiers = {
     shift: boolean;
 };
 
-const keyStringMac = {
+export const keyStringMac = {
     alt: "⌥",
     ctrl: "⌃",
     meta: "⌘",
     shift: "⇧",
 };
-const keyStringWin = {
+export const keyStringWin = {
     alt: "Alt",
     ctrl: "Ctrl",
     meta: "Windows",
     shift: "Shift",
 };
-const keyStringLinux = {
+export const keyStringLinux = {
     alt: "Alt",
     ctrl: "Ctrl",
     meta: "Super",
     shift: "Shift",
 };
 
-function getKeyStringByOS() {
+export function getKeyStringByOS() {
     if (Zotero.isMac) return keyStringMac;
     if (Zotero.isWin) return keyStringWin;
     if (Zotero.isLinux) return keyStringLinux;
@@ -43,7 +44,7 @@ function getKeyStringByOS() {
     // }
 }
 
-const keyString = getKeyStringByOS();
+export const keyString = getKeyStringByOS();
 
 export class Keystroke {
     modifiers: KeystrokeModifiers = {
@@ -54,28 +55,31 @@ export class Keystroke {
     };
     key: string = "";
 
+    constructor() {}
+
     static fromString(keystrokeString: string) {
+        log("Fn: Keystroke.fromString");
         const keystroke = new Keystroke();
-        keystroke.modifiers.alt = keystrokeString.includes(
-            keyString?.alt || "Alt",
-        )
-            ? true
-            : false;
-        keystroke.modifiers.ctrl = keystrokeString.includes(
-            keyString?.ctrl || "Control",
-        )
-            ? true
-            : false;
-        keystroke.modifiers.meta = keystrokeString.includes(
-            keyString?.meta || "Meta",
-        )
-            ? true
-            : false;
-        keystroke.modifiers.shift = keystrokeString.includes(
-            keyString?.shift || "Shift",
-        )
-            ? true
-            : false;
+        keystroke.modifiers.alt =
+            keystrokeString.includes(keyString!.alt) ||
+            keystrokeString.includes("Alt")
+                ? true
+                : false;
+        keystroke.modifiers.ctrl =
+            keystrokeString.includes(keyString!.ctrl) ||
+            keystrokeString.includes("Ctrl")
+                ? true
+                : false;
+        keystroke.modifiers.meta =
+            keystrokeString.includes(keyString!.meta) ||
+            keystrokeString.includes("Meta")
+                ? true
+                : false;
+        keystroke.modifiers.shift =
+            keystrokeString.includes(keyString!.shift) ||
+            keystrokeString.includes("Shift")
+                ? true
+                : false;
         keystroke.key = keystrokeString.split("").at(-1) || "";
         return keystroke;
     }
@@ -87,8 +91,6 @@ export class Keystroke {
         if (this.modifiers.meta) modifiers += keyString?.meta + " ";
         if (this.modifiers.shift) modifiers += keyString?.shift + " ";
         const strKeystroke = modifiers + this.key;
-
-        // ztoolkit.log(this.key);
         return strKeystroke;
     }
 
@@ -98,6 +100,16 @@ export class Keystroke {
             key: this.key,
         };
         return JSON.stringify(data);
+    }
+
+    validateAgainst(ev: KeyboardEvent) {
+        return (
+            ev.altKey == this.modifiers.alt &&
+            ev.ctrlKey == this.modifiers.ctrl &&
+            ev.metaKey == this.modifiers.meta &&
+            ev.shiftKey == this.modifiers.shift &&
+            ev.code == "Key" + this.key.toUpperCase()
+        );
     }
 }
 
@@ -134,6 +146,7 @@ class KeystrokeInput {
 
     constructor(input: HTMLInputElement) {
         this.input = input as HTMLKeystrokeInputElement;
+        this.input.setAttribute("readonly", "true");
 
         this.bindEvents();
     }
@@ -164,16 +177,24 @@ class KeystrokeInput {
         // this.input.addEventListener("keypress", this.bypassEvent.bind(this));
     }
     bypassEvent(ev: KeyboardEvent) {
+        // log("Press")
         ev.preventDefault();
+        ev.stopImmediatePropagation();
+        return false;
     }
     handleKeyUpEvent(ev: KeyboardEvent) {
+        // log("KeyUp")
         this.input.blur();
         ev.preventDefault();
+        ev.stopImmediatePropagation();
+        return false;
     }
     handleKeyDownEvent(ev: KeyboardEvent) {
         if (ev.repeat) return;
+        // log("KeyDown")
+
         // Get the keystroke and construct the class
-        const key = isMainKeyValid(ev.key) ? ev.key : "";
+        const key = isMainKeyValid(ev.code) ? ev.code.replace("Key", "") : "";
         const isAlt = ev.altKey;
         const isCtrl = ev.ctrlKey;
         const isMeta = ev.metaKey;
@@ -194,6 +215,7 @@ class KeystrokeInput {
 
         // Prevent the default behavior
         ev.preventDefault();
+        ev.stopImmediatePropagation();
         return false;
     }
 }
