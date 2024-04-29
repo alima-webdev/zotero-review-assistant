@@ -1,4 +1,6 @@
 # Zotero Review Assistant Plugin
+[![zotero target version](https://img.shields.io/badge/Zotero-7-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
+[![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
 https://github.com/alima-webdev/zotero-review-assistant/assets/65861197/d350ec1c-214d-4fc3-9f4b-bd23c549a4fd
 
