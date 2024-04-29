@@ -1,9 +1,9 @@
 # Zotero Review Assistant Plugin
 
+https://github.com/alima-webdev/zotero-review-helper/assets/65861197/d350ec1c-214d-4fc3-9f4b-bd23c549a4fd
+
 ## Overview
 This plugin for Zotero aims to streamline the process of organizing articles for review research. It provides users with the ability to assign statuses such as "Included," "Excluded," or "Unsure" to articles, along with reasons for their current status. Additionally, it offers an automated feature to generate PRISMA flow diagrams, simplifying the reporting process.
-
-https://github.com/alima-webdev/zotero-review-helper/assets/65861197/d350ec1c-214d-4fc3-9f4b-bd23c549a4fd
 
 ## Features
 - **Status Assignment**: Users can easily assign a status to each article in their Zotero library, allowing for efficient organization and tracking of inclusion/exclusion decisions.
