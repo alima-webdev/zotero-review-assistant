@@ -1,6 +1,6 @@
 {
     "name": "zotero-review-assistant",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "Zotero Review Assistant",
     "config": {
         "addonName": "Zotero Review Assistant",
