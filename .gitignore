@@ -128,3 +128,4 @@ dist
 
 # Build directory
 build/
+package-lock.json
