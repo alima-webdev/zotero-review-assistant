@@ -24,8 +24,4 @@ Contributions to the plugin are welcome! If you have ideas for improvements or w
 
 ## License
 
-This plugin is released under the [insert license here] license. See the LICENSE file for more details.
-
-## Acknowledgments
-
-We would like to thank the Zotero community for their support and feedback in the development of this plugin.
+This plugin is released under the GNU GENERAL PUBLIC license. See the LICENSE file for more details.
