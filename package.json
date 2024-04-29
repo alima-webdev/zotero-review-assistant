@@ -41,10 +41,7 @@
         "zotero-plugin-toolkit": "^2.3.15"
     },
     "devDependencies": {
-        "@types/html-docx-js": "^0.3.4",
-        "@types/micromodal": "^0.3.5",
         "@types/node": "^20.10.4",
-        "@types/pdfmake": "^0.2.9",
         "@typescript-eslint/eslint-plugin": "^7.3.1",
         "@typescript-eslint/parser": "^7.1.1",
         "autoprefixer": "^10.4.19",
