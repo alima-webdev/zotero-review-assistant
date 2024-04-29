@@ -1,12 +1,12 @@
-startup-begin = Article Status is loading
-startup-finish = Article Status is ready
+startup-begin = Review Assistant is loading
+startup-finish = Review Assistant is ready
 
-menuitem-label = Article Status: Helper Examples
-menupopup-label = Article Status: Menupopup
-menuitem-submenulabel = Article Status
-menuitem-filemenulabel = Article Status: File Menuitem
+menuitem-label = Review Assistant: Helper Examples
+menupopup-label = Review Assistant: Menupopup
+menuitem-submenulabel = Review Assistant
+menuitem-filemenulabel = Review Assistant: File Menuitem
 
-prefs-title = Article Status
+prefs-title = Review Assistant
 prefs-table-id = Id
 prefs-table-name = Name
 prefs-table-tag = Tag
@@ -16,7 +16,7 @@ prefs-table-askforreason = Ask for a Reason
 prefs-table-default = Default Status
 prefs-table-keyboardshortcut = Keyboard Shortcut
 
-context-menu-status = Article Status
+context-menu-status = Review Assistant
 
 reason-dialog-title = Reason
 reason-dialog-text = Provide a reason for the selected status (optional)

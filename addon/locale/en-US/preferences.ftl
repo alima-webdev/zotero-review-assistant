@@ -1,4 +1,4 @@
-pref-title = Article Status
+pref-title = Review Assistant
 pref-label = Label
 pref-name = Name (must be unique)
 pref-tag = Tag Name
