@@ -1,3 +1,5 @@
+@use "sass:map";
+
 $black: #000;
 $darker: #333;
 $dark: #444;
@@ -6,7 +8,33 @@ $light: #e5e7eb;
 $lighter: #f3f4f6;
 $white: #fff;
 
+// TEST
+$gray: (
+    '50': #fafafa,
+    '100': #f5f5f5,
+    '200': #e5e5e5,
+    '300': #d4d4d4,
+    '400': #a3a3a3,
+    '500': #737373,
+    '600': #525252,
+    '700': #404040,
+    '800': #262626,
+    '900': #171717,
+    '950': #0a0a0a,
+);
+// $dark: $slate('50');
+$muted: map.get($gray, "500");
+$dark-lit: map.get($gray, "700");
+$dark: map.get($gray, "800");
+$darker: map.get($gray, "900");
+$almost-black: darken($dark, 5);
+$black: map.get($gray, "950");
+// -- TEST
+
 :root {
+
+    /* Text Colors */
+    --zrh-muted: #{$muted};
 
     /* Buttons */
     --zrh-btn-bg: #{$light};
@@ -25,7 +53,7 @@ $white: #fff;
     --zrh-input-bg: #{$lighter};
     --zrh-input-border: #{$light};
 
-    --zrh-input-bg-focus: transparent;
+    --zrh-input-bg-focus: #{$lighter};
     --zrh-input-border-focus: #{$primary};
 
     /* Autocomplete */
@@ -45,8 +73,8 @@ $white: #fff;
         --zrh-btn-bg: #{$dark};
         --zrh-btn-color: #{$light};
 
-        --zrh-btn-bg-hover: #{$lighter};
-        --zrh-btn-color-hover: #{$darker};
+        --zrh-btn-bg-hover: #{$dark-lit};
+        --zrh-btn-color-hover: #{$light};
 
         --zrh-btn-primary-bg: #{$primary};
         --zrh-btn-primary-color: #{$darker};
@@ -55,10 +83,10 @@ $white: #fff;
         --zrh-btn-primary-color-hover: #{$darker};
 
         /* Input */
-        --zrh-input-bg: #{$darker};
+        --zrh-input-bg: #{$almost-black};
         --zrh-input-border: #{$dark};
 
-        --zrh-input-bg-focus: #{$darker};
+        --zrh-input-bg-focus: #{$almost-black};
         --zrh-input-border-focus: #{$primary};
 
         /* Autocomplete */
@@ -66,8 +94,8 @@ $white: #fff;
         --zrh-autocomplete-bg-hover: #{$dark};
 
         /* Modal */
-        --zrh-modal-bg: #{$black};
+        --zrh-modal-bg: #{$darker};
         --zrh-modal-color: #{$white};
-        --zrh-modal-overlay-bg: #{rgba($white, .50)};
+        --zrh-modal-overlay-bg: #{rgba($white, .25)};
     }
 }
