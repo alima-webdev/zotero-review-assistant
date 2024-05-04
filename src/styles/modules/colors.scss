@@ -10,17 +10,17 @@ $white: #fff;
 
 // TEST
 $gray: (
-    '50': #fafafa,
-    '100': #f5f5f5,
-    '200': #e5e5e5,
-    '300': #d4d4d4,
-    '400': #a3a3a3,
-    '500': #737373,
-    '600': #525252,
-    '700': #404040,
-    '800': #262626,
-    '900': #171717,
-    '950': #0a0a0a,
+    "50": #fafafa,
+    "100": #f5f5f5,
+    "200": #e5e5e5,
+    "300": #d4d4d4,
+    "400": #a3a3a3,
+    "500": #737373,
+    "600": #525252,
+    "700": #404040,
+    "800": #262626,
+    "900": #171717,
+    "950": #0a0a0a,
 );
 // $dark: $slate('50');
 $muted: map.get($gray, "500");
@@ -32,7 +32,6 @@ $black: map.get($gray, "950");
 // -- TEST
 
 :root {
-
     /* Text Colors */
     --zrh-muted: #{$muted};
 
@@ -63,12 +62,11 @@ $black: map.get($gray, "950");
     /* Modal */
     --zrh-modal-bg: #{$white};
     --zrh-modal-color: #{$darker};
-    --zrh-modal-overlay-bg: #{rgba($darker, .50)};
+    --zrh-modal-overlay-bg: #{rgba($darker, 0.5)};
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-
         /* Buttons */
         --zrh-btn-bg: #{$dark};
         --zrh-btn-color: #{$light};
@@ -96,6 +94,6 @@ $black: map.get($gray, "950");
         /* Modal */
         --zrh-modal-bg: #{$darker};
         --zrh-modal-color: #{$white};
-        --zrh-modal-overlay-bg: #{rgba($white, .25)};
+        --zrh-modal-overlay-bg: #{rgba($white, 0.25)};
     }
 }

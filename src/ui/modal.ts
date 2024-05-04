@@ -40,7 +40,7 @@ export function createModal(
     return modal;
 }
 
-export function initModal() { }
+export function initModal() {}
 
 type ModalOptions = {
     onCloseFocus?: HTMLElement;
