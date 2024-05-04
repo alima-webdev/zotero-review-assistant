@@ -33,7 +33,7 @@ export class ReviewModule {
             properties: {
                 type: "text/css",
                 rel: "stylesheet",
-                href: `chrome://${config.addonRef}/content/styles/styles.css`,
+                href: `chrome://${config.addonRef}/content/styles/styles.css?${Date.now()}`,
                 id: `${config.addonRef}-stylesheet`,
             },
         });

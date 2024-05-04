@@ -1,0 +1,73 @@
+$black: #000;
+$darker: #333;
+$dark: #444;
+$primary: #38bdf8;
+$light: #e5e7eb;
+$lighter: #f3f4f6;
+$white: #fff;
+
+:root {
+
+    /* Buttons */
+    --zrh-btn-bg: #{$light};
+    --zrh-btn-color: #{$darker};
+
+    --zrh-btn-bg-hover: #{$lighter};
+    --zrh-btn-color-hover: #{$darker};
+
+    --zrh-btn-primary-bg: #{$primary};
+    --zrh-btn-primary-color: #{$darker};
+
+    --zrh-btn-primary-bg-hover: #bfdbfe;
+    --zrh-btn-primary-color-hover: #{$darker};
+
+    /* Input */
+    --zrh-input-bg: #{$lighter};
+    --zrh-input-border: #{$light};
+
+    --zrh-input-bg-focus: transparent;
+    --zrh-input-border-focus: #{$primary};
+
+    /* Autocomplete */
+    --zrh-autocomplete-bg: #{$white};
+    --zrh-autocomplete-bg-hover: #{$lighter};
+
+    /* Modal */
+    --zrh-modal-bg: #{$white};
+    --zrh-modal-color: #{$darker};
+    --zrh-modal-overlay-bg: #{rgba($darker, .50)};
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+
+        /* Buttons */
+        --zrh-btn-bg: #{$dark};
+        --zrh-btn-color: #{$light};
+
+        --zrh-btn-bg-hover: #{$lighter};
+        --zrh-btn-color-hover: #{$darker};
+
+        --zrh-btn-primary-bg: #{$primary};
+        --zrh-btn-primary-color: #{$darker};
+
+        --zrh-btn-primary-bg-hover: #bfdbfe;
+        --zrh-btn-primary-color-hover: #{$darker};
+
+        /* Input */
+        --zrh-input-bg: #{$darker};
+        --zrh-input-border: #{$dark};
+
+        --zrh-input-bg-focus: #{$darker};
+        --zrh-input-border-focus: #{$primary};
+
+        /* Autocomplete */
+        --zrh-autocomplete-bg: #{$darker};
+        --zrh-autocomplete-bg-hover: #{$dark};
+
+        /* Modal */
+        --zrh-modal-bg: #{$black};
+        --zrh-modal-color: #{$white};
+        --zrh-modal-overlay-bg: #{rgba($white, .50)};
+    }
+}

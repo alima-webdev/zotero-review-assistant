@@ -3,17 +3,6 @@
     margin-bottom: 1rem;
 }
 
-#review-status-selector {
-    position: absolute;
-    padding: 4px 8px;
-    border: 1px solid #e5e7eb;
-    border-radius: 4px;
-    background: #fff;
-    box-shadow:
-        0 10px 15px -3px rgb(0 0 0 / 0.1),
-        0 4px 6px -4px rgb(0 0 0 / 0.1);
-}
-
 .input {
     margin: 1rem 0;
     padding: 0.75rem 1rem;
@@ -21,14 +10,14 @@
     display: inline-block;
     width: auto;
 
-    border: 1px solid #e5e7eb;
+    background: var(--zrh-input-bg);
+    border: 1px solid var(--zrh-input-border);
     border-radius: 2px;
-
-    background: #fff;
 }
 
 .input:focus {
-    border-color: #60a5fa;
+    background: var(--zrh-input-bg-focus);
+    border-color: var(--zrh-input-border-focus);
     outline: none;
 }
 
@@ -54,13 +43,11 @@
 
 /* Autocomplete */
 .autocomplete {
-    margin-top: -4px;
-    /* margin-left: 3px; */
+    margin-top: -10px;
+    overflow: hidden;
 
-    background: #fff;
-    border: 1px solid #f3f4f6;
-    border-top: none;
-    border-radius: 2px;
+    background: var(--zrh-autocomplete-bg);
+    border-radius: 4px;
     box-shadow:
         0 4px 6px -1px rgb(0 0 0 / 0.1),
         0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -69,13 +56,13 @@
 }
 
 .autocomplete > * {
-    padding: 0.75rem 1rem;
+    padding: 1rem 1.25rem;
 }
 
 .autocomplete > *:hover,
 .autocomplete [aria-selected="true"],
 .autocomplete .selected {
-    background: #e5e7eb;
+    background: var(--zrh-autocomplete-bg-hover);
 }
 
 /* Buttons */
@@ -86,19 +73,23 @@
     border-radius: 2px;
 
     border: none;
-    background: #e5e7eb;
+    background: var(--zrh-btn-bg);
+    color: var(--zrh-btn-color);
 }
 
 .btn:hover {
-    background: #f3f4f6;
+    background: var(--zrh-btn-bg-hover);
+    color: var(--zrh-btn-color-hover);
 }
 
 .btn-primary {
-    background: #7dd3fc;
+    background: var(--zrh-btn-primary-bg);
+    color: var(--zrh-btn-primary-color);
 }
 
 .btn-primary:hover {
-    background: #bfdbfe;
+    background: var(--zrh-btn-primary-bg-hover);
+    color: var(--zrh-btn-primary-color-hover);
 }
 
 .btn-container {
