@@ -136,7 +136,7 @@ export async function reasonRegisterDOM() {
     const reasonInput = reasonModalBody.querySelector(
         "#input-reason",
     ) as HTMLInputElement;
-    reasonInput.setAttribute("autofocus", "true")
+    reasonInput.setAttribute("autofocus", "true");
     const autocompleteContainer = reasonModalBody.querySelector(
         "#input-reason-autocomplete",
     ) as HTMLDivElement;
