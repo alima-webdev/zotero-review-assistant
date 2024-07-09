@@ -61,14 +61,24 @@ export async function reportRegisterDOM() {
     reportModalBody.appendChild(reportNodesImported);
 
     // Modal
-    const itemTreeElement = ztoolkit
-        .getGlobal("document")
-        .querySelector("#item-tree-main-default") as HTMLElement;
     const reportModal = createModal(
         "report-modal",
         getString("report-dialog-title"),
         reportModalBody,
-        { onCloseFocus: itemTreeElement },
+        {
+            onClose: () => {
+                // Focus element: selected item
+                let focusElement = ztoolkit
+                    .getGlobal("document")
+                    .querySelector("#item-tree-main-default") as HTMLElement;
+
+                focusElement.focus()
+                if (focusElement.querySelector(".focused") !== null) {
+                    focusElement = focusElement.querySelector(".focused") as HTMLElement;
+                }
+                focusElement.focus();
+            }
+        },
     );
     reportModal.appendTo(rootElement);
     document.reportModal = reportModal;

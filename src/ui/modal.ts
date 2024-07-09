@@ -43,7 +43,7 @@ export function createModal(
 export function initModal() {}
 
 type ModalOptions = {
-    onCloseFocus?: HTMLElement;
+    onClose?: () => void;
 };
 
 // Modal class
@@ -94,8 +94,11 @@ class Modal {
         );
 
         // Focus on the main element when closing
-        if (this.options?.onCloseFocus) {
-            this.options.onCloseFocus.focus();
+        // if (this.options?.onCloseFocus) {
+        //     this.options.onCloseFocus.focus();
+        // }
+        if(this.options?.onClose) {
+            this.options?.onClose()
         }
     }
     bindEvents() {
