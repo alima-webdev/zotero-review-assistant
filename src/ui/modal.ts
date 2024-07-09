@@ -97,8 +97,8 @@ class Modal {
         // if (this.options?.onCloseFocus) {
         //     this.options.onCloseFocus.focus();
         // }
-        if(this.options?.onClose) {
-            this.options?.onClose()
+        if (this.options?.onClose) {
+            this.options?.onClose();
         }
     }
     bindEvents() {

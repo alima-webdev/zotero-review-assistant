@@ -72,12 +72,14 @@ export async function reportRegisterDOM() {
                     .getGlobal("document")
                     .querySelector("#item-tree-main-default") as HTMLElement;
 
-                focusElement.focus()
+                focusElement.focus();
                 if (focusElement.querySelector(".focused") !== null) {
-                    focusElement = focusElement.querySelector(".focused") as HTMLElement;
+                    focusElement = focusElement.querySelector(
+                        ".focused",
+                    ) as HTMLElement;
                 }
                 focusElement.focus();
-            }
+            },
         },
     );
     reportModal.appendTo(rootElement);
