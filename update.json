@@ -3,7 +3,7 @@
         "zoteroreviewassistant@alima-webdev.com": {
             "updates": [
                 {
-                    "version": "1.0.1",
+                    "version": "1.0.2",
                     "update_link": "https://github.com/alima-webdev/zotero-review-assistant/releases/latest/download/zotero-review-assistant.xpi",
                     "applications": {
                         "zotero": {
