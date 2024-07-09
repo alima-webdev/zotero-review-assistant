@@ -119,15 +119,18 @@ export async function reasonRegisterDOM() {
     const formNodesImported = document.importNode(formNodes, true);
     reasonModalBody.appendChild(formNodesImported);
 
+    // Focus element: selected item
+    let focusElement = ztoolkit.getGlobal("document").querySelector("#item-tree-main-default") as HTMLElement
+    if(focusElement.querySelector(".focused") !== null) {
+         focusElement = (focusElement.querySelector(".focused") as HTMLElement)
+    }
+
     // Modal
-    const itemTreeElement = ztoolkit
-        .getGlobal("document")
-        .querySelector("#item-tree-main-default") as HTMLElement;
     const reasonModal = createModal(
         "reason-modal",
         getString("reason-dialog-title"),
         reasonModalBody,
-        { onCloseFocus: itemTreeElement },
+        { onCloseFocus: focusElement },
     );
     reasonModal.appendTo(rootElement);
     document.reasonModal = reasonModal;
