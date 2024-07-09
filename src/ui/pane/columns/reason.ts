@@ -120,9 +120,11 @@ export async function reasonRegisterDOM() {
     reasonModalBody.appendChild(formNodesImported);
 
     // Focus element: selected item
-    let focusElement = ztoolkit.getGlobal("document").querySelector("#item-tree-main-default") as HTMLElement
-    if(focusElement.querySelector(".focused") !== null) {
-         focusElement = (focusElement.querySelector(".focused") as HTMLElement)
+    let focusElement = ztoolkit
+        .getGlobal("document")
+        .querySelector("#item-tree-main-default") as HTMLElement;
+    if (focusElement.querySelector(".focused") !== null) {
+        focusElement = focusElement.querySelector(".focused") as HTMLElement;
     }
 
     // Modal
