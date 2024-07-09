@@ -94,6 +94,8 @@ export function reasonRegisterGlobalFunctions() {
         if (reasons.length == 1) {
             reasonInput.value = reasons[0];
 
+            reasonInput.focus();
+
             // Set the current PRISMA section
             // prismaSelect.value =
             //     (getPRISMASectionFromItem(selectedItems[0]) as PRISMASection)
