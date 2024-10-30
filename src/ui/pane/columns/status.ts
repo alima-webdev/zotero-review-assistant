@@ -13,7 +13,7 @@ import { getString } from "../../../utils/locale";
 import { allStatuses } from "../../../lib/global";
 import { log } from "../../../utils/devtools";
 
-export function initStatusColumn() {
+export async function initStatusColumn() {
     const columnId = "status";
     const getStatusColumnHook = (
         field: string,
@@ -49,12 +49,14 @@ export function initStatusColumn() {
     const columnOptions = { renderCell: renderStatusCell };
     const columnName = getString("status-column-header");
 
-    ztoolkit.ItemTree.register(
+    await ztoolkit.ItemTree.register(
         columnId,
         columnName,
         getStatusColumnHook,
         columnOptions,
     );
+
+    await ztoolkit.ItemTree.refresh();
 }
 
 export function getStatusContextMenu() {

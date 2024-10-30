@@ -20,7 +20,7 @@ import { Keystroke } from "../../form/keystrokeInput";
 import { log } from "../../../utils/devtools";
 
 // Init Reason Column
-export function initReasonColumn() {
+export async function initReasonColumn() {
     const columnReasonId = "reason";
     const getReasonColumnHook = (
         field: string,
@@ -33,12 +33,14 @@ export function initReasonColumn() {
 
     const columnReasonOptions = {};
     const columnReasonName: string = getString("reason-column-header");
-    ztoolkit.ItemTree.register(
+    await ztoolkit.ItemTree.register(
         columnReasonId,
         columnReasonName,
         getReasonColumnHook,
         columnReasonOptions,
     );
+
+    await ztoolkit.ItemTree.refresh();
 }
 
 // Context Menu
