@@ -21,7 +21,15 @@ This plugin for Zotero aims to streamline the process of organizing articles for
 
 ## Installation
 
-To install the plugin, simply download the latest release from the Releases section and follow the installation instructions provided in the README file.
+1. **Download the Plugin**
+    -   Go to the Releases section and download the latests .xpi file.
+
+2. **Install in Zotero**
+    -   Open Zotero
+    -   Navigate to **Tools > Plugins**
+    -   Click the gear icon in the top-right corner of the window.
+    -   Select **Install Plugin From File...**
+    -   Choose the downloaded .xpi file
 
 ## Contribution
 
