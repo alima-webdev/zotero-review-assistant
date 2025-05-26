@@ -1,0 +1,40 @@
+# Zotero Review Assistant Plugin
+
+[![zotero target version](https://img.shields.io/badge/Zotero-7-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
+[![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
+
+### IMPORTANT: This plugin is only compatible with Zotero 7
+
+https://github.com/alima-webdev/zotero-review-assistant/assets/65861197/d350ec1c-214d-4fc3-9f4b-bd23c549a4fd
+
+## Overview
+
+This plugin for Zotero aims to streamline the process of organizing articles for review research. It provides users with the ability to assign statuses such as "Included," "Excluded," or "Unsure" to articles, along with reasons for their current status. Additionally, it offers an automated feature to generate PRISMA flow diagrams, simplifying the reporting process.
+
+## Features
+
+-   **Status Assignment**: Users can easily assign a status to each article in their Zotero library, allowing for efficient organization and tracking of inclusion/exclusion decisions.
+-   **Reason Documentation**: Alongside status assignment, users can provide detailed reasons for each status, facilitating transparency and reproducibility in the review process.
+-   **PRISMA Flow Diagram Generation**: The plugin automates the creation of PRISMA flow diagrams, saving time and effort in reporting the flow of literature through the review process.
+-   **Customization**: The plugin is customizable to fit various review methodologies and reporting standards, ensuring flexibility for different research projects.
+-   **Intuitive Interface**: Designed with user experience in mind, the plugin offers a user-friendly interface that integrates seamlessly with Zotero's existing functionalities.
+
+## Installation
+
+1. **Download the Plugin**
+    -   Go to the Releases section and download the latests .xpi file.
+
+2. **Install in Zotero**
+    -   Open Zotero
+    -   Navigate to **Tools > Plugins**
+    -   Click the gear icon in the top-right corner of the window.
+    -   Select **Install Plugin From File...**
+    -   Choose the downloaded .xpi file
+
+## Contribution
+
+Contributions to the plugin are welcome! If you have ideas for improvements or would like to report a bug, please open an issue on GitHub.
+
+## License
+
+This plugin is released under the GNU GENERAL PUBLIC license. See the LICENSE file for more details.
