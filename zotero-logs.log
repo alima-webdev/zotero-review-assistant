@@ -1,0 +1,639 @@
+05/17/2025 23:30:41 - Shutdown {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/"}
+05/17/2025 23:30:45 - RELOAD
+05/17/2025 23:30:45 - READY
+05/17/2025 23:31:02 - Shutdown {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/"}
+05/17/2025 23:31:22 - - commentsTagPrefix #Status: Comments: 
+05/17/2025 23:31:32 - Shutdown {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/"}
+05/17/2025 23:31:42 - - commentsTagPrefix #Status: Comments: 
+05/17/2025 23:31:45 - Shutdown {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/"}
+05/17/2025 23:33:40 - - commentsTagPrefix #Status: Comments: 
+05/17/2025 23:34:15 - - commentsTagPrefix #Status: Comments: 
+05/17/2025 23:34:30 - - commentsTagPrefix #Status: Comments: 
+05/17/2025 23:34:49 - - commentsTagPrefix #Status: Comments: 
+05/17/2025 23:35:01 - - commentsTagPrefix #Status: Comments: 
+05/17/2025 23:35:19 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/17/2025 23:35:45 - - commentsTagPrefix #Status: Comments: 
+05/17/2025 23:36:51 - - commentsTagPrefix #Status: Comments: 
+05/17/2025 23:37:08 - - commentsTagPrefix #Status: Comments: 
+05/17/2025 23:37:22 - Prefs
+05/17/2025 23:37:36 - Prefs
+05/17/2025 23:40:38 - - commentsTagPrefix #Status: Comments: 
+05/17/2025 23:41:13 - Prefs
+05/17/2025 23:56:31 - Prefs
+05/17/2025 23:57:29 - Prefs
+05/17/2025 23:58:11 - Prefs
+05/18/2025 00:01:03 - Prefs
+05/18/2025 00:01:13 - Prefs
+05/18/2025 00:04:24 - Prefs
+05/18/2025 00:11:28 - Prefs
+05/18/2025 00:11:50 - Prefs
+05/18/2025 00:14:27 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/18/2025 00:14:27 - Prefs
+05/18/2025 00:42:13 - Prefs
+05/18/2025 00:42:28 - - commentsTagPrefix #Status: Comments: 
+05/18/2025 00:42:42 - - commentsTagPrefix #Status: Comments: 
+05/18/2025 00:44:03 - - commentsTagPrefix #Status: Comments: 
+05/18/2025 00:44:23 - - commentsTagPrefix #Status: Comments: 
+05/18/2025 00:59:13 - - commentsTagPrefix #Status: Comments: 
+05/18/2025 00:59:46 - - commentsTagPrefix #Status: Comments: 
+05/18/2025 01:10:50 - - commentsTagPrefix #Status: Comments: 
+05/18/2025 01:11:26 - - commentsTagPrefix #Status: Comments: 
+05/18/2025 01:12:23 - - commentsTagPrefix #Status: Comments: 
+05/18/2025 01:12:47 - RELOAD
+05/18/2025 01:13:14 - RELOAD
+05/18/2025 01:15:58 - RELOAD
+05/18/2025 01:15:58 - {}
+05/18/2025 01:16:50 - RELOAD
+05/18/2025 01:16:50 - INDEX
+05/18/2025 01:16:50 - EFFECT
+05/18/2025 01:17:07 - RELOAD
+05/18/2025 01:17:07 - INDEX
+05/18/2025 01:17:07 - EFFECT
+05/18/2025 01:45:01 - RELOAD
+05/18/2025 01:45:02 - INDEX
+05/18/2025 01:45:43 - RELOAD
+05/18/2025 01:45:43 - INDEX
+05/18/2025 01:46:51 - RELOAD
+05/18/2025 01:46:51 - INDEX
+05/18/2025 01:47:15 - RELOAD
+05/18/2025 01:47:16 - INDEX
+05/18/2025 01:47:44 - RELOAD
+05/18/2025 01:47:44 - INDEX
+05/18/2025 01:47:54 - RELOAD
+05/18/2025 01:47:54 - INDEX
+05/18/2025 01:48:19 - RELOAD
+05/18/2025 01:48:19 - INDEX
+05/18/2025 01:48:56 - RELOAD
+05/18/2025 01:48:56 - INDEX
+05/18/2025 01:49:14 - RELOAD
+05/18/2025 01:49:14 - INDEX
+05/18/2025 01:50:29 - RELOAD
+05/18/2025 01:50:30 - INDEX
+05/18/2025 01:53:02 - RELOAD
+05/18/2025 01:53:02 - INDEX
+05/18/2025 01:54:37 - RELOAD
+05/18/2025 01:54:37 - INDEX
+05/18/2025 01:58:07 - RELOAD
+05/18/2025 01:58:07 - INDEX
+05/18/2025 02:01:17 - RELOAD
+05/18/2025 02:01:17 - INDEX
+05/18/2025 02:02:39 - RELOAD
+05/18/2025 02:02:39 - INDEX
+05/18/2025 02:06:01 - RELOAD
+05/18/2025 02:06:01 - INDEX
+05/18/2025 02:07:14 - RELOAD
+05/18/2025 02:07:14 - INDEX
+05/18/2025 02:08:27 - RELOAD
+05/18/2025 02:08:28 - INDEX
+05/18/2025 02:13:24 - RELOAD
+05/18/2025 02:13:25 - INDEX
+05/18/2025 02:15:32 - RELOAD
+05/18/2025 02:15:32 - INDEX
+05/18/2025 02:15:32 - ADDON
+05/18/2025 02:17:05 - RELOAD
+05/18/2025 02:17:05 - INDEX
+05/18/2025 02:17:05 - ADDON
+05/18/2025 02:21:15 - RELOAD
+05/18/2025 02:21:15 - INDEX
+05/18/2025 02:21:30 - RELOAD
+05/18/2025 02:21:30 - INDEX
+05/18/2025 02:21:30 - ADDON
+05/18/2025 02:21:52 - RELOAD
+05/18/2025 02:21:53 - INDEX
+05/18/2025 02:21:53 - ADDON
+05/18/2025 02:24:46 - RELOAD
+05/18/2025 02:24:46 - DONE
+05/18/2025 02:24:46 - INDEX
+05/18/2025 02:24:46 - ADDON
+05/18/2025 02:26:25 - RELOAD
+05/18/2025 02:26:25 - DONE
+05/18/2025 02:26:56 - RELOAD
+05/18/2025 02:26:56 - DONE
+05/18/2025 02:28:30 - RELOAD
+05/18/2025 02:28:30 - INDEX
+05/18/2025 02:28:30 - ADDON
+05/18/2025 02:30:48 - RELOAD
+05/18/2025 02:30:48 - INDEX
+05/18/2025 02:30:48 - ADDON
+05/18/2025 02:31:27 - RELOAD
+05/18/2025 02:31:27 - INDEX
+05/18/2025 02:31:27 - ADDON
+05/18/2025 02:32:25 - RELOAD
+05/18/2025 02:32:25 - INDEX
+05/18/2025 02:32:25 - ADDON
+05/18/2025 02:35:07 - RELOAD
+05/18/2025 02:35:07 - INDEX
+05/18/2025 02:35:07 - ADDON
+05/18/2025 02:36:51 - RELOAD
+05/18/2025 02:36:51 - INDEX
+05/18/2025 02:36:51 - ADDON
+05/18/2025 02:38:42 - RELOAD
+05/18/2025 02:38:42 - INDEX
+05/18/2025 02:38:42 - ADDON
+05/18/2025 02:41:33 - RELOAD
+05/18/2025 02:41:33 - INDEX
+05/18/2025 02:41:33 - ADDON
+05/18/2025 03:08:19 - RELOAD
+05/18/2025 03:08:19 - INDEX
+05/18/2025 03:08:20 - ADDON
+05/18/2025 03:08:49 - RELOAD
+05/18/2025 03:08:49 - INDEX
+05/18/2025 03:08:49 - ADDON
+05/18/2025 03:27:45 - RELOAD
+05/18/2025 03:27:45 - INDEX
+05/18/2025 03:27:45 - ADDON
+05/18/2025 03:30:00 - RELOAD
+05/18/2025 03:30:01 - INDEX
+05/18/2025 03:30:01 - ADDON
+05/18/2025 10:51:23 - RELOAD
+05/18/2025 10:51:24 - INDEX
+05/18/2025 10:51:24 - ADDON
+05/18/2025 11:10:18 - RELOAD
+05/18/2025 11:10:18 - INDEX
+05/18/2025 11:10:18 - ADDON
+05/18/2025 11:10:26 - RELOAD
+05/18/2025 11:10:27 - INDEX
+05/18/2025 11:10:27 - ADDON
+05/18/2025 11:10:46 - RELOAD
+05/18/2025 11:10:46 - INDEX
+05/18/2025 11:10:46 - ADDON
+05/18/2025 11:11:10 - RELOAD
+05/18/2025 11:11:10 - INDEX
+05/18/2025 11:11:10 - ADDON
+05/18/2025 11:11:34 - RELOAD
+05/18/2025 11:11:34 - INDEX
+05/18/2025 11:11:34 - ADDON
+05/18/2025 11:12:15 - RELOAD
+05/18/2025 11:12:15 - INDEX
+05/18/2025 11:12:15 - ADDON
+05/18/2025 11:12:46 - RELOAD
+05/18/2025 11:12:46 - INDEX
+05/18/2025 11:12:46 - ADDON
+05/18/2025 11:13:09 - RELOAD
+05/18/2025 11:13:10 - INDEX
+05/18/2025 11:13:10 - ADDON
+05/18/2025 11:13:24 - RELOAD
+05/18/2025 11:13:24 - INDEX
+05/18/2025 11:13:24 - ADDON
+05/18/2025 11:13:33 - RELOAD
+05/18/2025 11:13:33 - INDEX
+05/18/2025 11:13:33 - ADDON
+05/18/2025 11:14:10 - RELOAD
+05/18/2025 11:14:10 - INDEX
+05/18/2025 11:14:10 - ADDON
+05/18/2025 11:14:27 - RELOAD
+05/18/2025 11:14:27 - INDEX
+05/18/2025 11:14:27 - ADDON
+05/18/2025 11:14:37 - RELOAD
+05/18/2025 11:14:37 - INDEX
+05/18/2025 11:14:38 - ADDON
+05/18/2025 12:46:33 - RELOAD
+05/18/2025 12:46:33 - INDEX
+05/18/2025 12:46:33 - ADDON
+05/18/2025 12:47:02 - RELOAD
+05/18/2025 12:47:02 - INDEX
+05/18/2025 12:47:02 - ADDON
+05/18/2025 12:48:37 - RELOAD
+05/18/2025 12:48:37 - INDEX
+05/18/2025 12:48:37 - ADDON
+05/18/2025 12:49:58 - RELOAD
+05/18/2025 12:49:58 - INDEX
+05/18/2025 12:49:58 - ADDON
+05/18/2025 12:50:37 - RELOAD
+05/18/2025 12:50:37 - INDEX
+05/18/2025 12:50:37 - ADDON
+05/18/2025 12:52:07 - RELOAD
+05/18/2025 12:52:07 - INDEX
+05/18/2025 12:52:07 - ADDON
+05/18/2025 12:52:48 - RELOAD
+05/18/2025 12:52:49 - INDEX
+05/18/2025 12:52:49 - []
+05/18/2025 12:52:49 - []
+05/18/2025 12:52:51 - []
+05/18/2025 12:52:51 - []
+05/18/2025 12:52:52 - []
+05/18/2025 12:52:52 - []
+05/18/2025 12:52:53 - []
+05/18/2025 12:52:57 - []
+05/18/2025 12:52:58 - []
+05/18/2025 12:52:59 - []
+05/18/2025 12:53:00 - ["Comment"]
+05/18/2025 12:53:00 - ["Comment"]
+05/18/2025 12:53:01 - ["Comment"]
+05/18/2025 12:53:01 - ["Comment"]
+05/18/2025 12:53:01 - ["Comment"]
+05/18/2025 12:53:01 - ["Comment"]
+05/18/2025 12:53:02 - ["Comment"]
+05/18/2025 12:53:02 - ["Comment"]
+05/18/2025 12:53:18 - RELOAD
+05/18/2025 12:53:18 - INDEX
+05/18/2025 12:53:18 - [] []
+05/18/2025 12:53:18 - [] []
+05/18/2025 12:53:22 - onMainWindowLoad [object Object]
+05/18/2025 12:53:30 - RELOAD
+05/18/2025 12:53:30 - INDEX
+05/18/2025 12:53:30 - [] []
+05/18/2025 12:53:33 - [] []
+05/18/2025 12:53:33 - [] []
+05/18/2025 12:53:36 - [] ["Comment"]
+05/18/2025 12:53:54 - [] ["Comment"]
+05/18/2025 12:53:54 - [] ["Comment"]
+05/18/2025 12:53:58 - RELOAD
+05/18/2025 12:53:58 - INDEX
+05/18/2025 12:53:58 - [] []
+05/18/2025 12:54:12 - [] []
+05/18/2025 12:54:12 - [] []
+05/18/2025 12:54:13 - [] ["Comment"]
+05/18/2025 12:54:14 - [] ["Comment"]
+05/18/2025 12:54:14 - [] ["Comment"]
+05/18/2025 12:54:18 - [] ["Comment"]
+05/18/2025 12:54:22 - [] ["Comment"]
+05/18/2025 12:54:23 - [] ["Comment"]
+05/18/2025 12:54:23 - [] ["Comment"]
+05/18/2025 12:54:23 - [] ["Comment"]
+05/18/2025 12:55:41 - RELOAD
+05/18/2025 12:55:41 - INDEX
+05/18/2025 12:55:41 - ADDON
+05/18/2025 12:55:52 - RELOAD
+05/18/2025 12:55:52 - INDEX
+05/18/2025 12:55:52 - [] []
+05/18/2025 12:56:01 - [] []
+05/18/2025 12:56:01 - [] []
+05/18/2025 12:56:04 - [] ["Comment"]
+05/18/2025 12:56:07 - [] ["Comment"]
+05/18/2025 12:56:07 - [] ["Comment"]
+05/18/2025 12:58:49 - RELOAD
+05/18/2025 12:58:49 - INDEX
+05/18/2025 12:58:49 - [] []
+05/18/2025 12:58:55 - [] []
+05/18/2025 12:58:55 - [] []
+05/18/2025 12:58:57 - [] ["Comment"]
+05/18/2025 12:59:00 - [] ["Comment"]
+05/18/2025 12:59:01 - [] ["Comment"]
+05/18/2025 12:59:01 - onKeyUp
+05/18/2025 12:59:01 - onKeyUp
+05/18/2025 12:59:02 - ["Comment"] ["Comment"]
+05/18/2025 12:59:02 - ["Comment"] ["Comment"]
+05/18/2025 12:59:02 - onKeyUp
+05/18/2025 12:59:02 - ["Comment"] ["Comment"]
+05/18/2025 12:59:03 - ["Comment"] ["Comment"]
+05/18/2025 12:59:04 - ["Comment"] ["Comment"]
+05/18/2025 12:59:04 - ["Comment"] ["Comment"]
+05/18/2025 12:59:04 - ["Comment"] ["Comment"]
+05/18/2025 12:59:59 - RELOAD
+05/18/2025 12:59:59 - INDEX
+05/18/2025 12:59:59 - [] []
+05/18/2025 13:00:01 - [] []
+05/18/2025 13:00:01 - [] []
+05/18/2025 13:00:04 - [] ["Comment"]
+05/18/2025 13:00:06 - [] ["Comment"]
+05/18/2025 13:00:07 - [] ["Comment"]
+05/18/2025 13:00:07 - onKeyUp
+05/18/2025 13:00:07 - ["Comment"] ["Comment"]
+05/18/2025 13:00:08 - ["Comment"] ["Comment"]
+05/18/2025 13:00:08 - onKeyUp
+05/18/2025 13:00:08 - ["Comment"] ["Comment"]
+05/18/2025 13:00:09 - ["Comment"] ["Comment"]
+05/18/2025 13:00:51 - RELOAD
+05/18/2025 13:00:51 - INDEX
+05/18/2025 13:00:51 - [] []
+05/18/2025 13:00:54 - [] []
+05/18/2025 13:00:54 - [] []
+05/18/2025 13:00:57 - [] ["Comment"]
+05/18/2025 13:00:59 - [] ["Comment"]
+05/18/2025 13:01:00 - onKeyUp
+05/18/2025 13:01:00 - [] ["Comment"]
+05/18/2025 13:01:02 - [] ["Comment"]
+05/18/2025 13:02:02 - RELOAD
+05/18/2025 13:02:03 - INDEX
+05/18/2025 13:02:03 - [] []
+05/18/2025 13:02:03 - [] []
+05/18/2025 13:02:03 - [] []
+05/18/2025 13:02:04 - [] []
+05/18/2025 13:02:04 - [] []
+05/18/2025 13:02:07 - [] ["Comment"]
+05/18/2025 13:02:07 - ["Comment"] ["Comment"]
+05/18/2025 13:02:11 - ["Comment"] ["Comment"]
+05/18/2025 13:02:11 - ["Comment"] ["Comment"]
+05/18/2025 13:02:11 - onKeyUp
+05/18/2025 13:02:12 - ["Comment"] ["Comment"]
+05/18/2025 13:02:12 - onKeyUp
+05/18/2025 13:02:12 - ["Comment"] ["Comment"]
+05/18/2025 13:02:12 - onKeyUp
+05/18/2025 13:02:12 - ["Comment"] ["Comment"]
+05/18/2025 13:02:12 - onKeyUp
+05/18/2025 13:02:13 - ["Comment"] ["Comment"]
+05/18/2025 13:02:13 - onKeyUp
+05/18/2025 13:02:13 - ["Comment"] ["Comment"]
+05/18/2025 13:02:13 - onKeyUp
+05/18/2025 13:02:14 - ["Comment"] ["Comment"]
+05/18/2025 13:02:14 - ["Comment"] ["Comment"]
+05/18/2025 13:02:15 - ["Comment"] ["Comment"]
+05/18/2025 13:02:15 - ["Comment"] ["Comment"]
+05/18/2025 13:02:15 - ["Comment"] ["Comment"]
+05/18/2025 13:02:15 - ["Comment"] ["Comment"]
+05/18/2025 13:02:17 - ["Comment"] ["Comment"]
+05/18/2025 13:02:17 - ["Comment"] ["Comment"]
+05/18/2025 13:02:18 - ["Comment"] ["Comment"]
+05/18/2025 13:02:18 - [] ["Comment"]
+05/18/2025 13:02:18 - onKeyUp
+05/18/2025 13:02:18 - [] ["Comment"]
+05/18/2025 13:02:18 - [] ["Comment"]
+05/18/2025 13:02:19 - [] ["Comment"]
+05/18/2025 13:02:19 - onKeyUp
+05/18/2025 13:02:19 - [] ["Comment"]
+05/18/2025 13:02:19 - [] ["Comment"]
+05/18/2025 13:02:19 - [] ["Comment"]
+05/18/2025 13:02:19 - onKeyUp
+05/18/2025 13:02:19 - [] ["Comment"]
+05/18/2025 13:02:19 - [] ["Comment"]
+05/18/2025 13:02:20 - [] ["Comment"]
+05/18/2025 13:02:20 - [] ["Comment"]
+05/18/2025 13:02:20 - [] ["Comment"]
+05/18/2025 13:02:20 - [] ["Comment"]
+05/18/2025 13:02:21 - [] ["Comment"]
+05/18/2025 13:02:21 - [] ["Comment"]
+05/18/2025 13:02:21 - [] ["Comment"]
+05/18/2025 13:02:21 - [] ["Comment"]
+05/18/2025 13:02:22 - [] ["Comment","Second Comment"]
+05/18/2025 13:02:22 - ["Comment","Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:23 - ["Comment","Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:24 - ["Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:24 - ["Comment","Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:24 - ["Comment","Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:24 - onKeyUp
+05/18/2025 13:02:24 - ["Comment","Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:25 - onKeyUp
+05/18/2025 13:02:25 - ["Comment","Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:25 - ["Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:26 - ["Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:26 - ["Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:26 - ["Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:26 - ["Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:32 - ["Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:32 - ["Comment","Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:36 - ["Comment","Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:38 - ["Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:38 - ["Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:39 - ["Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:40 - ["Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:40 - ["Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:42 - onKeyUp
+05/18/2025 13:02:42 - ["Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:43 - ["Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:43 - ["Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:43 - ["Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:43 - ["Second Comment"] ["Comment","Second Comment"]
+05/18/2025 13:02:54 - RELOAD
+05/18/2025 13:02:54 - INDEX
+05/18/2025 13:02:54 - [] []
+05/18/2025 13:02:59 - [] []
+05/18/2025 13:02:59 - [] []
+05/18/2025 13:04:00 - RELOAD
+05/18/2025 13:04:01 - INDEX
+05/18/2025 13:04:01 - List []
+05/18/2025 13:04:02 - List []
+05/18/2025 13:04:03 - List []
+05/18/2025 13:07:41 - RELOAD
+05/18/2025 13:07:41 - INDEX
+05/18/2025 13:07:41 - List []
+05/18/2025 13:07:51 - RELOAD
+05/18/2025 13:07:52 - INDEX
+05/18/2025 13:07:52 - List []
+05/18/2025 13:07:52 - List []
+05/18/2025 13:12:45 - RELOAD
+05/18/2025 13:12:45 - INDEX
+05/18/2025 13:12:45 - List []
+05/18/2025 13:14:54 - RELOAD
+05/18/2025 13:14:55 - INDEX
+05/18/2025 13:14:55 - List []
+05/18/2025 13:15:33 - List ["Comment","Second Comment"]
+05/18/2025 13:15:33 - onKeyUp
+05/18/2025 13:15:33 - onKeyUp
+05/18/2025 13:15:35 - List ["Comment","Second Comment"]
+05/18/2025 13:15:35 - List ["Comment","Second Comment"]
+05/18/2025 13:15:40 - List ["Comment","Second Comment"]
+05/18/2025 13:15:40 - List ["Comment","Second Comment"]
+05/18/2025 13:15:40 - List ["Comment","Second Comment"]
+05/18/2025 13:16:27 - RELOAD
+05/18/2025 13:16:27 - INDEX
+05/18/2025 13:16:27 - List []
+05/18/2025 13:16:27 - List []
+05/18/2025 13:16:39 - RELOAD
+05/18/2025 13:16:39 - INDEX
+05/18/2025 13:16:39 - List []
+05/18/2025 13:16:39 - List []
+05/18/2025 13:16:53 - RELOAD
+05/18/2025 13:16:53 - INDEX
+05/18/2025 13:16:53 - List []
+05/18/2025 13:17:06 - RELOAD
+05/18/2025 13:17:06 - INDEX
+05/18/2025 13:17:06 - List []
+05/18/2025 13:17:12 - List ["Comment","Second Comment"]
+05/18/2025 13:17:12 - List ["Comment","Second Comment"]
+05/18/2025 13:17:12 - onKeyUp
+05/18/2025 13:17:14 - List ["Comment","Second Comment"]
+05/18/2025 13:17:15 - List ["Comment","Second Comment"]
+05/18/2025 13:17:16 - List ["Comment","Second Comment"]
+05/18/2025 13:17:17 - List ["Comment","Second Comment"]
+05/18/2025 13:17:17 - List ["Comment","Second Comment"]
+05/18/2025 13:17:46 - RELOAD
+05/18/2025 13:17:46 - INDEX
+05/18/2025 13:17:47 - List []
+05/18/2025 13:17:54 - List ["Comment","Second Comment"]
+05/18/2025 13:17:54 - List ["Comment","Second Comment"]
+05/18/2025 13:17:55 - List ["Comment","Second Comment"]
+05/18/2025 13:17:59 - List ["Comment","Second Comment"]
+05/18/2025 13:18:01 - List ["Comment","Second Comment"]
+05/18/2025 13:18:05 - List ["Comment","Second Comment"]
+05/18/2025 13:18:06 - List ["Comment","Second Comment"]
+05/18/2025 13:18:06 - onKeyUp
+05/18/2025 13:18:06 - List ["Comment","Second Comment"]
+05/18/2025 13:18:06 - onKeyUp
+05/18/2025 13:18:07 - List ["Comment","Second Comment"]
+05/18/2025 13:18:07 - List ["Comment","Second Comment"]
+05/18/2025 13:18:08 - onKeyUp
+05/18/2025 13:18:08 - List ["Comment","Second Comment"]
+05/18/2025 13:18:11 - List ["Comment","Second Comment"]
+05/18/2025 13:18:12 - List ["Comment","Second Comment"]
+05/18/2025 13:18:13 - List ["Comment","Second Comment"]
+05/18/2025 13:18:13 - List ["Comment","Second Comment"]
+05/18/2025 13:18:27 - RELOAD
+05/18/2025 13:18:27 - INDEX
+05/18/2025 13:18:27 - List []
+05/18/2025 13:18:29 - List ["Comment","Second Comment"]
+05/18/2025 13:18:29 - List ["Comment","Second Comment"]
+05/18/2025 13:18:30 - List ["Comment","Second Comment"]
+05/18/2025 13:18:35 - List ["Comment","Second Comment"]
+05/18/2025 13:18:49 - RELOAD
+05/18/2025 13:18:49 - INDEX
+05/18/2025 13:18:49 - List []
+05/18/2025 13:18:50 - List []
+05/18/2025 13:18:51 - List ["Comment","Second Comment"]
+05/18/2025 13:18:51 - List ["Comment","Second Comment"]
+05/18/2025 13:18:52 - List ["Comment","Second Comment"]
+05/18/2025 13:18:59 - List ["Comment","Second Comment"]
+05/18/2025 13:18:59 - onKeyUp
+05/18/2025 13:18:59 - onKeyUp
+05/18/2025 13:18:59 - onKeyUp
+05/18/2025 13:18:59 - List ["Comment","Second Comment"]
+05/18/2025 13:18:59 - onKeyUp
+05/18/2025 13:19:00 - List ["Comment","Second Comment"]
+05/18/2025 13:19:00 - onKeyUp
+05/18/2025 13:19:00 - List ["Comment","Second Comment"]
+05/18/2025 13:19:00 - List ["Comment","Second Comment"]
+05/18/2025 13:19:00 - List ["Comment","Second Comment"]
+05/18/2025 13:19:00 - List ["Comment","Second Comment"]
+05/18/2025 13:19:00 - List ["Comment","Second Comment"]
+05/18/2025 13:19:01 - List ["Comment","Second Comment"]
+05/18/2025 13:19:02 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:02 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:02 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:06 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:07 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:10 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:30 - RELOAD
+05/18/2025 13:19:30 - INDEX
+05/18/2025 13:19:30 - List []
+05/18/2025 13:19:30 - List []
+05/18/2025 13:19:35 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:35 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:36 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:38 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:38 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:39 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:39 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:46 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:46 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:46 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:46 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:46 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:46 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:50 - RELOAD
+05/18/2025 13:19:51 - INDEX
+05/18/2025 13:19:51 - List []
+05/18/2025 13:19:51 - List []
+05/18/2025 13:19:52 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:52 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:19:52 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:20:04 - RELOAD
+05/18/2025 13:20:04 - INDEX
+05/18/2025 13:20:04 - List []
+05/18/2025 13:20:06 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:20:06 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:20:07 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:20:15 - RELOAD
+05/18/2025 13:20:15 - INDEX
+05/18/2025 13:20:15 - List []
+05/18/2025 13:20:16 - List []
+05/18/2025 13:20:17 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:20:17 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:20:18 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:20:21 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:20:21 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:20:21 - List ["Comment","Second Comment","Third Comment"]
+05/18/2025 13:27:36 - RELOAD
+05/18/2025 13:27:36 - DONE
+05/18/2025 13:27:36 - List []
+05/18/2025 13:27:42 - index.ts: shutdown
+05/18/2025 13:27:50 - RELOAD
+05/18/2025 13:27:50 - DONE
+05/18/2025 13:27:50 - List []
+05/18/2025 13:28:21 - RELOAD
+05/18/2025 13:28:21 - DONE
+05/18/2025 13:28:21 - List []
+05/18/2025 13:28:25 - index.ts: shutdown
+05/18/2025 13:28:29 - RELOAD
+05/18/2025 13:28:30 - DONE
+05/18/2025 13:28:30 - List []
+05/18/2025 13:30:27 - - commentsTagPrefix #Status: Comments: 
+05/18/2025 13:31:08 - - commentsTagPrefix #Status: Comments: 
+05/18/2025 13:31:13 - Shutdown {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/"}
+05/18/2025 13:32:08 - - commentsTagPrefix #Status: Comments: 
+05/18/2025 13:32:32 - - commentsTagPrefix #Status: Comments: 
+05/18/2025 13:32:51 - Zoteroreviewassistant
+05/18/2025 13:33:11 - undefined
+05/18/2025 13:35:06 - undefined
+05/18/2025 13:35:29 - [object Window]
+05/18/2025 13:36:04 - ["close","stop","focus","blur","open","alert","confirm","prompt","print","printPreview","postMessage","captureEvents","releaseEvents","getSelection","getComputedStyle","matchMedia","moveTo","moveBy","resizeTo","resizeBy","scroll","scrollTo","scrollBy","getDefaultComputedStyle","scrollByLines","scrollByPages","sizeToContent","updateCommands","find","dump","setResizable","getAttention","getAttentionWithCycleCount","setCursor","maximize","minimize","restore","getWorkspaceID","moveToWorkspace","notifyDefaultButtonLoaded","getGroupMessageManager","promiseDocumentFlushed","requestIdleCallback","cancelIdleCallback","getRegionalPrefsLocales","getWebExposedLocales","requestAnimationFrame","cancelAnimationFrame","reportError","btoa","atob","setTimeout","clearTimeout","setInterval","clearInterval","queueMicrotask","createImageBitmap","structuredClone","fetch","self","name","history","customElements","locationbar","menubar","personalbar","scrollbars","statusbar","toolbar","status","closed","event","frames","length","opener","parent","frameElement","navigator","clientInformation","external","screen","innerWidth","innerHeight","scrollX","pageXOffset","scrollY","pageYOffset","screenLeft","screenTop","screenX","screenY","outerWidth","outerHeight","performance","mozInnerScreenX","mozInnerScreenY","devicePixelRatio","scrollMaxX","scrollMaxY","fullScreen","ondevicemotion","ondeviceorientation","ondeviceorientationabsolute","InstallTrigger","windowState","isFullyOccluded","browserDOMWindow","messageManager","isChromeWindow","intlUtils","visualViewport","crypto","onabort","onblur","onfocus","onauxclick","onbeforeinput","oncanplay","oncanplaythrough","onchange","onclick","onclose","oncontextmenu","oncopy","oncuechange","oncut","ondblclick","ondrag","ondragend","ondragenter","ondragexit","ondragleave","ondragover","ondragstart","ondrop","ondurationchange","onemptied","onended","onformdata","oninput","oninvalid","onkeydown","onkeypress","onkeyup","onload","onloadeddata","onloadedmetadata","onloadstart","onmousedown","onmouseenter","onmouseleave","onmousemove","onmouseout","onmouseover","onmouseup","onwheel","onpaste","onpause","onplay","onplaying","onprogress","onratechange","onreset","onresize","onscroll","onscrollend","onsecuritypolicyviolation","onseeked","onseeking","onselect","onslotchange","onstalled","onsubmit","onsuspend","ontimeupdate","onvolumechange","onwaiting","onselectstart","onselectionchange","ontoggle","onpointercancel","onpointerdown","onpointerup","onpointermove","onpointerout","onpointerover","onpointerenter","onpointerleave","ongotpointercapture","onlostpointercapture","onmozfullscreenchange","onmozfullscreenerror","onanimationcancel","onanimationend","onanimationiteration","onanimationstart","ontransitioncancel","ontransitionend","ontransitionrun","ontransitionstart","onwebkitanimationend","onwebkitanimationiteration","onwebkitanimationstart","onwebkittransitionend","onerror","speechSynthesis","onafterprint","onbeforeprint","onbeforeunload","onhashchange","onlanguagechange","onmessage","onmessageerror","onoffline","ononline","onpagehide","onpageshow","onpopstate","onrejectionhandled","onstorage","onunhandledrejection","onunload","ongamepadconnected","ongamepaddisconnected","localStorage","origin","crossOriginIsolated","isSecureContext","indexedDB","caches","sessionStorage","STATE_MAXIMIZED","STATE_MINIMIZED","STATE_NORMAL","STATE_FULLSCREEN","mozScrollSnap","sizeToContentConstrained","openDialog","getInterface","shouldReportForServiceWorkerScope","setScrollMarks","controllers","realFrameElement","docShell","browsingContext","desktopToDeviceScale","screenEdgeSlopX","screenEdgeSlopY","scrollMinX","scrollMinY","windowRoot","windowUtils","windowGlobalChild","clientPrincipal","isInFullScreenTransition","Glean","GleanPings","window","document","location","top","MozElements","MozXULElement","MozHTMLElement","ensureCustomElements","Zotero","require","descriptor","override","sourceURI","parseURI","parseStack","serializeStack","join","Sandbox","evaluate","load","resolve","nodeResolve","resolveURI","Require","main","Module","unload","Loader","prototype","toJavaScriptConsole","openRunJSWindow","openStyleEditor","openScaffold","openWindowByType","openUILinkIn","goUpdateGlobalEditMenuItems","goUpdateUndoEditMenuItems","goUpdatePasteMenuItems","goBuildEditContextMenu","closeWindow","canQuitApplication","goQuitApplication","goUpdateCommand","goDoCommand","goSetCommandEnabled","XPCOMUtils","ContentAreaUtils","AppConstants","urlSecurityCheck","saveURL","saveBrowser","DownloadListener","internalSave","internalPersist","AutoChosen","FileInfo","initFileInfo","promiseTargetFile","uniqueFile","DownloadURL","appendFiltersForContentType","getPostData","makeWebBrowserPersist","makeURI","makeFileURI","makeFilePicker","getMIMEService","getFileBaseName","getMIMETypeForURI","getMIMEInfoForType","getDefaultFileName","validateFileName","GetSaveModeForContentType","getCharsetforSave","openURL","BrowserUtils","Deprecated","DownloadLastDir","DownloadPaths","Downloads","FileUtils","PrivateBrowsingUtils","NetUtil","kSaveAsType_Complete","kSaveAsType_Text","SAVEMODE_FILEONLY","SAVEMODE_COMPLETE_DOM","SAVEMODE_COMPLETE_TEXT","zoomWindow","PrintUtils","SHOW_PAGE_SETUP_MENU","PRINT_ALWAYS_SILENT","PREFER_SYSTEM_DIALOG","PromptUtils","winName","_tabBar","_tabBar2","_icons","React","ReactDOM","Zotero_Tabs","_interopRequireDefault","FilePicker","ZoteroPane","ZoteroPane_Local","ZoteroContextPane","_citavi","Zotero_File_Exporter","Zotero_File_Interface","HiddenBrowser","Zotero_Report_Interface","Zotero_Timeline_Interface","_react","_react2","_reactDom","_reactDom2","_progressQueueTable","_progressQueueTable2","_init","_handleActivate","Zotero_Lookup","Zotero_LocateMenu","_extends","ZOTERO_CONFIG"]
+05/25/2025 20:19:39 - ["close","stop","focus","blur","open","alert","confirm","prompt","print","printPreview","postMessage","captureEvents","releaseEvents","getSelection","getComputedStyle","matchMedia","moveTo","moveBy","resizeTo","resizeBy","scroll","scrollTo","scrollBy","getDefaultComputedStyle","scrollByLines","scrollByPages","sizeToContent","updateCommands","find","dump","setResizable","getAttention","getAttentionWithCycleCount","setCursor","maximize","minimize","restore","getWorkspaceID","moveToWorkspace","notifyDefaultButtonLoaded","getGroupMessageManager","promiseDocumentFlushed","requestIdleCallback","cancelIdleCallback","getRegionalPrefsLocales","getWebExposedLocales","requestAnimationFrame","cancelAnimationFrame","reportError","btoa","atob","setTimeout","clearTimeout","setInterval","clearInterval","queueMicrotask","createImageBitmap","structuredClone","fetch","self","name","history","customElements","locationbar","menubar","personalbar","scrollbars","statusbar","toolbar","status","closed","event","frames","length","opener","parent","frameElement","navigator","clientInformation","external","screen","innerWidth","innerHeight","scrollX","pageXOffset","scrollY","pageYOffset","screenLeft","screenTop","screenX","screenY","outerWidth","outerHeight","performance","mozInnerScreenX","mozInnerScreenY","devicePixelRatio","scrollMaxX","scrollMaxY","fullScreen","ondevicemotion","ondeviceorientation","ondeviceorientationabsolute","InstallTrigger","windowState","isFullyOccluded","browserDOMWindow","messageManager","isChromeWindow","intlUtils","visualViewport","crypto","onabort","onblur","onfocus","onauxclick","onbeforeinput","oncanplay","oncanplaythrough","onchange","onclick","onclose","oncontextmenu","oncopy","oncuechange","oncut","ondblclick","ondrag","ondragend","ondragenter","ondragexit","ondragleave","ondragover","ondragstart","ondrop","ondurationchange","onemptied","onended","onformdata","oninput","oninvalid","onkeydown","onkeypress","onkeyup","onload","onloadeddata","onloadedmetadata","onloadstart","onmousedown","onmouseenter","onmouseleave","onmousemove","onmouseout","onmouseover","onmouseup","onwheel","onpaste","onpause","onplay","onplaying","onprogress","onratechange","onreset","onresize","onscroll","onscrollend","onsecuritypolicyviolation","onseeked","onseeking","onselect","onslotchange","onstalled","onsubmit","onsuspend","ontimeupdate","onvolumechange","onwaiting","onselectstart","onselectionchange","ontoggle","onpointercancel","onpointerdown","onpointerup","onpointermove","onpointerout","onpointerover","onpointerenter","onpointerleave","ongotpointercapture","onlostpointercapture","onmozfullscreenchange","onmozfullscreenerror","onanimationcancel","onanimationend","onanimationiteration","onanimationstart","ontransitioncancel","ontransitionend","ontransitionrun","ontransitionstart","onwebkitanimationend","onwebkitanimationiteration","onwebkitanimationstart","onwebkittransitionend","onerror","speechSynthesis","onafterprint","onbeforeprint","onbeforeunload","onhashchange","onlanguagechange","onmessage","onmessageerror","onoffline","ononline","onpagehide","onpageshow","onpopstate","onrejectionhandled","onstorage","onunhandledrejection","onunload","ongamepadconnected","ongamepaddisconnected","localStorage","origin","crossOriginIsolated","isSecureContext","indexedDB","caches","sessionStorage","STATE_MAXIMIZED","STATE_MINIMIZED","STATE_NORMAL","STATE_FULLSCREEN","mozScrollSnap","sizeToContentConstrained","openDialog","getInterface","shouldReportForServiceWorkerScope","setScrollMarks","controllers","realFrameElement","docShell","browsingContext","desktopToDeviceScale","screenEdgeSlopX","screenEdgeSlopY","scrollMinX","scrollMinY","windowRoot","windowUtils","windowGlobalChild","clientPrincipal","isInFullScreenTransition","Glean","GleanPings","window","document","location","top","MozElements","MozXULElement","MozHTMLElement","ensureCustomElements","Zotero","require","descriptor","override","sourceURI","parseURI","parseStack","serializeStack","join","Sandbox","evaluate","load","resolve","nodeResolve","resolveURI","Require","main","Module","unload","Loader","prototype","toJavaScriptConsole","openRunJSWindow","openStyleEditor","openScaffold","openWindowByType","openUILinkIn","goUpdateGlobalEditMenuItems","goUpdateUndoEditMenuItems","goUpdatePasteMenuItems","goBuildEditContextMenu","closeWindow","canQuitApplication","goQuitApplication","goUpdateCommand","goDoCommand","goSetCommandEnabled","XPCOMUtils","ContentAreaUtils","AppConstants","urlSecurityCheck","saveURL","saveBrowser","DownloadListener","internalSave","internalPersist","AutoChosen","FileInfo","initFileInfo","promiseTargetFile","uniqueFile","DownloadURL","appendFiltersForContentType","getPostData","makeWebBrowserPersist","makeURI","makeFileURI","makeFilePicker","getMIMEService","getFileBaseName","getMIMETypeForURI","getMIMEInfoForType","getDefaultFileName","validateFileName","GetSaveModeForContentType","getCharsetforSave","openURL","BrowserUtils","Deprecated","DownloadLastDir","DownloadPaths","Downloads","FileUtils","PrivateBrowsingUtils","NetUtil","kSaveAsType_Complete","kSaveAsType_Text","SAVEMODE_FILEONLY","SAVEMODE_COMPLETE_DOM","SAVEMODE_COMPLETE_TEXT","zoomWindow","PrintUtils","SHOW_PAGE_SETUP_MENU","PRINT_ALWAYS_SILENT","PREFER_SYSTEM_DIALOG","PromptUtils","winName","_tabBar","_tabBar2","_icons","React","ReactDOM","Zotero_Tabs","_interopRequireDefault","FilePicker","ZoteroPane","ZoteroPane_Local","ZoteroContextPane","_citavi","Zotero_File_Exporter","Zotero_File_Interface","HiddenBrowser","Zotero_Report_Interface","Zotero_Timeline_Interface","_react","_react2","_reactDom","_reactDom2","_progressQueueTable","_progressQueueTable2","_init","_handleActivate","Zotero_Lookup","Zotero_LocateMenu","_extends","ZOTERO_CONFIG"]
+05/25/2025 20:20:16 - ["close","stop","focus","blur","open","alert","confirm","prompt","print","printPreview","postMessage","captureEvents","releaseEvents","getSelection","getComputedStyle","matchMedia","moveTo","moveBy","resizeTo","resizeBy","scroll","scrollTo","scrollBy","getDefaultComputedStyle","scrollByLines","scrollByPages","sizeToContent","updateCommands","find","dump","setResizable","getAttention","getAttentionWithCycleCount","setCursor","maximize","minimize","restore","getWorkspaceID","moveToWorkspace","notifyDefaultButtonLoaded","getGroupMessageManager","promiseDocumentFlushed","requestIdleCallback","cancelIdleCallback","getRegionalPrefsLocales","getWebExposedLocales","requestAnimationFrame","cancelAnimationFrame","reportError","btoa","atob","setTimeout","clearTimeout","setInterval","clearInterval","queueMicrotask","createImageBitmap","structuredClone","fetch","self","name","history","customElements","locationbar","menubar","personalbar","scrollbars","statusbar","toolbar","status","closed","event","frames","length","opener","parent","frameElement","navigator","clientInformation","external","screen","innerWidth","innerHeight","scrollX","pageXOffset","scrollY","pageYOffset","screenLeft","screenTop","screenX","screenY","outerWidth","outerHeight","performance","mozInnerScreenX","mozInnerScreenY","devicePixelRatio","scrollMaxX","scrollMaxY","fullScreen","ondevicemotion","ondeviceorientation","ondeviceorientationabsolute","InstallTrigger","windowState","isFullyOccluded","browserDOMWindow","messageManager","isChromeWindow","intlUtils","visualViewport","crypto","onabort","onblur","onfocus","onauxclick","onbeforeinput","oncanplay","oncanplaythrough","onchange","onclick","onclose","oncontextmenu","oncopy","oncuechange","oncut","ondblclick","ondrag","ondragend","ondragenter","ondragexit","ondragleave","ondragover","ondragstart","ondrop","ondurationchange","onemptied","onended","onformdata","oninput","oninvalid","onkeydown","onkeypress","onkeyup","onload","onloadeddata","onloadedmetadata","onloadstart","onmousedown","onmouseenter","onmouseleave","onmousemove","onmouseout","onmouseover","onmouseup","onwheel","onpaste","onpause","onplay","onplaying","onprogress","onratechange","onreset","onresize","onscroll","onscrollend","onsecuritypolicyviolation","onseeked","onseeking","onselect","onslotchange","onstalled","onsubmit","onsuspend","ontimeupdate","onvolumechange","onwaiting","onselectstart","onselectionchange","ontoggle","onpointercancel","onpointerdown","onpointerup","onpointermove","onpointerout","onpointerover","onpointerenter","onpointerleave","ongotpointercapture","onlostpointercapture","onmozfullscreenchange","onmozfullscreenerror","onanimationcancel","onanimationend","onanimationiteration","onanimationstart","ontransitioncancel","ontransitionend","ontransitionrun","ontransitionstart","onwebkitanimationend","onwebkitanimationiteration","onwebkitanimationstart","onwebkittransitionend","onerror","speechSynthesis","onafterprint","onbeforeprint","onbeforeunload","onhashchange","onlanguagechange","onmessage","onmessageerror","onoffline","ononline","onpagehide","onpageshow","onpopstate","onrejectionhandled","onstorage","onunhandledrejection","onunload","ongamepadconnected","ongamepaddisconnected","localStorage","origin","crossOriginIsolated","isSecureContext","indexedDB","caches","sessionStorage","STATE_MAXIMIZED","STATE_MINIMIZED","STATE_NORMAL","STATE_FULLSCREEN","mozScrollSnap","sizeToContentConstrained","openDialog","getInterface","shouldReportForServiceWorkerScope","setScrollMarks","controllers","realFrameElement","docShell","browsingContext","desktopToDeviceScale","screenEdgeSlopX","screenEdgeSlopY","scrollMinX","scrollMinY","windowRoot","windowUtils","windowGlobalChild","clientPrincipal","isInFullScreenTransition","Glean","GleanPings","window","document","location","top","MozElements","MozXULElement","MozHTMLElement","ensureCustomElements","Zotero","require","descriptor","override","sourceURI","parseURI","parseStack","serializeStack","join","Sandbox","evaluate","load","resolve","nodeResolve","resolveURI","Require","main","Module","unload","Loader","prototype","toJavaScriptConsole","openRunJSWindow","openStyleEditor","openScaffold","openWindowByType","openUILinkIn","goUpdateGlobalEditMenuItems","goUpdateUndoEditMenuItems","goUpdatePasteMenuItems","goBuildEditContextMenu","closeWindow","canQuitApplication","goQuitApplication","goUpdateCommand","goDoCommand","goSetCommandEnabled","XPCOMUtils","ContentAreaUtils","AppConstants","urlSecurityCheck","saveURL","saveBrowser","DownloadListener","internalSave","internalPersist","AutoChosen","FileInfo","initFileInfo","promiseTargetFile","uniqueFile","DownloadURL","appendFiltersForContentType","getPostData","makeWebBrowserPersist","makeURI","makeFileURI","makeFilePicker","getMIMEService","getFileBaseName","getMIMETypeForURI","getMIMEInfoForType","getDefaultFileName","validateFileName","GetSaveModeForContentType","getCharsetforSave","openURL","BrowserUtils","Deprecated","DownloadLastDir","DownloadPaths","Downloads","FileUtils","PrivateBrowsingUtils","NetUtil","kSaveAsType_Complete","kSaveAsType_Text","SAVEMODE_FILEONLY","SAVEMODE_COMPLETE_DOM","SAVEMODE_COMPLETE_TEXT","zoomWindow","PrintUtils","SHOW_PAGE_SETUP_MENU","PRINT_ALWAYS_SILENT","PREFER_SYSTEM_DIALOG","PromptUtils","winName","_tabBar","_tabBar2","_icons","React","ReactDOM","Zotero_Tabs","_interopRequireDefault","FilePicker","ZoteroPane","ZoteroPane_Local","ZoteroContextPane","_citavi","Zotero_File_Exporter","Zotero_File_Interface","HiddenBrowser","Zotero_Report_Interface","Zotero_Timeline_Interface","_react","_react2","_reactDom","_reactDom2","_progressQueueTable","_progressQueueTable2","_init","_handleActivate","Zotero_Lookup","Zotero_LocateMenu","_extends","ZOTERO_CONFIG"]
+05/25/2025 20:21:42 - Zoteroreviewassistant
+05/25/2025 20:22:30 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:22:30 - List []
+05/25/2025 20:22:30 - DONE
+05/25/2025 20:23:28 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:23:28 - List []
+05/25/2025 20:23:29 - DONE
+05/25/2025 20:32:01 - Zoteroreviewassistant
+05/25/2025 20:32:01 - List []
+05/25/2025 20:32:02 - DONE
+05/25/2025 20:32:28 - Zoteroreviewassistant
+05/25/2025 20:32:28 - List []
+05/25/2025 20:32:28 - DONE
+05/25/2025 20:33:44 - RELOAD
+05/25/2025 20:33:44 - DONE
+05/25/2025 20:34:52 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:34:52 - List []
+05/25/2025 20:35:29 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:29 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:29 - onKeyUp
+05/25/2025 20:35:30 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:32 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:34 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:34 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:35 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:35 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:35 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:35 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:40 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:40 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:43 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:43 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:44 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:45 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:45 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:45 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:46 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:48 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:35:48 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:42:21 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:42:21 - List []
+05/25/2025 20:42:26 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:42:26 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:42:29 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:42:29 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:42:29 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:44:34 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:44:34 - List []
+05/25/2025 20:45:54 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:45:54 - List []
+05/25/2025 20:46:39 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:46:39 - List []
+05/25/2025 20:46:44 - open
+05/25/2025 20:46:55 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:46:55 - List []
+05/25/2025 20:47:06 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:47:06 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:47:07 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:47:07 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:51:30 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:51:30 - List []
+05/25/2025 20:51:35 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:51:35 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:51:36 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:51:36 - List ["Comment","Second Comment","Third Comment"]
+05/25/2025 20:52:34 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:52:34 - List []
+05/25/2025 20:54:29 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:54:29 - List []
+05/25/2025 20:55:52 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:55:52 - List []
+05/25/2025 20:56:46 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:56:46 - List []
+05/25/2025 20:57:14 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:57:14 - List []
+05/25/2025 20:57:40 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:57:41 - List []
+05/25/2025 20:58:32 - Startup {"id":"zoteroreviewassistant@alima-webdev.com","version":"2.0.0","rootURI":"file:///Users/alexlima/Documents/Development/Zotero/react-template-with-scaffold/.scaffold/build/addon/","referenceName":"Zoteroreviewassistant"}
+05/25/2025 20:58:32 - List []

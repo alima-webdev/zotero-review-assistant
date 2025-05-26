@@ -1,0 +1,19 @@
+// tsconfig.json
+{
+    "sourceMap": true,
+    "include": [
+        "./src/**/*",
+        "./node_modules/zotero-types",
+        "./src/types/**/*",
+    ],
+    "compilerOptions": {
+        "jsx": "react-jsx", // Or "preserve" if you want to use a different JSX factory
+        "module": "esnext", // Or "commonjs" depending on your project
+        "target": "es5", // Or a higher target if your environment supports it
+        "esModuleInterop": true,
+        "strict": true, // Recommended for better type safety
+        "moduleResolution": "node", // Or "classic" depending on your project
+        "allowSyntheticDefaultImports": true, // For compatibility with some libraries
+        // "typeRoots": ["./src/types"]
+    }
+}
