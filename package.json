@@ -1,6 +1,6 @@
 {
     "name": "zotero-review-assistant",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "repository": {
         "type": "git",
         "url": "https://github.com/alima-webdev/zotero-review-assistant.git"
@@ -11,30 +11,30 @@
         "release": "zotero-plugin release"
     },
     "devDependencies": {
-        "@tailwindcss/postcss": "^4.1.6",
-        "@types/react": "^19.1.4",
-        "@types/react-dom": "^19.1.5",
-        "autoprefixer": "^10.4.21",
-        "esbuild-plugin-tailwindcss": "^2.0.1",
+        "@tailwindcss/postcss": "^4.1.17",
+        "@types/react": "^19.2.4",
+        "@types/react-dom": "^19.2.3",
+        "autoprefixer": "^10.4.22",
+        "esbuild-plugin-tailwindcss": "^2.1.0",
         "esbuild-style-plugin": "^1.6.3",
-        "postcss": "^8.5.3",
-        "tailwindcss": "^4.1.6",
-        "zotero-plugin-scaffold": "^0.6.0",
+        "postcss": "^8.5.6",
+        "tailwindcss": "^4.1.17",
+        "zotero-plugin-scaffold": "^0.6.1",
         "zotero-types": "4.0.0-beta.10"
     },
     "dependencies": {
         "@tanstack/react-table": "^8.21.3",
         "autocompleter": "^9.3.2",
-        "docxtemplater": "^3.62.2",
+        "docxtemplater": "^3.67.4",
         "esbuild-sass-plugin": "^3.3.1",
         "keystroke-input": "file:/Users/alexlima/Documents/Development/React Components/Keystroke Input/",
         "lucide-react": "^0.510.0",
         "pizzip": "^3.2.0",
-        "react": "^19.1.0",
-        "react-dom": "^19.1.0",
-        "react-hook-form": "^7.56.3",
-        "typescript": "^5.8.3",
-        "zotero-plugin-toolkit": "5.0.0-1"
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "react-hook-form": "^7.66.0",
+        "typescript": "^5.9.3",
+        "zotero-plugin-toolkit": "^5.0.1"
     },
     "zotero-react": {
         "entryPoints": [
@@ -49,5 +49,6 @@
             "releasePage": "https://github.com/alima-webdev/zotero-review-assistant/releases",
             "updateURL": "https://raw.githubusercontent.com/alima-webdev/zotero-review-assistant/main/update.json"
         }
-    }
+    },
+    "packageManager": "pnpm@10.22.0+sha512.bf049efe995b28f527fd2b41ae0474ce29186f7edcb3bf545087bd61fbbebb2bf75362d1307fda09c2d288e1e499787ac12d4fcb617a974718a6051f2eee741c"
 }
