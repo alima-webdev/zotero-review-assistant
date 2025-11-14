@@ -54,7 +54,7 @@ export default function StatusView({ ref }: { ref: Ref<StatusViewComponent> }): 
         modalRef.current?.close()
         // setIsCommentsModalOpen(false)
 
-        Zotero.ItemTreeManager.refreshColumns()
+        // Zotero.ItemTreeManager.refreshColumns()
     }
 
     // Imperative Functions

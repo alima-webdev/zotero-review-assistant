@@ -1,4 +1,5 @@
 import { usePreferencesPanelReactProps, usePreferencesProps } from "../../types/types";
+import { log } from "../devtools";
 import { getPluginInfo } from "../pluginInfo";
 
 // Preference Panels
@@ -23,17 +24,20 @@ export function usePreferencesPanel(props: usePreferencesProps) {
 }
 
 // Preferences Panel in React
-export function usePreferencesPanelReact(props: usePreferencesPanelReactProps) {
+export async function usePreferencesPanelReact(props: usePreferencesPanelReactProps) {
 
     // Check if the panel has been registered already and if an id has been provided
     if (preferencesPanels.filter(panel => panel.id === props.id).length > 0 || props.id === "") return
     preferencesPanels.push({ ...props, type: "react" })
 
     // Generate the pseudo URL for the boilerplate XHTML
+
+    const { id, version, rootURI, referenceName } = getPluginInfo()
+
     const htmlURL = URL.createObjectURL(new Blob([`
-        <html:div onload="${getPluginInfo().referenceName}.init(${JSON.stringify(getPluginInfo()).replaceAll('"', '&quot;')})">
-            <html:div id="app">
-            </html:div>
+        <html:div id="plugin-container" data-plugin-id="${id}" data-plugin-version="${version}" data-plugin-rooturi="${rootURI}" data-plugin-referencename="${referenceName}">
+            <div id="app">
+            </div>
         </html:div>
     `], { type: "text/html" }));
 
@@ -43,8 +47,10 @@ export function usePreferencesPanelReact(props: usePreferencesPanelReactProps) {
         scripts = [...scripts, ...props.additionalScripts?.map(url => getPluginInfo().rootURI + url) || []]
     }
 
+    log(getPluginInfo().id)
+
     // Register the pane
-    Zotero.PreferencePanes.register({
+    await Zotero.PreferencePanes.register({
         pluginID: getPluginInfo().id,
         label: props.label ? props.label : undefined,
         image: props.image ? getPluginInfo().rootURI + props.image : undefined,

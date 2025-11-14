@@ -10,24 +10,25 @@ import { ArticleStatus, PRISMACategory } from "./types/addon"
 // Devtools
 import { generateMenuIcon } from "./utils/helpers"
 import { setItemStatus, getPRISMALabel } from "./utils/columns.utils"
-import { useEffect, useRef } from "react"
+import { use, useEffect, useRef } from "react"
 import StatusView, { StatusViewComponent } from "./views/statusView"
 import PRISMAView, { PRISMAViewComponent } from "./views/prismaView"
 import { log } from "./utils/devtools"
 import { getPluginInfo } from "./utils/pluginInfo"
+import { registerExtraColumns } from "./extraColumns"
+import { registerReviewContextMenu } from "./contextMenu"
 
 export default function Addon() {
 
-    // log("ADDON")
-
     // Preferences
-    usePreferencesPanelReact({
-        id: "main", // Has to match the file name (e.g., .src/preferences/main.pn.tsx => id: "main")
-        label: "Zotero Review Assistant",
-        image: "assets/icons/favicon.svg",
-        stylesheets: ["styles/styles.css"]
-    })
-    
+    // TODO: FIX
+    // usePreferencesPanelReact({
+    //     id: "main", // Has to match the file name (e.g., .src/preferences/main.pn.tsx => id: "main")
+    //     label: "Zotero Review Assistant",
+    //     image: "assets/icons/favicon.svg",
+    //     stylesheets: ["styles/styles.css"]
+    // })
+
     // Prefs
     const [statusList, setStatusList] = usePref("statusList", defaultPreferences.statusList, { parseJSON: true, observe: true }) as [ArticleStatus[], usePrefStateFunction]
 
@@ -43,89 +44,89 @@ export default function Addon() {
 
     // Hooks
     // -- Status
-    useExtraColumn({
-        dataKey: 'status',
-        label: 'Status',
-        dataProvider: (item: Zotero.Item, _) => {
-            return JSON.stringify(statusList.filter(status => item.hasTag(status.tag)))
-        },
-        renderCell: (index: number, rawData: string, column: any): HTMLElement => {
-            // Get the data
-            try {
-                const data = JSON.parse(rawData) as ArticleStatus[]
+    // useExtraColumn({
+    //     dataKey: 'status',
+    //     label: 'Status',
+    //     dataProvider: (item: Zotero.Item, _) => {
+    //         return JSON.stringify(statusList.filter(status => item.hasTag(status.tag)))
+    //     },
+    //     renderCell: (index: number, rawData: string, column: any): HTMLElement => {
+    //         // Get the data
+    //         try {
+    //             const data = JSON.parse(rawData) as ArticleStatus[]
 
-                // Create the cell element
-                const element = document.createElement("span")
-                element.className = `cell ${column.className}` // Do not remove this or the column will look weird
+    //             // Create the cell element
+    //             const element = document.createElement("span")
+    //             element.className = `cell ${column.className}` // Do not remove this or the column will look weird
 
-                // Set the innerHTML
-                element.innerHTML = data.map(item => `<span class="rt-badge  ${item.invertTextColor ? "invert-text" : ""}" style="background-color: ${item.color};">${item.label}</span>`).join("")
+    //             // Set the innerHTML
+    //             element.innerHTML = data.map(item => `<span class="rt-badge  ${item.invertTextColor ? "invert-text" : ""}" style="background-color: ${item.color};">${item.label}</span>`).join("")
 
-                // Return the created cell element
-                return element
-            } catch {
-                const fallbackElement = document.createElement("span")
-                fallbackElement.className = `cell ${column.className}` // Do not remove this or the column will look weird
-                return fallbackElement
-            }
-        }
-    })
-    // -- PRISMA
-    useExtraColumn({
-        dataKey: 'prisma',
-        label: 'PRISMA Category',
-        dataProvider: (item: Zotero.Item, _: string) => {
-            try {
-                let res = item.getTags().filter(tag => prismaCategories.find(cat => cat.tag == tag.tag))
-                if (res.length < 1) {
-                    return ""
-                }
-                return getPRISMALabel(res[0].tag.replace(prismaTagPrefix, ""))
-            } catch {
-                return ""
-            }
-        }
-    })
-    // -- Comments
-    useExtraColumn({
-        dataKey: 'comments',
-        label: 'Status Comments',
-        dataProvider: (item: Zotero.Item, _: string) => {
-            let res = item.getTags().filter(tag => tag.tag.startsWith(commentsTagPrefix))
-            if (res.length < 1) {
-                return ""
-            }
-            return res[0].tag.replace(commentsTagPrefix, "")
-        }
-    })
+    //             // Return the created cell element
+    //             return element
+    //         } catch {
+    //             const fallbackElement = document.createElement("span")
+    //             fallbackElement.className = `cell ${column.className}` // Do not remove this or the column will look weird
+    //             return fallbackElement
+    //         }
+    //     }
+    // })
+    // // -- PRISMA
+    // useExtraColumn({
+    //     dataKey: 'prisma',
+    //     label: 'PRISMA Category',
+    //     dataProvider: (item: Zotero.Item, _: string) => {
+    //         try {
+    //             let res = item.getTags().filter(tag => prismaCategories.find(cat => cat.tag == tag.tag))
+    //             if (res.length < 1) {
+    //                 return ""
+    //             }
+    //             return getPRISMALabel(res[0].tag.replace(prismaTagPrefix, ""))
+    //         } catch {
+    //             return ""
+    //         }
+    //     }
+    // })
+    // // -- Comments
+    // useExtraColumn({
+    //     dataKey: 'comments',
+    //     label: 'Status Comments',
+    //     dataProvider: (item: Zotero.Item, _: string) => {
+    //         let res = item.getTags().filter(tag => tag.tag.startsWith(commentsTagPrefix))
+    //         if (res.length < 1) {
+    //             return ""
+    //         }
+    //         return res[0].tag.replace(commentsTagPrefix, "")
+    //     }
+    // })
 
     // Context Menu
-    useContextMenu("zotero-itemmenu", [
-        { type: "menuseparator" },
-        {
-            type: "menu", label: "Review",
-            // image: getPluginInfo().rootURI + "assets/icon.png",
-            children: [...statusList.map((status: ArticleStatus) => {
-                return {
-                    type: "menuitem", label: status.label, image: generateMenuIcon(status.color), action: (_) => {
-                        setItemStatus(statusList, status)
-                    }
-                }
-            }) as MenuItem[],
-            { type: "menuseparator" },
-            {
-                type: "menuitem", label: "Edit Review Info", action: () => {
-                    editStatus()
-                }
-            },
-            { type: "menuseparator" },
-            {
-                type: "menuitem", label: "Generate PRISMA Diagram", action: () => {
-                    generatePRISMADiagram()
-                }
-            }]
-        },
-    ], [statusList])
+    // useContextMenu("#zotero-itemmenu", [
+    //     { type: "menuseparator" },
+    //     {
+    //         type: "menu", label: "Review",
+    //         // image: getPluginInfo().rootURI + "assets/icon.png",
+    //         children: [...statusList.map((status: ArticleStatus) => {
+    //             return {
+    //                 type: "menuitem", label: status.label, image: generateMenuIcon(status.color), action: (_) => {
+    //                     setItemStatus(statusList, status)
+    //                 }
+    //             }
+    //         }) as MenuItem[],
+    //         { type: "menuseparator" },
+    //         {
+    //             type: "menuitem", label: "Edit Review Info", action: () => {
+    //                 editStatus()
+    //             }
+    //         },
+    //         { type: "menuseparator" },
+    //         {
+    //             type: "menuitem", label: "Generate PRISMA Diagram", action: () => {
+    //                 generatePRISMADiagram()
+    //             }
+    //         }]
+    //     },
+    // ], [statusList])
 
     // Keyboard Shortcuts
     // -- Status
@@ -147,6 +148,47 @@ export default function Addon() {
     const generatePRISMADiagram = () => {
         prismaViewRef.current?.open()
     }
+    useEffect(() => {
+        // Register functions globally
+        const runAsync = async () => {
+
+            log("Registering global functions")
+
+            if (!Zotero.getMainWindow()[getPluginInfo().referenceName]) { return; }
+
+            log("Zotero.getMainWindow()[getPluginInfo().referenceName] exists")
+            Zotero.getMainWindow()[getPluginInfo().referenceName].editStatus = editStatus
+            Zotero.getMainWindow()[getPluginInfo().referenceName].generatePRISMADiagram = generatePRISMADiagram
+
+            // Hooks
+            const { id, version, rootURI, referenceName } = getPluginInfo()
+
+            // Register Extra Columns
+            await registerExtraColumns(id)
+            window.colFn = registerExtraColumns
+
+            log(registerExtraColumns)
+            log(id)
+
+            // Register Context Menu
+            await registerReviewContextMenu(id, version, rootURI, referenceName)
+
+            // Preferences
+            await usePreferencesPanelReact({
+                id: "main", // Has to match the file name (e.g., .src/preferences/main.pn.tsx => id: "main")
+                label: "Zotero Review Assistant",
+                image: "assets/icons/favicon.svg",
+                stylesheets: ["styles/styles.css"]
+            })
+
+            // Inject the CSS styles
+            // const styles = document.createElement("link")
+            // styles.href = `${rootURI}/styles/styles.css`
+            // styles.rel = "stylesheet"
+            // document.documentElement.appendChild(styles)
+        }
+        runAsync()
+    }, [])
 
 
     // setTimeout(async () => {
@@ -157,5 +199,6 @@ export default function Addon() {
     return <>
         <StatusView ref={statusViewRef} />
         <PRISMAView ref={prismaViewRef} />
+        <link rel="stylesheet" type="text/css" href={`${getPluginInfo().rootURI}/styles/styles.css`} />
     </>
 }

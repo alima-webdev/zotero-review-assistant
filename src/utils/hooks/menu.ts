@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { MenuItem } from "../../types/types"
+import { log } from "../devtools"
 
 /**
  * Creates and appends context menu items to a specified popup element.
@@ -13,7 +14,7 @@ import { MenuItem } from "../../types/types"
  * @property {string} [image] - The URL of the image/icon for the menu item.
  * @property {Function} [action] - The function to be executed when the menu item is clicked.
  */
-function generateMenuDOM(element: MenuItem) {
+export function generateMenuDOM(element: MenuItem) {
 
     let item = document.createXULElement(`${element.type}`)
     switch (element.type) {
@@ -48,9 +49,11 @@ function generateMenuDOM(element: MenuItem) {
  * @example
  * useContextMenu("custom-menu", [{ label: "Item 1", action: () => console.log("Item 1 clicked") }], [dependency]);
  */
-export function useContextMenu(selector: string = "zotero-itemmenu", items: MenuItem[] = [], deps: any[] = []) {
+export function useContextMenu(selector: string = "#zotero-itemmenu", items: MenuItem[] = [], deps: any[] = []) {
     useEffect(() => {
-        const popup = document.getElementById(selector)
+        
+        const popup = document.querySelector(selector)
+        Zotero.log("useContextMenu", popup)
         if (!popup) return
         const elements = items.map(item => {
             const element = generateMenuDOM(item)
@@ -62,5 +65,6 @@ export function useContextMenu(selector: string = "zotero-itemmenu", items: Menu
         return () => {
             elements.map(element => element?.remove())
         }
+
     }, deps)
 }

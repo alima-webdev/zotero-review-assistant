@@ -6,24 +6,25 @@ import { getPluginInfo } from "./pluginInfo"
 // const extraColumns: string[] = []
 // export const extraColumns: string[] = []
 export async function registerColumn(options: _ZoteroTypes.ItemTreeManager.ItemTreeColumnOptions) {
+    log("columns.utils: registerColumn", options)
     // log(Object.keys(Zotero.getMainWindow()))
     // log(getPluginInfo().referenceName)
-    if(!Zotero.getMainWindow()[getPluginInfo().referenceName].extraColumns) {
-        Zotero.getMainWindow()[getPluginInfo().referenceName].extraColumns = []
-    }
-    const extraColumns: string[] = []
+    if (!Zotero.getMainWindow()[getPluginInfo().referenceName]) { return; }
+    if (!Zotero.getMainWindow()[getPluginInfo().referenceName].extraColumns) { return; }
+    // const extraColumns: string[] = []
     // Ensure the column options includes dataKey
-    if (extraColumns.includes(options.dataKey)) return
+    if (Zotero.getMainWindow()[getPluginInfo().referenceName].extraColumns.includes(options.dataKey)) return
 
     // const pluginID = getPluginInfo().id + "-" + extraColumns.length
 
     // Column Options
-    const columnOptions = { ...options} //, pluginID }
+    const columnOptions = { ...options } //, pluginID }
 
     const registerColumnFn =
         Zotero.ItemTreeManager.registerColumn ||
         Zotero.ItemTreeManager.registerColumns;
-    const dataKey = await registerColumnFn.apply(Zotero.ItemTreeManager, [{...columnOptions}])
+        // @ts-ignore
+    const dataKey = await registerColumnFn.apply(Zotero.ItemTreeManager, [{ ...columnOptions }])
     // const dataKey = await Zotero.ItemTreeManager.registerColumn(columnOptions)
     if (!dataKey) return;
 
@@ -33,9 +34,12 @@ export async function registerColumn(options: _ZoteroTypes.ItemTreeManager.ItemT
 
 export async function unregisterAllColumns() {
     Zotero.getMainWindow().console.log(Zotero.getMainWindow()[getPluginInfo().referenceName].extraColumns)
-    await Zotero.getMainWindow()[getPluginInfo().referenceName].extraColumns.map(async dataKey => {
+    if (!Zotero.getMainWindow()[getPluginInfo().referenceName].extraColumns) return
+    if (Zotero.getMainWindow()[getPluginInfo().referenceName].extraColumns.length === 0) return
+    await Zotero.getMainWindow()[getPluginInfo().referenceName].extraColumns.map(async (dataKey: string) => {
         await Zotero.ItemTreeManager.unregisterColumn(dataKey)
     })
+    Zotero.getMainWindow()[getPluginInfo().referenceName].extraColumns = []
 }
 
 export function setItemStatus(statusList: ArticleStatus[], status: ArticleStatus) {
@@ -94,7 +98,7 @@ export function setItemPRISMACategory(categoryList: PRISMACategory[], newCategor
 
     // Selected articles
     const selectedArticles = ZoteroPane.getSelectedItems()
-    
+
     replaceTags({
         articles: selectedArticles,
         removeTags: categoryList.map(stat => stat.tag) as string[],

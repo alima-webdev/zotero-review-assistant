@@ -20,6 +20,8 @@ import { log } from "../utils/devtools";
 
 function PreferencePane() {
 
+    Zotero.log("Rendering PreferencePane")
+
     // Prefs
     const [statusList, setStatusList] = usePref("statusList", defaultPreferences.statusList, { parseJSON: true }) as [ArticleStatus[], usePrefStateFunction]
 
@@ -88,7 +90,7 @@ function PreferencePane() {
                 code: item.keystroke?.code,
             }
             setValue("keystroke", JSON.stringify(payload))
-            console.log("KEYSTROKE: ", item.keystroke)
+            // console.log("KEYSTROKE: ", item.keystroke)
             // setValue("keystroke", { "altKey": true, "ctrlKey": false, "metaKey": false, "shiftKey": false, "code": "KeyU" })
             // setValue("keystroke", { "altKey": true, "ctrlKey": false, "metaKey": false, "shiftKey": false, "code": "KeyU" })
             setValue("color", item.color)
@@ -125,6 +127,10 @@ function PreferencePane() {
                         <div><strong>Additional Shortcuts:</strong></div>
                         <div>{getStringFromKeyCombination(getKeyCombination("Alt S"))} - Open Review Info Panel</div>
                         <div>{getStringFromKeyCombination(getKeyCombination("Alt D"))} - Open Generate PRISMA Diagram Panel</div>
+                    </div>
+
+                    <div className="">
+                        Restart Zotero to apply changes
                     </div>
                 </div>
 
